@@ -1,0 +1,31 @@
+
+.custom-alert {
+    max-width: 300px;
+    padding: 15px;
+    background-color: #ffcea6;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 558275;
+    border-radius: 5px;
+    animation: animate-alert 0.5s;
+    margin: 5px;
+  }
+  .custom-alert-message {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .custom-alert-close {
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  @keyframes animate-alert {
+    from {
+      transform: translateX(900px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
