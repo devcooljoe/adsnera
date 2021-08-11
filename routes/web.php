@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 // DEFAULT ROUTES
 Auth::routes();
-// Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 
 
 Route::get('/', function () {
@@ -28,7 +28,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/account/referrals', 'DashboardController@view_referrals');
     Route::get('/account/profile', 'DashboardController@view_profile');

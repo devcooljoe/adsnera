@@ -26,6 +26,9 @@
     <!-- online-fonts -->
     <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!-- //online-fonts -->
+    <link rel="apple-touch-icon" sizes="48x48" href="{{ route('index') }}/images/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ route('index') }}/images/logo.png">
+    <link rel="shortcut-icon" href="{{ route('index') }}/images/logo.png" type="image/png">
 
     @yield('title')
 
@@ -38,11 +41,9 @@
         <!-- nav -->
         <nav class="main-header">
             <div id="brand">
-                <div id="logo">
-                    <a href="/">
-                        <i class="fab fa-ethereum"></i>
-                    </a>
-                </div>
+                <a href="/">
+                    <img src="{{ route('index') }}/images/logo.png" alt="" class="img img-responsive" style="width: 60px;">
+                </a>
                 <div id="word-mark">
                     <h1>
                         <a href="/">Adsnera</a>
@@ -159,7 +160,8 @@
                     <div class="footer-logo my-sm-5 mb-sm-5 mb-3 text-center">
                         <h2>
                             <a href="/">
-                                <i class="fab fa-ethereum"></i>Adsnera
+                                <img src="{{ route('index') }}/images/logo.png" alt="" class="img img-responsive" style="width: 60px;">
+                                Adsnera
                             </a>
                         </h2>
                         <p class="px-lg-5 pt-lg-5 pt-3 text-white">Building a beloved brand is not simply about the

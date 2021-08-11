@@ -89,11 +89,7 @@
                 </li>
                 <!-- //nav_agile_w3l -->
                 <li class="second logo">
-                    <h1><a
-                            href="{{ auth()->user()->advertiser()
-    ? '/advertiser/dashboard'
-    : '/promoter/dashboard' }}"><i
-                                class="fa fa-graduation-cap" aria-hidden="true"></i>{{ auth()->user()->name }} </a>
+                    <h1>{{ auth()->user()->name }}
                     </h1>
                 </li>
                 <li class="second admin-pic">
@@ -101,8 +97,8 @@
                         <li class="dropdown profile_details_drop">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">
-                                    <span class="prfil-img"><img src="{{ route('index') }}/board/images/admin.jpg"
-                                            alt=""> </span>
+                                    <span class="prfil-img"><img src="{{ route('index') }}/board/images/avatar.png"
+                                            alt="" class="img img-responsive" style="width: 50px;"> </span>
                                 </div>
                             </a>
                             <ul class="dropdown-menu drp-mnu">
