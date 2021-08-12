@@ -4,7 +4,7 @@
     <title>Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -32,6 +32,14 @@
         <!-- /inner_content_w3_agile_info-->
         <div class="inner_content_w3_agile_info">
 
+            <div class="w3ls_agile_cylinder chart agile_info_shadow">
+                <h3 class="w3_inner_tittle two">
+                    <a href="{{ route('index') }}/advertiser/campaigns/new" class="badge badge-primary"
+                        style="font-size: 20px;padding:10px;"><i class="fa fa-plus"></i> New Campaign</a>
+                </h3>
+
+            </div>
+            <br>
             <!-- //agile_top_w3_post_sections-->
             <!-- /w3ls_agile_circle_progress-->
             <div class="w3ls_agile_cylinder chart agile_info_shadow">
@@ -42,102 +50,49 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Task Name</th>
-                                    <th>Posts</th>
+                                    <th>Name</th>
+                                    <th>Caption</th>
 
+                                    <th>Status</th>
                                     <th>Total Views</th>
-                                    <th>Amount Earned</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Facebook</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <li class="dropdown" style="list-style-type: none">
-                                                <button data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle btn btn-default but">Share <i class="fa fa-share"></i></button>                                       
-                                                <ul class="dropdown-menu drp-mnu">
-                                                    <li> <a href="#"><i class="fa fa-whatsapp"></i> WhatsApp</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-facebook"></i> Facebook</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-twitter"></i> Twitter</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-telegram"></i> Telegram</a> </li> 
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-info">50%</span></td>
-                                    <td><span class="label label-danger">in progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Twitter</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <li class="dropdown" style="list-style-type: none">
-                                                <button data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle btn btn-default but">Share <i class="fa fa-share"></i></button>                                       
-                                                <ul class="dropdown-menu drp-mnu">
-                                                    <li> <a href="#"><i class="fa fa-whatsapp"></i> WhatsApp</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-facebook"></i> Facebook</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-twitter"></i> Twitter</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-telegram"></i> Telegram</a> </li> 
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-success">100%</span></td>
-                                    <td><span class="label label-success">Paid <i class="fa fa-check"></i></span></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Google</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-warning">75%</span></td>
-                                    <td><span class="label label-warning">in progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>LinkedIn</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-info">65%</span></td>
-                                    <td><span class="label label-info">in progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Tumblr</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-danger">95%</span></td>
-                                    <td><span class="label label-warning">in progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Tesla</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-success">95%</span></td>
-                                    <td><span class="label label-info">Paid <i class="fa fa-check"></i></span></td>
-                                </tr>
+                                <?php $count = 1; ?>
+                                @foreach ($tasks as $task)
+                                    <tr>
+                                        <td>{{ $count }}</td>
+                                        <td>{{ $task->name }}</td>
+                                        <td>{{ substr($task->caption, 0, 100) }}{{ strlen($task->caption) > 100 ? '...' : '' }}
+                                        </td>
+                                        <td>
+                                            @if ($task->status == 'active')
+                                                <span class="label label-success">{{ ucwords($task->status) }}</span>
+                                            @else
+                                                <span class="label label-warning">{{ ucwords($task->status) }}</span>
+                                            @endif
+
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-info">
+                                                {{ $task->view()->get()->count() > 0
+    ? $task->view()->get()->count()
+    : 'No Views' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div style="display: flex;">
+                                                <a href="#" class="label label-info" style="margin:5px;">View</a>
+                                                <a href="/advertiser/campaigns/{{ $task->id }}/edit"
+                                                    class="label label-success" style="margin:5px;">Edit</a>
+                                                <a href="/advertiser/campaigns/{{ $task->id }}/delete"
+                                                    class="label label-danger" style="margin:5px;">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php $count++; ?>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

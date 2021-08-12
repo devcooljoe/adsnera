@@ -4,7 +4,7 @@
     <title>Referrals - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -17,6 +17,12 @@
             <!-- /w3ls_agile_circle_progress-->
             <div class="w3ls_agile_cylinder chart agile_info_shadow">
                 <h3 class="w3_inner_tittle two">Referral Link</h3>
+                <div style="display: flex;">
+                    <button class="btn btn-primary" onclick="copyLink()" style="border-radius: 7px 0px 0px 7px"
+                        id="btnRefLink">Copy
+                        Link</button><input readonly type="text" class="form-control img-responsive" style="width:250px;"
+                        value="{{ route('index') . '/' . auth()->user()->id }}" id="refLink">
+                </div>
 
             </div>
             <!-- /w3ls_agile_circle_progress-->
@@ -62,7 +68,8 @@
                                     <td>John</td>
                                     <td><span class="label label-success">Active<i class="fa fa-check"></i></span></td>
                                     <td><span class="label label-danger">in progress</span></td>
-                                    <td>12-12-2021</td></tr>
+                                    <td>12-12-2021</td>
+                                </tr>
                                 <tr>
                                     <td>4</td>
                                     <td>LinkedIn</td>
@@ -114,5 +121,12 @@
         </div>
         <!-- //inner_content_w3_agile_info-->
     </div>
+    <script>
+        function copyLink() {
+            var textcopy = document.getElementById('refLink');
+            textcopy.select();
+            document.execCommand('copy');
+        }
+    </script>
     <!-- //inner_content-->
 @endsection

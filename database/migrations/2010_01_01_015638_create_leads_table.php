@@ -18,7 +18,7 @@ class CreateLeadsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('task_id');
             $table->string('user_agent');
-            $table->string('billed')->nullable();
+            $table->boolval('billed')->nullable();
             $table->timestamps();
         });
     }

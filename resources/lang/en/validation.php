@@ -133,6 +133,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'file' => [
+            'image' => 'This file must be a picture.'
+        ],
     ],
 
     /*

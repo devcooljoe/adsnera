@@ -18,7 +18,7 @@ class CreateEarningsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('task_id');
             $table->string('user_agent');
-            $table->string('paid')->nullable();
+            $table->boolval('paid')->nullable();
             $table->timestamps();
         });
     }

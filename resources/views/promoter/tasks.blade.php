@@ -4,7 +4,7 @@
     <title>Tasks - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -57,12 +57,14 @@
                                         <div class="post">
                                             <input class="form form-control textarea" />
                                             <li class="dropdown" style="list-style-type: none">
-                                                <button data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle btn btn-default but">Share <i class="fa fa-share"></i></button>                                       
+                                                <button data-toggle="dropdown" aria-expanded="false"
+                                                    class="dropdown-toggle btn btn-default but">Share <i
+                                                        class="fa fa-share"></i></button>
                                                 <ul class="dropdown-menu drp-mnu">
-                                                    <li> <a href="#"><i class="fa fa-whatsapp"></i> WhatsApp</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-facebook"></i> Facebook</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-twitter"></i> Twitter</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-telegram"></i> Telegram</a> </li> 
+                                                    <li> <a href="#"> WhatsApp</a> </li>
+                                                    <li> <a href="#"> Facebook</a> </li>
+                                                    <li> <a href="#"> Twitter</a> </li>
+                                                    <li> <a href="#"> Telegram</a> </li>
                                                 </ul>
                                             </li>
                                         </div>
@@ -77,12 +79,14 @@
                                         <div class="post">
                                             <input class="form form-control textarea" />
                                             <li class="dropdown" style="list-style-type: none">
-                                                <button data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle btn btn-default but">Share <i class="fa fa-share"></i></button>                                       
+                                                <button data-toggle="dropdown" aria-expanded="false"
+                                                    class="dropdown-toggle btn btn-default but">Share <i
+                                                        class="fa fa-share"></i></button>
                                                 <ul class="dropdown-menu drp-mnu">
-                                                    <li> <a href="#"><i class="fa fa-whatsapp"></i> WhatsApp</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-facebook"></i> Facebook</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-twitter"></i> Twitter</a> </li>
-                                                    <li> <a href="#"><i class="fa fa-telegram"></i> Telegram</a> </li> 
+                                                    <li> <a href="#"> WhatsApp</a> </li>
+                                                    <li> <a href="#"> Facebook</a> </li>
+                                                    <li> <a href="#"> Twitter</a> </li>
+                                                    <li> <a href="#"> Telegram</a> </li>
                                                 </ul>
                                             </li>
                                         </div>

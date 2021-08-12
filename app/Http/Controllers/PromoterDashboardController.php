@@ -20,5 +20,9 @@ class PromoterDashboardController extends Controller
     {
         return view('promoter.wallet');
     }
+    public function view_referrals() 
+    {
+        return view('promoter.referrals');
+    }
 
 }

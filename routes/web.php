@@ -16,21 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 // DEFAULT ROUTES
 Auth::routes();
-// Auth::routes(['verify' => true]);
-
-
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Auth::routes(['verify' => true]);
+Route::get('/checkauthuser', 'DashboardController@checkuser');
 
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/viewpost/{post_id}/{promoter_id}', "GuestController@viewpost");
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
-    Route::get('/account/referrals', 'DashboardController@view_referrals');
     Route::get('/account/profile', 'DashboardController@view_profile');
     Route::get('/account/settings', 'DashboardController@view_settings');
 
@@ -38,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/promoter/dashboard', 'PromoterDashboardController@view_dashboard');
         Route::get('/promoter/tasks', 'PromoterDashboardController@view_tasks');
         Route::get('/promoter/wallet', 'PromoterDashboardController@view_wallet');
+        Route::get('/account/referrals', 'PromoterDashboardController@view_referrals');
         
     });
 
@@ -45,6 +42,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/advertiser/dashboard', 'AdvertiserDashboardController@view_dashboard');
         Route::get('/advertiser/campaigns', 'AdvertiserDashboardController@view_campaigns');
         Route::get('/advertiser/wallet', 'AdvertiserDashboardController@view_wallet');
+        Route::get('/advertiser/campaigns/new', 'AdvertiserDashboardController@view_new_campaign');
+        Route::post('/advertiser/campaigns/post_new', 'AdvertiserDashboardController@add_new_campaign');
+        Route::get('/advertiser/campaigns/{task_id}/edit', 'AdvertiserDashboardController@view_edit_campaign');
         
     });
 });
+
+
+Route::get('/faker', function () {
+    // factory(App\Task::class, 100)->create();
+});
+
+Route::get('/{id?}', 'GuestController@index')->name('index');

@@ -30,6 +30,9 @@
     <link href="{{ route('index') }}/board/css/font-awesome.css" rel="stylesheet">
     <!-- //font-awesome-icons -->
     <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="48x48" href="{{ route('index') }}/images/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ route('index') }}/images/logo.png">
+    <link rel="shortcut-icon" href="{{ route('index') }}/images/logo.png" type="image/png">
 </head>
 
 <body>
@@ -65,9 +68,9 @@
                                     </li>
                                     <li><a href="/promoter/tasks"><i class="fa fa-tasks"></i> Tasks</a></li>
                                     <li><a href="/promoter/wallet"><i class="fa fa-money"></i> Wallet</a></li>
-
+                                    <li><a href="/account/referrals"><i class="fa fa-chain"></i> Referrals</a></li>
                                 @endif
-                                <li><a href="/account/referrals"><i class="fa fa-chain"></i> Referrals</a></li>
+
                                 <li><a href="/account/profile"><i class="fa fa-list"></i> Profile</a></li>
                                 <li>
                                     <a href="#"> <i class="fa fa-suitcase" aria-hidden="true"></i>More <i
@@ -89,8 +92,6 @@
                 </li>
                 <!-- //nav_agile_w3l -->
                 <li class="second logo">
-                    <h1>{{ auth()->user()->name }}
-                    </h1>
                 </li>
                 <li class="second admin-pic">
                     <ul class="top_dp_agile">
@@ -182,7 +183,10 @@
                         <strong>BALANCE</strong>
                     </div>
                     <div class="account-balance-2">
-                        <strong>₦{{ number_format(auth()->user()->wallet()->first()->amount, 2) }}</strong>
+                        <strong>₦{{ number_format(
+    auth()->user()->wallet()->first()->amount,
+    2,
+) }}</strong>
                     </div>
                 </li>
 

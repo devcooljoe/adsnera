@@ -4,7 +4,7 @@
     <title>Dashboard - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -15,13 +15,13 @@
 
             <!-- //agile_top_w3_post_sections-->
             <!-- /w3ls_agile_circle_progress-->
-            <div class="w3ls_agile_cylinder chart agile_info_shadow">
+            {{-- <div class="w3ls_agile_cylinder chart agile_info_shadow">
                 <h3 class="w3_inner_tittle two">Recent Tasks Impressions</h3>
 
                 <div id="chartdiv"></div>
 
 
-            </div>
+            </div> --}}
             <!-- /w3ls_agile_circle_progress-->
             <!-- /chart_agile-->
             <br><br>

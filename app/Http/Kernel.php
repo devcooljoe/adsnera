@@ -52,6 +52,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'userchecked' => \App\Http\Middleware\CheckUser::class,
         'advertiser' => \App\Http\Middleware\ValidateAdvertiser::class,
         'promoter' => \App\Http\Middleware\ValidatePromoter::class,
         'auth' => \App\Http\Middleware\Authenticate::class,

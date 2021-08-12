@@ -18,9 +18,9 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('caption');
-            $table->string('image')->nullable();
+            $table->string('picture')->nullable();
             $table->string('link')->nullable();
-            $table->string('active')->nullable();
+            $table->boolval('active')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

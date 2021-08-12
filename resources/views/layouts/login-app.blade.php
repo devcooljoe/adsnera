@@ -18,7 +18,9 @@ Author URL: http://w3layouts.com
 
     <link rel="stylesheet" href="{{ route('index') }}/css/fontawesome-all.min.css" type="text/css" media="all">
     <script src="{{ route('index') }}/js/jquery-2.2.3.min.js"></script>
-
+    <link rel="apple-touch-icon" sizes="48x48" href="{{ route('index') }}/images/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ route('index') }}/images/logo.png">
+    <link rel="shortcut-icon" href="{{ route('index') }}/images/logo.png" type="image/png">
 
 </head>
 
@@ -27,12 +29,12 @@ Author URL: http://w3layouts.com
     @yield('content')
 
     <!-- copyright-->
-        <div class="copyright text-center"> &copy; Adsnera,
-            <script>
-                document.write(new Date().getFullYear());
-            </script> All rights reserved.
-        </div>
-        <!-- //copyright-->
+    <div class="copyright text-center"> &copy; Adsnera,
+        <script>
+            document.write(new Date().getFullYear());
+        </script> All rights reserved.
+    </div>
+    <!-- //copyright-->
     </section>
 
 

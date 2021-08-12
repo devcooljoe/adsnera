@@ -42,6 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected static function boot() {
         parent::boot();
         static::created(function($user){
+            // $arr = array('promoter', 'advertiser');
+            // $va = rand(0, 1);
+            // Session::put('account_type', $arr[$va]);
             $user->account()->create([
                 'type' => Session::get('account_type'),
             ]);

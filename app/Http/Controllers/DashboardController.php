@@ -24,10 +24,12 @@ class DashboardController extends Controller
         }
     }
 
-    public function view_referrals() 
+    public function checkuser() 
     {
-        return view('general.referrals');
+        Session::put('userchecked', true);
+        return redirect()->back();
     }
+    
     public function view_profile() 
     {
         return view('general.profile');
