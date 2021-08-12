@@ -56,7 +56,15 @@
                                     <td>
                                         <div class="post">
                                             <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Copy</button>
+                                            <li class="dropdown" style="list-style-type: none">
+                                                <button data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle btn btn-default but">Share <i class="fa fa-share"></i></button>                                       
+                                                <ul class="dropdown-menu drp-mnu">
+                                                    <li> <a href="#"><i class="fa fa-whatsapp"></i> WhatsApp</a> </li>
+                                                    <li> <a href="#"><i class="fa fa-facebook"></i> Facebook</a> </li>
+                                                    <li> <a href="#"><i class="fa fa-twitter"></i> Twitter</a> </li>
+                                                    <li> <a href="#"><i class="fa fa-telegram"></i> Telegram</a> </li> 
+                                                </ul>
+                                            </li>
                                         </div>
                                     </td>
                                     <td><span class="badge badge-info">50%</span></td>
@@ -68,7 +76,15 @@
                                     <td>
                                         <div class="post">
                                             <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Copy</button>
+                                            <li class="dropdown" style="list-style-type: none">
+                                                <button data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle btn btn-default but">Share <i class="fa fa-share"></i></button>                                       
+                                                <ul class="dropdown-menu drp-mnu">
+                                                    <li> <a href="#"><i class="fa fa-whatsapp"></i> WhatsApp</a> </li>
+                                                    <li> <a href="#"><i class="fa fa-facebook"></i> Facebook</a> </li>
+                                                    <li> <a href="#"><i class="fa fa-twitter"></i> Twitter</a> </li>
+                                                    <li> <a href="#"><i class="fa fa-telegram"></i> Telegram</a> </li> 
+                                                </ul>
+                                            </li>
                                         </div>
                                     </td>
                                     <td><span class="badge badge-success">100%</span></td>
@@ -80,7 +96,7 @@
                                     <td>
                                         <div class="post">
                                             <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Copy</button>
+                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
                                         </div>
                                     </td>
                                     <td><span class="badge badge-warning">75%</span></td>
@@ -92,7 +108,7 @@
                                     <td>
                                         <div class="post">
                                             <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Copy</button>
+                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
                                         </div>
                                     </td>
                                     <td><span class="badge badge-info">65%</span></td>
@@ -104,7 +120,7 @@
                                     <td>
                                         <div class="post">
                                             <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Copy</button>
+                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
                                         </div>
                                     </td>
                                     <td><span class="badge badge-danger">95%</span></td>
@@ -116,7 +132,7 @@
                                     <td>
                                         <div class="post">
                                             <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Copy</button>
+                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
                                         </div>
                                     </td>
                                     <td><span class="badge badge-success">95%</span></td>
