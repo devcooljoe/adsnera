@@ -4,7 +4,7 @@
     <title>Edit Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -35,7 +35,7 @@
             <div class="graph-form agile_info_shadow">
                 <h3 class="w3_inner_tittle two">Edit Campaign</h3>
                 <div class="form-body">
-                    <form method="post" autocomplete="off" action="/advertiser/campaigns/post_edit">
+                    <form method="post" autocomplete="off" action="/advertiser/campaigns/{{ $task->id }}/edit">
                         @csrf
                         <div class="form-group"> <label for="exampleInputEmail1">Campaign Name (Required)</label> <input
                                 type="text" name="name" class="form-control" id="exampleInputEmail1"
@@ -60,7 +60,7 @@
                             @enderror
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-default">Save Campaign</button>
+                        <button type="submit" class="btn btn-default">Save Changes</button>
                     </form>
                 </div>
 

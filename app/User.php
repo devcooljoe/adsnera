@@ -42,9 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected static function boot() {
         parent::boot();
         static::created(function($user){
-            // $arr = array('promoter', 'advertiser');
-            // $va = rand(0, 1);
-            // Session::put('account_type', $arr[$va]);
+            $arr = array('promoter', 'advertiser');
+            $va = rand(0, 1);
+            Session::put('account_type', $arr[$va]);
             $user->account()->create([
                 'type' => Session::get('account_type'),
             ]);
@@ -78,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function withdrawal() {
         return $this->hasMany(Withdrawal::class);
     }
-    public function desposit() {
+    public function deposit() {
         return $this->hasMany(Deposit::class);
     }
     public function wallet() {

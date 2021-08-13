@@ -4,7 +4,7 @@
     <title>Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -69,6 +69,8 @@
                                         <td>
                                             @if ($task->status == 'active')
                                                 <span class="label label-success">{{ ucwords($task->status) }}</span>
+                                            @elseif($task->status == 'disabled')
+                                                <span class="label label-danger">{{ ucwords($task->status) }}</span>
                                             @else
                                                 <span class="label label-warning">{{ ucwords($task->status) }}</span>
                                             @endif
@@ -76,18 +78,22 @@
                                         </td>
                                         <td>
                                             <span class="badge badge-info">
-                                                {{ $task->view()->get()->count() > 0
-    ? $task->view()->get()->count()
-    : 'No Views' }}
+                                                {{ $task->view()->get()->count() }}
                                             </span>
                                         </td>
                                         <td>
                                             <div style="display: flex;">
-                                                <a href="#" class="label label-info" style="margin:5px;">View</a>
+                                                <a href="/viewcampaign/{{ $task->id }}" class="label label-info"
+                                                    style="margin:5px;">View</a>
                                                 <a href="/advertiser/campaigns/{{ $task->id }}/edit"
                                                     class="label label-success" style="margin:5px;">Edit</a>
-                                                <a href="/advertiser/campaigns/{{ $task->id }}/delete"
-                                                    class="label label-danger" style="margin:5px;">Delete</a>
+                                                @if ($task->status == 'active')
+                                                    <a href="/advertiser/campaigns/{{ $task->id }}/disable"
+                                                        class="label label-danger" style="margin:5px;">Disable</a>
+                                                @elseif($task->status == 'disabled')
+                                                    <a href="/advertiser/campaigns/{{ $task->id }}/enable"
+                                                        class="label label-primary" style="margin:5px;">Enable</a>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

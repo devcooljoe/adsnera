@@ -23,7 +23,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/viewpost/{post_id}/{promoter_id}', "GuestController@viewpost");
+Route::get('/viewcampaign/{task_id}/{promoter_id?}', "GuestController@viewpost");
 
 Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
@@ -43,15 +43,25 @@ Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
         Route::get('/advertiser/campaigns', 'AdvertiserDashboardController@view_campaigns');
         Route::get('/advertiser/wallet', 'AdvertiserDashboardController@view_wallet');
         Route::get('/advertiser/campaigns/new', 'AdvertiserDashboardController@view_new_campaign');
-        Route::post('/advertiser/campaigns/post_new', 'AdvertiserDashboardController@add_new_campaign');
+        Route::post('/advertiser/campaigns/new', 'AdvertiserDashboardController@add_new_campaign');
         Route::get('/advertiser/campaigns/{task_id}/edit', 'AdvertiserDashboardController@view_edit_campaign');
+        Route::post('/advertiser/campaigns/{task_id}/edit', 'AdvertiserDashboardController@add_edit_campaign');
+        Route::get('/advertiser/campaigns/{task_id}/disable', 'AdvertiserDashboardController@disable_campaign');
+        Route::get('/advertiser/campaigns/{task_id}/enable', 'AdvertiserDashboardController@enable_campaign');
         
     });
 });
 
 
 Route::get('/faker', function () {
+    // factory(App\User::class, 10)->create();
     // factory(App\Task::class, 100)->create();
+    // factory(App\View::class, 100)->create();
+    // factory(App\Earning::class, 100)->create();
+    // factory(App\Lead::class, 100)->create();
+    // factory(App\Deposit::class, 100)->create();
+    
 });
 
+// Referral Route
 Route::get('/{id?}', 'GuestController@index')->name('index');

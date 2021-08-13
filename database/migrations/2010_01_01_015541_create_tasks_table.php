@@ -20,7 +20,6 @@ class CreateTasksTable extends Migration
             $table->string('caption');
             $table->string('picture')->nullable();
             $table->string('link')->nullable();
-            $table->boolval('active')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

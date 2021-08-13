@@ -25,6 +25,9 @@
     <link href="{{ route('index') }}/board/css/circles.css" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ route('index') }}/board/css/style_grid.css" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ route('index') }}/board/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ route('index') }}/board/css/basictable.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ route('index') }}/board/css/table-style.css" rel="stylesheet" type="text/css" media="all" />
+
 
     <!-- font-awesome-icons -->
     <link href="{{ route('index') }}/board/css/font-awesome.css" rel="stylesheet">
@@ -33,6 +36,12 @@
     <link rel="apple-touch-icon" sizes="48x48" href="{{ route('index') }}/images/logo.png">
     <link rel="icon" type="image/png" sizes="48x48" href="{{ route('index') }}/images/logo.png">
     <link rel="shortcut-icon" href="{{ route('index') }}/images/logo.png" type="image/png">
+    <style>
+        thead tr th {
+            background-color: #1e2d3a;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -91,7 +100,8 @@
                     </nav>
                 </li>
                 <!-- //nav_agile_w3l -->
-                <li class="second logo">
+                <li class="second logo hidden-xs">
+                    <h1>{{ auth()->user()->name }}</h1>
                 </li>
                 <li class="second admin-pic">
                     <ul class="top_dp_agile">

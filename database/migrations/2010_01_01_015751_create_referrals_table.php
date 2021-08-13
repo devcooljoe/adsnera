@@ -18,7 +18,7 @@ class CreateReferralsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('account_id');
             $table->string('account_status')->nullable();
-            $table->boolval('paid')->nullable();
+            $table->boolean('paid')->nullable();
             $table->timestamps();
         });
     }
