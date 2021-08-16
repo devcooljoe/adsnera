@@ -16,6 +16,9 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
+        if (auth()->user()->banned()) {
+            return redirect('/account/banned');
+        }
         if (!Session::has('userchecked')) {
             return redirect('/checkauthuser');
         }

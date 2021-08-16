@@ -29,11 +29,13 @@ class AdvertiserDashboardController extends Controller
         $deposits = auth()->user()->deposit()->orderBy('id', 'DESC')->get();
         return view('advertiser.wallet', ['deposits'=>$deposits]);
     }
-    public function view_new_campaign() {
+    public function view_new_campaign() 
+    {
         return view('forms.new_campaign');
     }
 
-    public function add_new_campaign(Request $request) {
+    public function add_new_campaign(Request $request) 
+    {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'caption' => ['required', 'string', 'max:1000'],
@@ -63,19 +65,22 @@ class AdvertiserDashboardController extends Controller
 
     }
 
-    public function view_edit_campaign($task_id) {
+    public function view_edit_campaign($task_id) 
+    {
         $task = Task::findOrFail($task_id);
         $this->authorize('update', $task);
         return view('forms.edit_campaign', ['task' => $task]);
     }
 
-    public function add_edit_campaign($task_id) {
+    public function add_edit_campaign($task_id) 
+    {
         $task = Task::findOrFail($task_id);
         $data = request()->validate([
             'name' => ['required', 'string', 'max:100'],
             'caption' => ['required', 'string', 'max:1000'],
         ]);
-        if (!empty(request('link'))) {
+        if (!empty(request('link'))) 
+        {
             request()->validate([
                 'link'=> ['string', 'url'],
             ]);
@@ -103,7 +108,8 @@ class AdvertiserDashboardController extends Controller
     }
 
 
-    public function disable_campaign($task_id) {
+    public function disable_campaign($task_id) 
+    {
         $task = Task::findOrFail($task_id);
         $this->authorize('update', $task);
         if ($task->status == 'active') {
@@ -119,6 +125,8 @@ class AdvertiserDashboardController extends Controller
         }
         return redirect('/advertiser/campaigns');
     }
+
+
 
 
 

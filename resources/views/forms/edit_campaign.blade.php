@@ -4,7 +4,7 @@
     <title>Edit Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -38,15 +38,14 @@
                     <form method="post" autocomplete="off" action="/advertiser/campaigns/{{ $task->id }}/edit">
                         @csrf
                         <div class="form-group"> <label for="exampleInputEmail1">Campaign Name (Required)</label> <input
-                                type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                placeholder="Campaign name" required
+                                type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="" required
                                 value="{{ old('name') ?? $task->name }}">@error('name')
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group"> <label for="exampleInputPassword1">Caption (Required)</label> <input
-                                type="text" name="caption" class="form-control" id="exampleInputPassword1"
-                                placeholder="Enter Caption" required value="{{ old('caption') ?? $task->caption }}">
+                                type="text" name="caption" class="form-control" id="exampleInputPassword1" placeholder=""
+                                required value="{{ old('caption') ?? $task->caption }}">
                             @error('caption')
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
                             @enderror

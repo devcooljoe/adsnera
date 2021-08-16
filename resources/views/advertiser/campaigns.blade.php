@@ -4,7 +4,7 @@
     <title>Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -31,7 +31,9 @@
     <div class="inner_content">
         <!-- /inner_content_w3_agile_info-->
         <div class="inner_content_w3_agile_info">
-
+            <h2 class="w3_inner_tittle two">Campaigns (Adverts)</h2>
+            <h4>Create Campaigns, View Campaigns Leads, View Campaign Billings</h4>
+            <br>
             <div class="w3ls_agile_cylinder chart agile_info_shadow">
                 <h3 class="w3_inner_tittle two">
                     <a href="{{ route('index') }}/advertiser/campaigns/new" class="badge badge-primary"

@@ -32,9 +32,9 @@ class Custom extends Model
         Session::forget('alert-link');
     }
 
-    public static function date($date1) {
+    public static function date($date) {
         include_once "time.php";
-        return custom_date($date1);
+        return custom_date($date);
     }
 
 }

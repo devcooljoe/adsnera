@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Auth::routes(['verify' => true]);
 Route::get('/checkauthuser', 'DashboardController@checkuser');
+Route::middleware(['auth', 'verified'])->get('/account/banned', function () {
+    if (auth()->user()->banned()) {
+        return view('auth.banned');
+    }else {
+        return redirect('/');
+    }
+    
+});
 
 Route::get('/contact', function () {
     return view('contact');
@@ -28,7 +36,14 @@ Route::get('/viewcampaign/{task_id}/{promoter_id?}', "GuestController@viewpost")
 Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/account/profile', 'DashboardController@view_profile');
-    Route::get('/account/settings', 'DashboardController@view_settings');
+    Route::get('/account/profile/new_bank', 'DashboardController@view_new_bank');
+    Route::post('/account/profile/new_bank', 'DashboardController@add_new_bank');
+    Route::get('/account/profile/edit_bank', 'DashboardController@view_edit_bank');
+    Route::post('/account/profile/edit_bank', 'DashboardController@add_edit_bank');
+    Route::get('/account/profile/switch', 'DashboardController@switch');
+
+    Route::get('/account/settings', 'DashboardController@view_settings');    
+
 
     Route::middleware(['promoter'])->group(function () {
         Route::get('/promoter/dashboard', 'PromoterDashboardController@view_dashboard');

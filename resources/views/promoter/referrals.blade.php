@@ -4,7 +4,7 @@
     <title>Referrals - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -126,6 +126,7 @@
             var textcopy = document.getElementById('refLink');
             textcopy.select();
             document.execCommand('copy');
+            $('#btnRefLink').html('Copied');
         }
     </script>
     <!-- //inner_content-->

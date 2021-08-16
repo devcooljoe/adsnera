@@ -80,7 +80,7 @@
                                     <li><a href="/account/referrals"><i class="fa fa-chain"></i> Referrals</a></li>
                                 @endif
 
-                                <li><a href="/account/profile"><i class="fa fa-list"></i> Profile</a></li>
+                                <li><a href="/account/profile"><i class="fa fa-user"></i> Profile</a></li>
                                 <li>
                                     <a href="#"> <i class="fa fa-suitcase" aria-hidden="true"></i>More <i
                                             class="fa fa-angle-down" aria-hidden="true"></i></a>

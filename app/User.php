@@ -47,10 +47,12 @@ class User extends Authenticatable implements MustVerifyEmail
             Session::put('account_type', $arr[$va]);
             $user->account()->create([
                 'type' => Session::get('account_type'),
+                'status' => 'not active',
             ]);
             Session::forget('account_type');
             $user->profile()->create([]);
             $user->wallet()->create(['amount' => 0]);
+            $user->bank()->create([]);
             
         });
     }
@@ -60,6 +62,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function promoter() {
         return $this->account()->first()->type == 'promoter';
     }
+    public function active() {
+        return $this->account()->first()->status == 'active';
+    }
+    public function banned() {
+        return $this->account()->first()->status == 'banned';
+    }
+
     public function account() {
         return $this->hasOne(Account::class);
     }

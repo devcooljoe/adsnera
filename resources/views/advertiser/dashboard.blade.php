@@ -4,7 +4,7 @@
     <title>Dashboard - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -12,7 +12,9 @@
     <div class="inner_content">
         <!-- /inner_content_w3_agile_info-->
         <div class="inner_content_w3_agile_info">
-
+            <h2 class="w3_inner_tittle two">Advertiser Dashboard</h2>
+            <h4>View Campaigns, Add Campaigns, View Billings</h4>
+            <br>
             <!-- //agile_top_w3_post_sections-->
             <!-- /w3ls_agile_circle_progress-->
             {{-- <div class="w3ls_agile_cylinder chart agile_info_shadow">
@@ -30,7 +32,7 @@
             <div class="prograc-blocks_agileits">
 
                 <div class="col-md-6 bars_agileits agile_info_shadow">
-                    <a href="{{ route('index') }}/advertiser/campaigns/new" class="badge badge-success"
+                    <a href="{{ route('index') }}/advertiser/campaigns/new" class="pull-right badge badge-success"
                         style="font-size: 12px;padding:10px;"><i class="fa fa-plus"></i> Create New
                         Campaign</a>
                     <h3 class="w3_inner_tittle two">Campaigns</h3>
