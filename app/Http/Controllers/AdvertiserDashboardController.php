@@ -24,7 +24,7 @@ class AdvertiserDashboardController extends Controller
         $tasks = auth()->user()->task()->orderBy('id', 'DESC')->get();
         return view('advertiser.campaigns', ['tasks' => $tasks]);
     }
-    public function view_wallet() 
+    public function view_wallet()
     {
         $deposits = auth()->user()->deposit()->orderBy('id', 'DESC')->get();
         return view('advertiser.wallet', ['deposits'=>$deposits]);

@@ -4,7 +4,7 @@
     <title>Dashboard - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -28,8 +28,9 @@
 
             <!--/prograc-blocks_agileits-->
             <div class="prograc-blocks_agileits">
-
                 <div class="col-md-6 bars_agileits agile_info_shadow">
+                    <a href="{{ route('index') }}/promoter/tasks" class="pull-right badge badge-success"
+                        style="font-size: 12px;padding:10px;"><i class="fa fa-plus"></i> Do Tasks</a>
                     <h3 class="w3_inner_tittle two">Tasks</h3>
                     <div class="work-progres">
                         <div class="table-responsive">
@@ -39,54 +40,24 @@
                                         <th>#</th>
                                         <th>Task Author</th>
                                         <th>Earned</th>
-
                                         <th>Views</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Face book</td>
-                                        <td>Malorum</td>
-                                        <td><span class="badge badge-info">50%</span></td>
-                                        <td><span class="label label-danger">in progress</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Twitter</td>
-                                        <td>Evan</td>
-                                        <td><span class="badge badge-success">100%</span></td>
-                                        <td><span class="label label-success">Paid <i class="fa fa-check"></i></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Google</td>
-                                        <td>John</td>
-                                        <td><span class="badge badge-warning">75%</span></td>
-                                        <td><span class="label label-warning">in progress</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>LinkedIn</td>
-                                        <td>Danial</td>
-                                        <td><span class="badge badge-info">65%</span></td>
-                                        <td><span class="label label-info">in progress</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Tumblr</td>
-                                        <td>David</td>
-                                        <td><span class="badge badge-danger">95%</span></td>
-                                        <td><span class="label label-warning">in progress</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Tesla</td>
-                                        <td>Mickey</td>
-                                        <td><span class="badge badge-success">95%</span></td>
-                                        <td><span class="label label-info">Paid <i class="fa fa-check"></i></span></td>
-                                    </tr>
+                                    <?php $i = 1; ?>
+                                    @foreach ($tasks as $task)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $task->user()->first()->name }}</td>
+                                            <td>₦{{ number_format(App\Custom::task_amount($task->earning()->count()), 2) }}
+                                            </td>
+                                            <td><span class="badge badge-info">{{ $task->earning()->count() }}</span></td>
+                                            <td><span class="label label-success">Paid</span></td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -107,48 +78,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Face book</td>
-                                        <td>Malorum</td>
+                                    <?php $i = 1; ?>
+                                    @foreach ($earnings as $earning)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $earning->task()->first()->user()->first()->name }}</td>
+                                            <td>₦2.00</td>
 
-                                        <td><span class="label label-danger">in progress</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Twitter</td>
-                                        <td>Evan</td>
+                                            <td><span class="label label-success">Successful</span></td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    @endforeach
 
-                                        <td><span class="label label-success">completed</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Google</td>
-                                        <td>John</td>
-
-                                        <td><span class="label label-warning">in progress</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>LinkedIn</td>
-                                        <td>Danial</td>
-
-                                        <td><span class="label label-info">in progress</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Tumblr</td>
-                                        <td>David</td>
-
-                                        <td><span class="label label-warning">in progress</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Tesla</td>
-                                        <td>Mickey</td>
-
-                                        <td><span class="label label-info">in progress</span></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

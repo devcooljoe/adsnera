@@ -4,7 +4,7 @@
     <title>Referrals - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -46,54 +46,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Face book</td>
-                                    <td>Malorum</td>
-                                    <td><span class="label label-success">Active<i class="fa fa-check"></i></span></td>
-                                    <td><span class="label label-warning">in progress</span></td>
-                                    <td>12-12-2021</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Twitter</td>
-                                    <td>Evan</td>
-                                    <td><span class="label label-">Not Active<i class="fa fa-check"></i></span></td>
-                                    <td><span class="label label-success">Paid <i class="fa fa-check"></i></span></td>
-                                    <td>12-12-2021</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Google</td>
-                                    <td>John</td>
-                                    <td><span class="label label-success">Active<i class="fa fa-check"></i></span></td>
-                                    <td><span class="label label-danger">in progress</span></td>
-                                    <td>12-12-2021</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>LinkedIn</td>
-                                    <td>Danial</td>
-                                    <td><span class="label label-success">Active<i class="fa fa-check"></i></span></td>
-                                    <td><span class="label label-danger">in progress</span></td>
-                                    <td>12-12-2021</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Tumblr</td>
-                                    <td>David</td>
-                                    <td><span class="label label-success">Active<i class="fa fa-check"></i></span></td>
-                                    <td><span class="label label-danger">in progress</span></td>
-                                    <td>12-12-2021</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Tesla</td>
-                                    <td>Mickey</td>
-                                    <td><span class="label label-success">Active<i class="fa fa-check"></i></span></td>
-                                    <td><span class="label label-danger">in progress</span></td>
-                                    <td>12-12-2021</td>
-                                </tr>
+                                @foreach ($refs as $ref)
+                                    <tr>
+                                        <td>1</td>
+                                        <td>{{ $ref->name }}</td>
+                                        <td>{{ ucwords($ref->account_type) }}</td>
+                                        <td>
+                                            @if ($ref->account_status == 'active')
+                                                <span class="label label-success">Active <i class="fa fa-check"></i></span>
+                                            @else
+                                                <span class="label label-danger">Not Active <i
+                                                        class="fa fa-times"></i></span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($ref->paid == true)
+                                                <span class="label label-success">Paid <i class="fa fa-check"></i></span>
+                                            @else
+                                                <span class="label label-danger">Not Paid <i class="fa fa-times"></i></span>
+                                            @endif
+                                        </td>
+                                        <td>{{ App\Custom::date($ref->created_at) }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

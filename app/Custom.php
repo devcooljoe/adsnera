@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Session;
 
 class Custom extends Model
 {
+
+    public static $task_price = 2;
+    public static $campaign_price = 3;
+
     public static function alert()
     {
         $message = Session::get('alert-msg');
@@ -35,6 +39,11 @@ class Custom extends Model
     public static function date($date) {
         include_once "time.php";
         return custom_date($date);
+    }
+
+    public static function task_amount($num) 
+    {
+        return $num*2;
     }
 
 }

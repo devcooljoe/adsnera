@@ -4,7 +4,7 @@
     <title>Tasks - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -44,104 +44,34 @@
                                     <th>#</th>
                                     <th>Task Author</th>
                                     <th>Posts</th>
-
-                                    <th>Total Views</th>
-                                    <th>Amount Earned</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Facebook</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <li class="dropdown" style="list-style-type: none">
-                                                <button data-toggle="dropdown" aria-expanded="false"
-                                                    class="dropdown-toggle btn btn-default but">Share <i
-                                                        class="fa fa-share"></i></button>
-                                                <ul class="dropdown-menu drp-mnu">
-                                                    <li> <a href="#"> WhatsApp</a> </li>
-                                                    <li> <a href="#"> Facebook</a> </li>
-                                                    <li> <a href="#"> Twitter</a> </li>
-                                                    <li> <a href="#"> Telegram</a> </li>
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-info">50%</span></td>
-                                    <td><span class="label label-danger">in progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Twitter</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <li class="dropdown" style="list-style-type: none">
-                                                <button data-toggle="dropdown" aria-expanded="false"
-                                                    class="dropdown-toggle btn btn-default but">Share <i
-                                                        class="fa fa-share"></i></button>
-                                                <ul class="dropdown-menu drp-mnu">
-                                                    <li> <a href="#"> WhatsApp</a> </li>
-                                                    <li> <a href="#"> Facebook</a> </li>
-                                                    <li> <a href="#"> Twitter</a> </li>
-                                                    <li> <a href="#"> Telegram</a> </li>
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-success">100%</span></td>
-                                    <td><span class="label label-success">Paid <i class="fa fa-check"></i></span></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Google</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-warning">75%</span></td>
-                                    <td><span class="label label-warning">in progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>LinkedIn</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-info">65%</span></td>
-                                    <td><span class="label label-info">in progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Tumblr</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-danger">95%</span></td>
-                                    <td><span class="label label-warning">in progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Tesla</td>
-                                    <td>
-                                        <div class="post">
-                                            <input class="form form-control textarea" />
-                                            <button class="btn btn-default but">Share <i class="fa fa-share"></i></button>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-success">95%</span></td>
-                                    <td><span class="label label-info">Paid <i class="fa fa-check"></i></span></td>
-                                </tr>
+                                <?php $i = 1; ?>
+                                @foreach ($tasks as $task)
+                                    <tr>
+                                        <td>{{ $i }}</td>
+                                        <td>{{ $task->user()->first()->name }}</td>
+                                        <td>
+                                            <div class="post">
+                                                <input class="form form-control textarea"
+                                                    value="{{ route('index') }}/viewcampaign/{{ $task->id }}/{{ $task->user()->first()->id }}" />
+                                                <li class="dropdown" style="list-style-type: none">
+                                                    <button data-toggle="dropdown" aria-expanded="false"
+                                                        class="dropdown-toggle btn btn-default but">Share <i
+                                                            class="fa fa-share"></i></button>
+                                                    <ul class="dropdown-menu drp-mnu">
+                                                        <li> <a href="#"> WhatsApp</a> </li>
+                                                        <li> <a href="#"> Facebook</a> </li>
+                                                        <li> <a href="#"> Twitter</a> </li>
+                                                        <li> <a href="#"> Telegram</a> </li>
+                                                    </ul>
+                                                </li>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

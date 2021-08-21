@@ -97,7 +97,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Bank::class);
     }
     public function referral() {
-        return $this->hasMany(Referral::class);
+        return $this->hasMany(Referral::class)->orderBy('id', 'DESC');
     }
 
 }

@@ -458,6 +458,13 @@
             $('#custom-alert').slideToggle();
         });
     </script>
+    <script type="text/javascript">
+        $('#withdrawal-input').keyup(function() {
+            var input_val = document.getElementById('withdrawal-input').value;
+            var percent = input_val - ((7.5 / 100) * input_val);
+            $('#withdrawal-response').html('You will recieve ₦' + percent.toFixed(2));
+        });
+    </script>
 </body>
 
 </html>
