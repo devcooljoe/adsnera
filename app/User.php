@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Session;
+use App\Referral;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -49,10 +50,22 @@ class User extends Authenticatable implements MustVerifyEmail
                 'type' => Session::get('account_type'),
                 'status' => 'not active',
             ]);
-            Session::forget('account_type');
             $user->profile()->create([]);
             $user->wallet()->create(['amount' => 0]);
             $user->bank()->create([]);
+
+            if (Session::has('referral_id')) {
+                Referral::create([
+                    'user_id' => Session::get('referral_id'),
+                    'account_id' => $user->id,
+                    'name' => $user->name,
+                    'account_type' => Session::get('account_type'),
+                    'account_status' => 'not active',
+                    'paid' => false,
+                ]);
+            }
+            Session::forget('account_type');
+            Session::forget('referral_id');
             
         });
     }

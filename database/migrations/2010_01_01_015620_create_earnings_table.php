@@ -15,10 +15,10 @@ class CreateEarningsTable extends Migration
     {
         Schema::create('earnings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('task_id');
-            $table->string('user_agent');
-            $table->boolean('paid')->nullable();
+            $table->unsignedBigInteger('user_id'); // the earning user
+            $table->unsignedBigInteger('task_id'); // the task id
+            $table->string('user_agent'); // device id
+            $table->boolean('paid')->nullable(); // true | false
             $table->timestamps();
         });
     }

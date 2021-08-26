@@ -4,7 +4,7 @@
     <title>Profile - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -81,7 +81,7 @@
                         <tbody>
                             <tr>
                                 <td>Account Name</td>
-                                <td><span
+                                <td style="font-size:20px;"><span
                                         class="label label-primary">{{ ucwords(
     auth()->user()->bank()->first()->account_name,
 ) ?? '' }}</span>
@@ -90,7 +90,7 @@
                             </tr>
                             <tr>
                                 <td>Account Number</td>
-                                <td><span
+                                <td style="font-size:20px;"><span
                                         class="label label-primary">{{ ucwords(
     auth()->user()->bank()->first()->account_number,
 ) ?? '' }}</span>
@@ -98,7 +98,7 @@
                             </tr>
                             <tr>
                                 <td>Bank Name</td>
-                                <td><span
+                                <td style="font-size:20px;"><span
                                         class="label label-primary">{{ ucwords(
     auth()->user()->bank()->first()->bank_name,
 ) ?? '' }}</span>
@@ -106,7 +106,7 @@
                             </tr>
                             <tr>
                                 <td>Account Type</td>
-                                <td><span
+                                <td style="font-size:20px;"><span
                                         class="label label-primary">{{ ucwords(
     auth()->user()->bank()->first()->account_type,
 ) ?? '' }}</span>

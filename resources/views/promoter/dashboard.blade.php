@@ -4,7 +4,7 @@
     <title>Dashboard - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -30,7 +30,7 @@
             <div class="prograc-blocks_agileits">
                 <div class="col-md-6 bars_agileits agile_info_shadow">
                     <a href="{{ route('index') }}/promoter/tasks" class="pull-right badge badge-success"
-                        style="font-size: 12px;padding:10px;"><i class="fa fa-plus"></i> Do Tasks</a>
+                        style="font-size: 12px;padding:10px;"><i class="fa fa-plus"></i> Do Tasks to Earn</a>
                     <h3 class="w3_inner_tittle two">Tasks</h3>
                     <div class="work-progres">
                         <div class="table-responsive">

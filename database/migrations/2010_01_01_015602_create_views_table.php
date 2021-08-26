@@ -15,8 +15,8 @@ class CreateViewsTable extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('task_id');
-            $table->string('user_agent');
+            $table->unsignedBigInteger('task_id'); // Task id
+            $table->string('user_agent'); // device id
             $table->timestamps();
         });
     }

@@ -14,11 +14,11 @@ class CreateProfilesTable extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id'); 
             $table->unsignedBigInteger('user_id');
-            $table->string('country')->nullable();
-            $table->string('country_code')->nullable();
-            $table->string('currency')->nullable();
+            $table->string('country')->nullable(); // Nigeria
+            $table->string('country_code')->nullable(); // ng
+            $table->string('currency')->nullable(); // NGN
             $table->timestamps();
         });
     }

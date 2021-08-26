@@ -463,6 +463,9 @@
             var input_val = document.getElementById('withdrawal-input').value;
             var percent = input_val - ((7.5 / 100) * input_val);
             $('#withdrawal-response').html('You will recieve ₦' + percent.toFixed(2));
+            if (input_val == '') {
+                $('#withdrawal-response').html('');
+            }
         });
     </script>
 </body>

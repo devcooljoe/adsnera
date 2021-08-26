@@ -31,6 +31,13 @@ class AdvertiserDashboardController extends Controller
     }
     public function view_new_campaign() 
     {
+        $amount = auth()->user()->wallet()->first()->amount;
+        if ($amount < 1000) {
+            Custom::clear_alert_session();
+            $msg = "Your balance is too low! You need a minimum of ₦1,000 to start a campaign. Scroll down to fund your wallet now.";
+            Session::put('alert-msg', $msg);
+            return redirect('/advertiser/wallet?alert='.uniqid());
+        }
         return view('forms.new_campaign');
     }
 

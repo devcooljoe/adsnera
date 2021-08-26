@@ -75,7 +75,7 @@ Route::get('/faker', function () {
     // factory(App\Earning::class, 100)->create();
     // factory(App\Lead::class, 100)->create();
     // factory(App\Deposit::class, 100)->create();
-    // factory(App\Referral::class, 10)->create();
+    // factory(App\Referral::class, 1)->create();
     
 });
 

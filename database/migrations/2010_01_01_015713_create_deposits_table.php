@@ -17,7 +17,7 @@ class CreateDepositsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('amount');
-            $table->string('status')->nullable();
+            $table->string('status')->nullable(); // successful
             $table->timestamps();
         });
     }

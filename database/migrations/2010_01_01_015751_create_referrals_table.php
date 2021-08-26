@@ -16,6 +16,7 @@ class CreateReferralsTable extends Migration
         Schema::create('referrals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('account_id');
             $table->string('name');
             $table->string('account_type');
             $table->string('account_status')->nullable();

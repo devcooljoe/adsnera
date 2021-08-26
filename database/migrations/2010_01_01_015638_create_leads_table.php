@@ -16,9 +16,9 @@ class CreateLeadsTable extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('task_id');
-            $table->string('user_agent');
-            $table->boolean('billed')->nullable();
+            $table->unsignedBigInteger('task_id'); 
+            $table->string('user_agent'); 
+            $table->boolean('billed')->nullable(); // true | false
             $table->timestamps();
         });
     }
