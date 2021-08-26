@@ -16,14 +16,9 @@ class GuestController extends Controller
         return view('index');
     }
 
-    public function viewpost($task_id, $promoter_id = false) 
+    public function viewpost($post_id, $promoter_id) 
     {
-        if ($promoter_id == false) {
-            $task = Task::find($task_id);
-            return view('guest.viewcampaign', ['task' => $task]);
-        }else {
-            
-        }
+        return view('guest.viewpost');
         
     }
 }

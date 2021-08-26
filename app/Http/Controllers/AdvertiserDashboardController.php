@@ -45,7 +45,6 @@ class AdvertiserDashboardController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100'],
-            'caption' => ['required', 'string', 'max:1000'],
             'file' => ['required', 'image'],
         ]);
         if (!empty(request('link'))) {
@@ -59,7 +58,6 @@ class AdvertiserDashboardController extends Controller
         $picture_path = request()->file('file')->store('pictures', 'public');
         auth()->user()->task()->create([
             'name' => $data['name'],
-            'caption' => $data['caption'],
             'picture' => $picture_path,
             'link' => $link,
             'status' => 'pending',
@@ -84,7 +82,6 @@ class AdvertiserDashboardController extends Controller
         $task = Task::findOrFail($task_id);
         $data = request()->validate([
             'name' => ['required', 'string', 'max:100'],
-            'caption' => ['required', 'string', 'max:1000'],
         ]);
         if (!empty(request('link'))) 
         {
@@ -98,7 +95,6 @@ class AdvertiserDashboardController extends Controller
 
         $task->update([
             'name' => $data['name'],
-            'caption' => $data['caption'],
             'link' => $link,
         ]);
 

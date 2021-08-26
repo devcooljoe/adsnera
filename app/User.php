@@ -43,9 +43,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected static function boot() {
         parent::boot();
         static::created(function($user){
-            $arr = array('promoter', 'advertiser');
-            $va = rand(0, 1);
-            Session::put('account_type', $arr[$va]);
             $user->account()->create([
                 'type' => Session::get('account_type'),
                 'status' => 'not active',
@@ -75,6 +72,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function promoter() {
         return $this->account()->first()->type == 'promoter';
     }
+    public function admin() {
+        return $this->account()->first()->category == 'admin';
+    }
     public function active() {
         return $this->account()->first()->status == 'active';
     }
@@ -90,6 +90,9 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function task() {
         return $this->hasMany(Task::class);
+    }
+    public function post() {
+        return $this->hasMany(Post::class);
     }
     public function earning() {
         return $this->hasMany(Earning::class);

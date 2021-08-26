@@ -31,7 +31,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/viewcampaign/{task_id}/{promoter_id?}', "GuestController@viewpost");
+Route::get('/posts/{post_id}/{promoter_id?}', "GuestController@viewpost");
 
 Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
     Route::get('/dashboard', 'DashboardController@index');

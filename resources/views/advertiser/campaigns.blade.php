@@ -4,7 +4,7 @@
     <title>Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -53,7 +53,6 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Caption</th>
 
                                     <th>Status</th>
                                     <th>Total Views</th>
@@ -66,8 +65,6 @@
                                     <tr>
                                         <td>{{ $count }}</td>
                                         <td>{{ $task->name }}</td>
-                                        <td>{{ substr($task->caption, 0, 100) }}{{ strlen($task->caption) > 100 ? '...' : '' }}
-                                        </td>
                                         <td>
                                             @if ($task->status == 'active')
                                                 <span class="label label-success">{{ ucwords($task->status) }}</span>
@@ -85,8 +82,6 @@
                                         </td>
                                         <td>
                                             <div style="display: flex;">
-                                                <a href="/viewcampaign/{{ $task->id }}" class="label label-info"
-                                                    style="margin:5px;">View</a>
                                                 <a href="/advertiser/campaigns/{{ $task->id }}/edit"
                                                     class="label label-success" style="margin:5px;">Edit</a>
                                                 @if ($task->status == 'active')

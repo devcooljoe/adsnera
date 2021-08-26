@@ -4,7 +4,7 @@
     <title>Edit Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -43,14 +43,7 @@
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group"> <label for="exampleInputPassword1">Caption (Required)</label> <input
-                                type="text" name="caption" class="form-control" id="exampleInputPassword1" placeholder=""
-                                required value="{{ old('caption') ?? $task->caption }}">
-                            @error('caption')
-                                <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group"> <label Passwordfor="exampleInputPassword1">Destination Link
+                        <div class="form-group"> <label Passwordfor="exampleInputPassword1">Redirect Link
                                 (Optional)</label> <input type="text" name="link" class="form-control"
                                 id="exampleInputPassword1" placeholder="https://example.com/yourlink"
                                 value="{{ old('link') ?? ($task->link ?? '') }}">
@@ -58,6 +51,7 @@
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
                             @enderror
                         </div>
+                        View Picture Here.
                         <br>
                         <button type="submit" class="btn btn-default">Save Changes</button>
                     </form>

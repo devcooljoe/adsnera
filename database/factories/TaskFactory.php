@@ -11,7 +11,6 @@ $factory->define(Task::class, function (Faker $faker) {
     return [
         'user_id' => $list[$rnd],
         'name' => $faker->sentence(3),
-        'caption' => $faker->realText,
         'picture' => null,
         'link' => $faker->url,
         'status' => 'pending',

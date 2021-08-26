@@ -17,7 +17,6 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('name'); // Task name
-            $table->string('caption'); // Task caption
             $table->string('picture')->nullable(); // picture link
             $table->string('link')->nullable(); // link to visit
             $table->string('status')->nullable(); // pending | active | disabled 
