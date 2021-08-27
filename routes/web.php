@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Session;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +76,7 @@ Route::get('/faker', function () {
     // factory(App\Lead::class, 100)->create();
     // factory(App\Deposit::class, 100)->create();
     // factory(App\Referral::class, 1)->create();
+    // Session::flush();
     
 });
 

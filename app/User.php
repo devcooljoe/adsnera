@@ -46,6 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
             $user->account()->create([
                 'type' => Session::get('account_type'),
                 'status' => 'not active',
+                'category' => 'user',
             ]);
             $user->profile()->create([]);
             $user->wallet()->create(['amount' => 0]);
@@ -60,9 +61,10 @@ class User extends Authenticatable implements MustVerifyEmail
                     'account_status' => 'not active',
                     'paid' => false,
                 ]);
+                Session::forget('referral_id');
             }
             Session::forget('account_type');
-            Session::forget('referral_id');
+            
             
         });
     }
