@@ -20,13 +20,13 @@
     <link rel="shortcut-icon" href="https://www.newstractor.com.ng/storage/assets/default/comp-icon.png"
         type="image/jpg">
     <meta name="theme-color" content="#1e2d3a">
-    <title>{{ $post->title }}</title>
+    <title>Adsnera - The Biggest and Legit Social Media Maketing Platform</title>
     <meta name="keyword" content="increase, your, whatsapp, status, views, in , just, one, step, newstractor">
     <meta name="description"
         content="Get more WhatsApp Status Views. You can grow your audience as you and other participants gets to save each others contact.">
     <meta property="og:locale" content="en_EN">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ $post->title }}">
+    <meta property="og:title" content="Adsnera - The Biggest and Legit Social Media Maketing Platform">
     <meta property="og:description"
         content="Get more WhatsApp Status Views. You can grow your audience as you and other participants gets to save each others contact.">
     <meta property="og:url" content="{{ route('index') }}">
@@ -35,18 +35,18 @@
     <meta property="og:image:secure_url" content="{{ route('index') }}/images/icon.png">
     <meta property="og:image:width" content="800">
     <meta property="og:image:height" content="450">
-    <meta property="og:image:alt" content="{{ $post->title }}">
+    <meta property="og:image:alt" content="Adsnera - The Biggest and Legit Social Media Maketing Platform">
     <meta property="article:tag" content="increase, your, whatsapp, status, views, in , just, one, step, newstractor">
     <meta property="article:section" content="wassapgains">
     <meta name="twitter:card" content="summary">
-    <meta property="twitter:title" content="{{ $post->title }}">
+    <meta property="twitter:title" content="Adsnera - The Biggest and Legit Social Media Maketing Platform">
     <meta property="twitter:description"
         content="Get more WhatsApp Status Views. You can grow your audience as you and other participants gets to save each others contact.">
     <meta property="twitter:url" content="{{ route('index') }}">
     <meta property="twitter:image" content="{{ route('index') }}/images/icon.png">
     <meta property="twitter:image:width" content="800">
     <meta property="twitter:image:height" content="450">
-    <meta property="twitter:image:alt" content="{{ $post->title }}">
+    <meta property="twitter:image:alt" content="Adsnera - The Biggest and Legit Social Media Maketing Platform">
     <link rel="image_src" href="{{ route('index') }}/images/icon.png">
     <meta itemprop="image" content="{{ route('index') }}/images/icon.png">
     <meta name="msapplication-TileImage" content="{{ route('index') }}/images/icon.png">
@@ -96,14 +96,13 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-
                     @guest()
                         <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                     @else
                         <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                         <li><a href="/account/profile"><i class="fa fa-user"></i> Profile</a></li>
                     @endguest
-                    <li><a href="/posts"><i class="fa fa-file-o"></i> Posts</a></li>
+
                 </ul>
                 @guest()`
                     <ul class="nav navbar-nav navbar-right">
@@ -125,18 +124,25 @@
                             src="https://i.ibb.co/LnBqbGF/IMG-20210817-WA0070.jpg">
                     </a>
                 </center>
-                <hr>
-                <a href="#" style="text-decoration: none">
-                    <h3 style="color: #12b797">{{ $post->title }}</h3>
-                </a>
-                <span style="font-size:12px;">
-                    Post by {{ $post->user()->first()->name }} &bullet; {{ App\Custom::date($post->created_at) }}
-                </span>
-                <br><br>
-                <p class="text-center"><img class="img img-responsive img-thumbnail" style="width:80%"
-                        src="https://i.ibb.co/c1FRrW5/Add-Text-08-14-08-52-59.jpg"></p><br>
-
-                <p style="font-size: 15px;">{{ $post->body }}</p>
+                @foreach ($posts as $post)
+                    <hr> <i class="fa fa-angle-right"></i>
+                    <a href="/posts/{{ $post->id }}" style="text-decoration: none;">
+                        <span style="color: #12b797; font-size:14px;font-weight:bolder;">{{ $post->title }}</span>
+                    </a>
+                    <br>
+                    <span style="font-size:12px; float: right;">Post by {{ $post->user()->first()->name }}
+                        &bullet; {{ \App\Custom::date($post->created_at) }}</span>
+                @endforeach
+                <br>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pagination-sm">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
 
             </div>
             <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-xs"><br></div>

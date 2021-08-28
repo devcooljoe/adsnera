@@ -6,6 +6,7 @@
     @yield('title')
     <!-- custom-theme -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1e2d3a">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="application/x-javascript">
         addEventListener("load", function() {
@@ -68,7 +69,8 @@
                                         <a href="/advertiser/dashboard">
                                             <i class="fa fa-tachometer"></i> Dashboard</a>
                                     </li>
-                                    <li><a href="/advertiser/campaigns"><i class="fa fa-tasks"></i> Campaigns</a></li>
+                                    <li><a href="/advertiser/campaigns"><i class="fa fa-bullhorn"></i> Campaigns</a>
+                                    </li>
                                     <li><a href="/advertiser/wallet"><i class="fa fa-money"></i> Wallet</a></li>
                                 @else
                                     <li>
@@ -77,10 +79,11 @@
                                     </li>
                                     <li><a href="/promoter/tasks"><i class="fa fa-tasks"></i> Tasks</a></li>
                                     <li><a href="/promoter/wallet"><i class="fa fa-money"></i> Wallet</a></li>
-                                    <li><a href="/account/referrals"><i class="fa fa-chain"></i> Referrals</a></li>
+                                    <li><a href="/promoter/referrals"><i class="fa fa-chain"></i> Referrals</a></li>
                                 @endif
 
                                 <li><a href="/account/profile"><i class="fa fa-user"></i> Profile</a></li>
+                                <li><a href="/posts"><i class="fa fa-file-o"></i> Posts</a></li>
                                 <li>
                                     <a href="#"> <i class="fa fa-suitcase" aria-hidden="true"></i>More <i
                                             class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -241,115 +244,6 @@
     <script src="{{ route('index') }}/board/js/light.js"></script>
 
     @yield('chart-js')
-    <script>
-        var chart = AmCharts.makeChart("chartdiv1", {
-            "type": "serial",
-            "theme": "light",
-            "legend": {
-                "horizontalGap": 10,
-                "maxColumns": 1,
-                "position": "right",
-                "useGraphSettings": true,
-                "markerSize": 10
-            },
-            "dataProvider": [{
-                "year": 2017,
-                "europe": 2.5,
-                "namerica": 2.5,
-                "asia": 2.1,
-                "lamerica": 0.3,
-                "meast": 0.2,
-                "africa": 0.1
-            }, {
-                "year": 2016,
-                "europe": 2.6,
-                "namerica": 2.7,
-                "asia": 2.2,
-                "lamerica": 0.3,
-                "meast": 0.3,
-                "africa": 0.1
-            }, {
-                "year": 2015,
-                "europe": 2.8,
-                "namerica": 2.9,
-                "asia": 2.4,
-                "lamerica": 0.3,
-                "meast": 0.3,
-                "africa": 0.1
-            }],
-            "valueAxes": [{
-                "stackType": "regular",
-                "axisAlpha": 0.5,
-                "gridAlpha": 0
-            }],
-            "graphs": [{
-                "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-                "fillAlphas": 0.8,
-                "labelText": "[[value]]",
-                "lineAlpha": 0.3,
-                "title": "Europe",
-                "type": "column",
-                "color": "#000000",
-                "valueField": "europe"
-            }, {
-                "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-                "fillAlphas": 0.8,
-                "labelText": "[[value]]",
-                "lineAlpha": 0.3,
-                "title": "North America",
-                "type": "column",
-                "color": "#000000",
-                "valueField": "namerica"
-            }, {
-                "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-                "fillAlphas": 0.8,
-                "labelText": "[[value]]",
-                "lineAlpha": 0.3,
-                "title": "Asia-Pacific",
-                "type": "column",
-                "color": "#000000",
-                "valueField": "asia"
-            }, {
-                "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-                "fillAlphas": 0.8,
-                "labelText": "[[value]]",
-                "lineAlpha": 0.3,
-                "title": "Latin America",
-                "type": "column",
-                "color": "#000000",
-                "valueField": "lamerica"
-            }, {
-                "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-                "fillAlphas": 0.8,
-                "labelText": "[[value]]",
-                "lineAlpha": 0.3,
-                "title": "Middle-East",
-                "type": "column",
-                "color": "#000000",
-                "valueField": "meast"
-            }, {
-                "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-                "fillAlphas": 0.8,
-                "labelText": "[[value]]",
-                "lineAlpha": 0.3,
-                "title": "Africa",
-                "type": "column",
-                "color": "#000000",
-                "valueField": "africa"
-            }],
-            "rotate": true,
-            "categoryField": "year",
-            "categoryAxis": {
-                "gridPosition": "start",
-                "axisAlpha": 0,
-                "gridAlpha": 0,
-                "position": "left"
-            },
-            "export": {
-                "enabled": true
-            }
-        });
-    </script>
 
     <!-- //amcharts -->
     <script src="{{ route('index') }}/board/js/chart1.js"></script>
@@ -465,6 +359,14 @@
             $('#withdrawal-response').html('You will recieve ₦' + percent.toFixed(2));
             if (input_val == '') {
                 $('#withdrawal-response').html('');
+            }
+        });
+        $('#deposit-input').keyup(function() {
+            var input_val = document.getElementById('deposit-input').value;
+            var percent = input_val + ((1.4 / 100) * input_val);
+            $('#deposit-response').html('You will be charged ₦' + percent.toFixed(2));
+            if (input_val == '') {
+                $('#deposit-response').html('');
             }
         });
     </script>

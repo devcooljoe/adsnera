@@ -129,6 +129,50 @@ class AdvertiserDashboardController extends Controller
         return redirect('/advertiser/campaigns');
     }
 
+    public function fund() 
+    {
+        $amount = preg_replace('/[^0-9]/', '', request()->amount);
+        if ($amount >= 1000) {
+            $payment_link = Custom::make_payment('Funding your Adsnera wallet', $amount, route('index').'/advertiser/wallet/fund/verify');
+            return redirect($payment_link);
+        }else {
+            return redirect('/advertiser/wallet#fund-wallet')->with('response-error', 'You need to fund your wallet with a minimum of ₦1,000.');
+        }
+    }
+
+    public function verify_fund()
+    {
+        $status = request()->status;
+        if ($status == 'cancelled') {
+            $msg = 'Your funding transaction was cancelled!';
+            Custom::clear_alert_session();
+            Session::put('alert-msg', $msg);
+            return redirect('/advertiser/wallet?alert='.uniqid());
+        }else {
+            $transaction_id = request()->transaction_id;
+            $verified_amount = Custom::verify_payment($transaction_id);
+            if ($verified_amount != false) {
+                $old_amount = auth()->user()->wallet()->first()->amount;
+                $new_amount = $old_amount+$verified_amount;
+                auth()->user()->wallet()->update(['amount'=>$new_amount]);
+                auth()->user()->account()->update(['status'=>'active']);
+                auth()->user()->deposit()->create([
+                    'amount' => $verified_amount,
+                    'status' => 'successful',
+                ]);
+                $msg = 'Transaction succesful! you have successfully funded your wallet.';
+                Custom::clear_alert_session();
+                Session::put('alert-msg', $msg);
+                return redirect('/advertiser/wallet?alert='.uniqid());
+            }else {
+                $msg = 'Transaction was not succesful, we detected a fraud action!';
+                Custom::clear_alert_session();
+                Session::put('alert-msg', $msg);
+                return redirect('/advertiser/wallet?alert='.uniqid());
+            }
+
+        }
+    }
 
 
 

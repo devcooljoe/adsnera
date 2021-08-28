@@ -4,7 +4,7 @@
     <title>Wallet - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -38,23 +38,29 @@
             <!-- //agile_top_w3_post_sections-->
             <!-- /w3ls_agile_circle_progress-->
             <div class="w3ls_agile_cylinder chart agile_info_shadow">
-                <div class="alert alert-success" id="withdraw-alert1">
-                    <strong>Success!</strong> Indicates a successful or positive action.
-                </div>
-                <div class="alert alert-danger" id="withdraw-alert2">
-                    <strong>Danger!</strong> Indicates a successful or positive action.
-                </div>
-                <h3 class="w3_inner_tittle two">Fund Your Wallet</h3>
+                @if (Session::get('response-success'))
+                    <div class="alert alert-success" id="withdraw-alert1">
+                        <strong>Success!</strong> {{ Session::get('response-success') }}
+                    </div>
+                @endif
+                @if (Session::has('response-error'))
+                    <div class="alert alert-danger" id="withdraw-alert2">
+                        <strong>Error!</strong> {{ Session::get('response-error') }}
+                    </div>
+                @endif
+                <h3 class="w3_inner_tittle two" id="fund-wallet">Fund Your Wallet</h3>
                 <table id="table">
                     <thead>
                         <tr>
                             <p>Minimum Deposit is ₦1,000 </p>
-                            <form action="">
+                            <form action="/advertiser/wallet/fund" method="post">
+                                @csrf
                                 <th>
                                     <div class="input-group">
                                         <div class="input-group-addon" style="font-size: 15px;">₦</div>
-                                        <input type="text" style="font-size: 15px;" required
-                                            placeholder="Enter the amount to deposit" class="form-control1 icon">
+                                        <input id="deposit-input" required name="amount" type="text"
+                                            style="font-size: 15px;" required placeholder="Enter the amount to deposit"
+                                            class="form-control1 icon">
                                     </div>
                                     <input type="submit" value="Make Payment" class="btn btn-primary">
                                 </th>
@@ -122,8 +128,6 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-
-
         </div>
         <!-- //inner_content_w3_agile_info-->
     </div>

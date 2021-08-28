@@ -31,6 +31,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/posts', 'GuestController@index');
 Route::get('/posts/{post_id}/{promoter_id?}', "GuestController@viewpost");
 
 Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
@@ -49,8 +50,9 @@ Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
         Route::get('/promoter/dashboard', 'PromoterDashboardController@view_dashboard');
         Route::get('/promoter/tasks', 'PromoterDashboardController@view_tasks');
         Route::get('/promoter/wallet', 'PromoterDashboardController@view_wallet');
-        Route::get('/account/referrals', 'PromoterDashboardController@view_referrals');
-        
+        Route::get('/promoter/referrals', 'PromoterDashboardController@view_referrals');
+        Route::post('/promoter/wallet/withdraw', 'PromoterDashboardController@withdraw');
+
     });
 
     Route::middleware(['advertiser'])->group(function () {
@@ -63,7 +65,9 @@ Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
         Route::post('/advertiser/campaigns/{task_id}/edit', 'AdvertiserDashboardController@add_edit_campaign');
         Route::get('/advertiser/campaigns/{task_id}/disable', 'AdvertiserDashboardController@disable_campaign');
         Route::get('/advertiser/campaigns/{task_id}/enable', 'AdvertiserDashboardController@enable_campaign');
-        
+        Route::post('/advertiser/wallet/fund', 'AdvertiserDashboardController@fund');
+        Route::get('/advertiser/wallet/fund/verify', 'AdvertiserDashboardController@verify_fund');
+
     });
 });
 
@@ -76,9 +80,14 @@ Route::get('/faker', function () {
     // factory(App\Lead::class, 100)->create();
     // factory(App\Deposit::class, 100)->create();
     // factory(App\Referral::class, 1)->create();
-    // Session::flush();
+    // factory(App\Post::class, 20)->create();
     
 });
 
 // Referral Route
-Route::get('/{id?}', 'GuestController@index')->name('index');
+Route::get('/{id?}', function($user_id = false) {
+    if ($user_id != false) {
+        Session::put('referral_id', $user_id);
+    }
+    return view('index');
+})->name('index');

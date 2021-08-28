@@ -59,7 +59,7 @@
                                             <h3 style="color: white;font-weight:bolder;">Earn Your Revenue</h3>
                                             <p class="img-responsive">Earn from as much as ₦3,500 - ₦25,000 weekly,
                                                 promoting businesses online. Also earn ₦250 per referral i.e, for each
-                                                person you bring to register on
+                                                active user you bring to register on
                                                 Adsnera.</p>
                                         </div>
                                     </div>

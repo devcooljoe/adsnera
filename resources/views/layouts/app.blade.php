@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#1e2d3a">
     <meta name="keywords" content="Flyer Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
     SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
     <script>
@@ -42,7 +43,8 @@
         <nav class="main-header">
             <div id="brand">
                 <a href="/">
-                    <img src="{{ route('index') }}/images/logo.png" alt="" class="img img-responsive" style="width: 60px;">
+                    <img src="{{ route('index') }}/images/logo.png" alt="" class="img img-responsive"
+                        style="width: 60px;">
                 </a>
                 <div id="word-mark">
                     <h1>
@@ -59,6 +61,9 @@
                     </div>
                 </div>
                 <ul class="text-center text-capitalize nav-agile">
+                    <li>
+                        <a href="/posts">Posts</a>
+                    </li>
                     @guest
                         <li>
                             <a href="{{ route('index') }}" class="active">home</a>
@@ -75,7 +80,6 @@
                         {{-- <li>
                             <a href="{{ route('contact') }}">contact</a>
                         </li> --}}
-
                         <li>
                             <a class="active" href="{{ route('register') }}" id="register-link">Register</a>
                         </li>
@@ -160,7 +164,8 @@
                     <div class="footer-logo my-sm-5 mb-sm-5 mb-3 text-center">
                         <h2>
                             <a href="/">
-                                <img src="{{ route('index') }}/images/logo.png" alt="" class="img img-responsive" style="width: 60px;">
+                                <img src="{{ route('index') }}/images/logo.png" alt="" class="img img-responsive"
+                                    style="width: 60px;">
                                 Adsnera
                             </a>
                         </h2>

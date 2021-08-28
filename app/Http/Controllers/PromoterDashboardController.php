@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\Post;
 
 class PromoterDashboardController extends Controller
 {
@@ -28,7 +29,15 @@ class PromoterDashboardController extends Controller
     public function view_tasks()
     {
         $tasks = Task::orderBy('id', 'DESC')->where('status', 'active')->get();
-        return view('promoter.tasks', ['tasks'=>$tasks]);
+        $count = 0;
+        foreach ($tasks as $task) {
+            if ($task->user()->wallet()->amount > 200) {
+                $count++;
+            }
+        }
+        $posts = Post::orderBy('id', 'DESC')->paginate(20);
+        
+        return view('promoter.tasks', ['tasks'=>$posts, 'count'=>$count]);
     }
     public function view_wallet() 
     {
@@ -39,6 +48,15 @@ class PromoterDashboardController extends Controller
     {
         $refs = auth()->user()->referral()->get();
         return view('promoter.referrals', ['refs'=>$refs]);
+    }
+
+    public function deposit() 
+    {
+        if (request()->amount >= 1000) {
+            dd('');
+        }else {
+            return redirect('/promoter/wallet#withdraw')->with('response-error', 'You need to fund your wallet with a minimum of ₦1,000.');
+        }
     }
 
 }

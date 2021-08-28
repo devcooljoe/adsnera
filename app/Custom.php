@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Session;
 class Custom extends Model
 {
 
-    public static $task_price = 2;
-    public static $campaign_price = 3;
-
+    
     public static function alert()
     {
         $message = Session::get('alert-msg');
@@ -46,4 +44,97 @@ class Custom extends Model
         return $num*2;
     }
 
+    public static function make_payment($title, $amount, $redirect)
+    {
+        $data = [
+            "tx_ref"=>time(),
+            "amount"=>$amount,
+            "currency"=>"NGN",
+            "redirect_url"=> $redirect,
+            "payment_options"=>"",
+            "meta" => [
+               "consumer_id"=>23,
+               "consumer_mac"=>"92a3-912ba-1192a"
+            ],
+            "customer" => [
+               "email"=>auth()->user()->email,
+               "name"=>auth()->user()->name,
+            ],
+            "customizations"=>[
+               "title"=>$title,
+               "description"=>"",
+               "logo"=>"https://assets.piedpiper.com/logo.png"
+            ]
+        ];
+
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.flutterwave.com/v3/payments",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => json_encode($data),
+        CURLOPT_HTTPHEADER => array(
+            "Content-Type: application/json",
+            "Authorization: Bearer FLWSECK_TEST-c172ba19babeca1f6de9dfae4cac1e13-X"
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        $res = json_decode($response);
+        return $res->data->link;
+
+
+    }
+
+
+
+    public static function verify_payment($transaction_id)
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.flutterwave.com/v3/transactions/{$transaction_id}/verify",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "Content-Type: application/json",
+            "Authorization: Bearer FLWSECK_TEST-c172ba19babeca1f6de9dfae4cac1e13-X"
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        $res = json_decode($response);
+        if ($res->status == 'success' && $res->data->charged_amount >= $res->data->amount) {
+            return $res->data->amount;
+        }else {
+            return false;
+        }
+
+    }
+
+
+
+
+
+
+    
 }
