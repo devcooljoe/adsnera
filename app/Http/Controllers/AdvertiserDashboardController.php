@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Custom;
 use App\Task;
+use App\Referral;
 
 class AdvertiserDashboardController extends Controller
 {
@@ -32,9 +33,9 @@ class AdvertiserDashboardController extends Controller
     public function view_new_campaign() 
     {
         $amount = auth()->user()->wallet()->first()->amount;
-        if ($amount < 1000) {
+        if ($amount < 500) {
             Custom::clear_alert_session();
-            $msg = "Your balance is too low! You need a minimum of ₦1,000 to start a campaign. Scroll down to fund your wallet now.";
+            $msg = "Your balance is too low! You need a minimum of ₦500 to start a campaign. Scroll down to fund your wallet now.";
             Session::put('alert-msg', $msg);
             return redirect('/advertiser/wallet?alert='.uniqid());
         }
@@ -45,7 +46,7 @@ class AdvertiserDashboardController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100'],
-            'file' => ['required', 'image'],
+            'file' => ['required', 'image', 'max:2000'],
         ]);
         if (!empty(request('link'))) {
             $request->validate([

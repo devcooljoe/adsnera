@@ -24,11 +24,6 @@ class DashboardController extends Controller
         }
     }
 
-    public function checkuser() 
-    {
-        Session::put('userchecked', true);
-        return redirect()->back();
-    }
     
     public function view_profile() 
     {
@@ -110,5 +105,40 @@ class DashboardController extends Controller
         auth()->user()->account()->first()->update(['type'=>$type]);
         Session::put('alert-msg', $msg);
         return redirect('/account/profile?alert='.uniqid());
+    }
+
+    public function make_payment() {
+        
+        $paymentLink = Custom::make_payment(Session::get('payment-title'), Session::get('payment-price'), route('index').'/promoter/activate/verify');
+        return redirect($paymentLink); 
+    }
+
+    public function new_post() {
+        return view('forms.new_post');
+    }
+
+    public function add_new_post(Request $request) 
+    {
+        $data = $request->validate([
+            'title' => ['required', 'string', 'max:500'],
+            'body' => ['required', 'string', 'max:10000'],
+            'file' => ['required', 'image', 'max:5000'],
+            'category' => ['required'],
+        ]);
+        
+        $picture_path = request()->file('file')->store('pictures', 'public');
+        auth()->user()->task()->create([
+            'title' => $data['name'],
+            'picture' => $picture_path,
+            'body' => $link,
+            'category' => $data['category'],
+            'status' => 'pending',
+        ]);
+
+        Custom::clear_alert_session();
+        $msg = "Campaign <b>'".$data['name']."'</b> has been created successfully!";
+        Session::put('alert-msg', $msg);
+        return redirect('/advertiser/campaigns?alert='.uniqid());
+
     }
 }

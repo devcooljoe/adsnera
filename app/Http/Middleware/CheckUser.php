@@ -19,8 +19,8 @@ class CheckUser
         if (auth()->user()->banned()) {
             return redirect('/account/banned');
         }
-        if (!Session::has('userchecked')) {
-            return redirect('/checkauthuser');
+        if (auth()->user()->promoter() && auth()->user()->account()->first()->status != 'active') {
+            return redirect('/account/activate');
         }
         return $next($request);
     }

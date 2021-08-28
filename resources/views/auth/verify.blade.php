@@ -44,7 +44,7 @@
                     </div>
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
-                            <img src="/images/1.png" alt="" class="img-fluid">
+                            <img src="{{ route('index') }}/images/1.png" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -52,6 +52,6 @@
             <!-- //form -->
         </div>
         <!-- copyright-->
-        
 
-@endsection
+
+    @endsection

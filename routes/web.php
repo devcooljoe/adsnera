@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Session;
 // DEFAULT ROUTES
 Auth::routes();
 Auth::routes(['verify' => true]);
-Route::get('/checkauthuser', 'DashboardController@checkuser');
 Route::middleware(['auth', 'verified'])->get('/account/banned', function () {
     if (auth()->user()->banned()) {
         return view('auth.banned');
@@ -27,32 +26,38 @@ Route::middleware(['auth', 'verified'])->get('/account/banned', function () {
     
 });
 
+Route::get('/', function () {
+    return view('index');
+})->name('index');
+
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/posts', 'GuestController@index');
-Route::get('/posts/{post_id}/{promoter_id?}', "GuestController@viewpost");
 
-Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/account/profile', 'DashboardController@view_profile');
     Route::get('/account/profile/new_bank', 'DashboardController@view_new_bank');
-    Route::post('/account/profile/new_bank', 'DashboardController@add_new_bank');
+    Route::middleware('userchecked')->post('/account/profile/new_bank', 'DashboardController@add_new_bank');
     Route::get('/account/profile/edit_bank', 'DashboardController@view_edit_bank');
-    Route::post('/account/profile/edit_bank', 'DashboardController@add_edit_bank');
-    Route::get('/account/profile/switch', 'DashboardController@switch');
+    Route::middleware('userchecked')->post('/account/profile/edit_bank', 'DashboardController@add_edit_bank');
+    // Route::get('/account/profile/switch', 'DashboardController@switch');
 
-    Route::get('/account/settings', 'DashboardController@view_settings');    
+    Route::get('/account/settings', 'DashboardController@view_settings');
+    Route::post('/account/payment', 'DashboardController@make_payment');  
+    Route::middleware('admin')->get('/posts/new', 'DashboardController@new_post');  
+    Route::middleware('admin')->post('/posts/new', 'DashboardController@add_new_post');  
 
 
     Route::middleware(['promoter'])->group(function () {
         Route::get('/promoter/dashboard', 'PromoterDashboardController@view_dashboard');
-        Route::get('/promoter/tasks', 'PromoterDashboardController@view_tasks');
+        Route::middleware('userchecked')->get('/promoter/tasks', 'PromoterDashboardController@view_tasks');
         Route::get('/promoter/wallet', 'PromoterDashboardController@view_wallet');
-        Route::get('/promoter/referrals', 'PromoterDashboardController@view_referrals');
-        Route::post('/promoter/wallet/withdraw', 'PromoterDashboardController@withdraw');
-
+        Route::middleware('userchecked')->get('/promoter/referrals', 'PromoterDashboardController@view_referrals');
+        Route::middleware('userchecked')->post('/promoter/wallet/withdraw', 'PromoterDashboardController@withdraw');
+        Route::get('/account/activate', 'PromoterDashboardController@view_activate');
+        Route::get('/promoter/activate/verify', 'PromoterDashboardController@verify_activation');
     });
 
     Route::middleware(['advertiser'])->group(function () {
@@ -60,9 +65,9 @@ Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
         Route::get('/advertiser/campaigns', 'AdvertiserDashboardController@view_campaigns');
         Route::get('/advertiser/wallet', 'AdvertiserDashboardController@view_wallet');
         Route::get('/advertiser/campaigns/new', 'AdvertiserDashboardController@view_new_campaign');
-        Route::post('/advertiser/campaigns/new', 'AdvertiserDashboardController@add_new_campaign');
+        Route::middleware('userchecked')->post('/advertiser/campaigns/new', 'AdvertiserDashboardController@add_new_campaign');
         Route::get('/advertiser/campaigns/{task_id}/edit', 'AdvertiserDashboardController@view_edit_campaign');
-        Route::post('/advertiser/campaigns/{task_id}/edit', 'AdvertiserDashboardController@add_edit_campaign');
+        Route::middleware('userchecked')->post('/advertiser/campaigns/{task_id}/edit', 'AdvertiserDashboardController@add_edit_campaign');
         Route::get('/advertiser/campaigns/{task_id}/disable', 'AdvertiserDashboardController@disable_campaign');
         Route::get('/advertiser/campaigns/{task_id}/enable', 'AdvertiserDashboardController@enable_campaign');
         Route::post('/advertiser/wallet/fund', 'AdvertiserDashboardController@fund');
@@ -71,6 +76,9 @@ Route::middleware(['auth', 'verified', 'userchecked'])->group(function () {
     });
 });
 
+
+Route::get('/posts', 'GuestController@index');
+Route::get('/posts/{post_id}/{promoter_id?}', "GuestController@viewpost");
 
 Route::get('/faker', function () {
     // factory(App\User::class, 10)->create();
@@ -85,9 +93,7 @@ Route::get('/faker', function () {
 });
 
 // Referral Route
-Route::get('/{id?}', function($user_id = false) {
-    if ($user_id != false) {
-        Session::put('referral_id', $user_id);
-    }
-    return view('index');
-})->name('index');
+Route::get('/register/{id}', function($user_id) {
+    Session::put('referral_id', $user_id);
+    return view('auth.register');
+});

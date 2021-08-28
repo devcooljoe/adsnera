@@ -18,8 +18,7 @@ class CheckAdmin
         if (auth()->user() != null && auth()->user()->admin()) {
             return $next($request);
         }else {
-            redirect()->back();
+            return redirect()->back();
         }
-        
     }
 }

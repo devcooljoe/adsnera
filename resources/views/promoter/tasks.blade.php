@@ -4,23 +4,31 @@
     <title>Tasks - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
-        .textarea {
-            margin-right: 4px;
+        .text-area {
+            height: 40px;
+            outline: none;
+            border-color: grey;
+            width: 100%;
         }
 
-        .no-radius {
-            border-radius: none;
+        .text-area::-webkit-scrollbar {
+            width: 0px;
         }
 
-        .post {
-            display: flex;
+        .text-area::-webkit-scrollbar-thumb {
+            width: 0px;
+
         }
 
-        .but {
-            border-radius: 0px !important;
+        .text-area::-webkit-scrollbar-button {
+            width: 0px;
+        }
+
+        .text-area::-webkit-scrollbar-track {
+            width: 0px;
         }
 
     </style>
@@ -31,7 +39,10 @@
     <div class="inner_content">
         <!-- /inner_content_w3_agile_info-->
         <div class="inner_content_w3_agile_info">
-
+            <h2 class="w3_inner_tittle two">Promoter Dashboard</h2>
+            <h4>Note: You must share only {{ $count }} post{{ $count > 1 ? 's' : '' }}. Share the one your audience
+                is mostly interested in.</h4>
+            <br>
             <!-- //agile_top_w3_post_sections-->
             <!-- /w3ls_agile_circle_progress-->
             <div class="w3ls_agile_cylinder chart agile_info_shadow">
@@ -42,36 +53,41 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Task Author</th>
+                                    <th>Post Author</th>
                                     <th>Posts</th>
+                                    <th>Share Posts</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 1; ?>
-                                @foreach ($tasks as $task)
-                                    <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $task->user()->first()->name }}</td>
-                                        <td>
-                                            <div class="post">
-                                                <input class="form form-control textarea"
-                                                    value="{{ route('index') }}/viewcampaign/{{ $task->id }}/{{ $task->user()->first()->id }}" />
-                                                <li class="dropdown" style="list-style-type: none">
-                                                    <button data-toggle="dropdown" aria-expanded="false"
-                                                        class="dropdown-toggle btn btn-default but">Share <i
-                                                            class="fa fa-share"></i></button>
-                                                    <ul class="dropdown-menu drp-mnu">
-                                                        <li> <a href="#"> WhatsApp</a> </li>
-                                                        <li> <a href="#"> Facebook</a> </li>
-                                                        <li> <a href="#"> Twitter</a> </li>
-                                                        <li> <a href="#"> Telegram</a> </li>
-                                                    </ul>
-                                                </li>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php $i++; ?>
-                                @endforeach
+                                @if ($count > 0)
+                                    <?php $i = 1; ?>
+                                    @foreach ($tasks as $task)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $task->user()->first()->name }}</td>
+                                            <td>
+                                                <div class="post">
+                                                    <textarea class="text-area" id="taskLink{{ $task->id }}" name=""
+                                                        id="" cols="30"
+                                                        rows="0">{{ $task->title }} {{ route('index') }}/posts/{{ $task->id }}/{{ $task->user()->first()->id }}
+                                                                                                                                                                                    </textarea>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="label label-success"><i class="fa fa-whatsapp"></i>
+                                                    WhatsApp</a>
+                                                <a href="#" class="label label-primary"><i class="fa fa-facebook"></i>
+                                                    Facebook</a>
+                                                <span id="btnTaskLink{{ $task->id }}"
+                                                    onclick="copyLink({{ $task->id }})" class="label label-default"
+                                                    style="cursor: pointer;"><i class="fa fa-copy"></i>
+                                                    Copy</span>
+
+                                            </td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -100,5 +116,13 @@
         </div>
         <!-- //inner_content_w3_agile_info-->
     </div>
+    <script>
+        function copyLink(id) {
+            var textcopy = document.getElementById('taskLink' + id);
+            textcopy.select();
+            document.execCommand('copy');
+            $('#btnTaskLink' + id).html('<i class="fa fa-copy"></i> Copied');
+        }
+    </script>
     <!-- //inner_content-->
 @endsection

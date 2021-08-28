@@ -53,15 +53,18 @@ class User extends Authenticatable implements MustVerifyEmail
             $user->bank()->create([]);
 
             if (Session::has('referral_id')) {
-                Referral::create([
+                if (User::find(Session::get('referral_id')) != null) {
+                    Referral::create([
                     'user_id' => Session::get('referral_id'),
                     'account_id' => $user->id,
                     'name' => $user->name,
                     'account_type' => Session::get('account_type'),
                     'account_status' => 'not active',
                     'paid' => false,
-                ]);
-                Session::forget('referral_id');
+                    ]);
+                    Session::forget('referral_id');
+                }
+                
             }
             Session::forget('account_type');
             

@@ -83,24 +83,25 @@
 
 <body>
 
-    <nav class="navbar navbar-inverse" style="background-color: #1e2d3a">
+    <nav class="navbar navbar-inverse" style="background-color: #1e2d3a; border-radius:0px;">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <button type="button" class="navbar-toggle" id="button" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="{{ route('index') }}/images/logo.png"
+                <a class="navbar-brand" href="/"><img src="{{ route('index') }}/images/logo.png"
                         class="img-responsive" alt="" style="width: 25px;"></a>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
+            <div class="collapse navbar-collapse pull-right" id="myNavbar">
                 <ul class="nav navbar-nav">
                     @guest()
                         <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                     @else
                         <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                         <li><a href="/account/profile"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="/posts/new"><i class="fa fa-plus"></i> Create new post</a></li>
                     @endguest
 
                 </ul>
@@ -117,7 +118,8 @@
     <div class="row" style="padding:15px;background-color:#e0e0e0">
         <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-xs"><br></div>
         <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div style="background-color:#f2fff5d3;padding:30px;border-radius:7px">
+            <div
+                style="background-color:#f2fff5d3;padding:30px;border-radius:7px 7px 0px 0px; box-shadow: 0px 0px 1px 1px #c7c7c7;">
                 <center>
                     <a href="http://bit.ly/3in1_training" target="_blank">
                         <img class="img img-responsive img-thumbnail" style="height:200px;"
@@ -150,6 +152,12 @@
                 <p>Powered by Adsnera</p>
                 <p><a href="mailto:support@adsnera.com">support@adsnera.com</a></p>
             </footer>
+
+            <script>
+                $('#button').click(function() {
+                    $('#myNavbar').removeClass('pull-right');
+                });
+            </script>
 </body>
 
 </html>
