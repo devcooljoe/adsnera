@@ -1,157 +1,223 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.blog-app')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-quiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="{{ route('index') }}/board/css/font-awesome.css" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="dns-prefetch" href="//s.w.org">
-    <link rel="apple-touch-icon" sizes="48x48" href="{{ route('index') }}/images/icon.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="{{ route('index') }}/images/icon.png">
-    <link rel="manifest" href="https://www.newstractor.com.ng/storage/assets/default/manifest.json">
-    <link rel="shortcut-icon" href="https://www.newstractor.com.ng/storage/assets/default/comp-icon.png"
-        type="image/jpg">
-    <meta name="theme-color" content="#1e2d3a">
-    <title>{{ $post->title }}</title>
-    <meta name="keyword" content="increase, your, whatsapp, status, views, in , just, one, step, newstractor">
-    <meta name="description"
-        content="Get more WhatsApp Status Views. You can grow your audience as you and other participants gets to save each others contact.">
-    <meta property="og:locale" content="en_EN">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ $post->title }}">
-    <meta property="og:description"
-        content="Get more WhatsApp Status Views. You can grow your audience as you and other participants gets to save each others contact.">
-    <meta property="og:url" content="{{ route('index') }}">
-    <meta property="og:site_name" content="Wassapgains">
-    <meta property="og:image" content="{{ route('index') }}/images/icon.png">
-    <meta property="og:image:secure_url" content="{{ route('index') }}/images/icon.png">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="450">
-    <meta property="og:image:alt" content="{{ $post->title }}">
-    <meta property="article:tag" content="increase, your, whatsapp, status, views, in , just, one, step, newstractor">
-    <meta property="article:section" content="wassapgains">
-    <meta name="twitter:card" content="summary">
-    <meta property="twitter:title" content="{{ $post->title }}">
-    <meta property="twitter:description"
-        content="Get more WhatsApp Status Views. You can grow your audience as you and other participants gets to save each others contact.">
-    <meta property="twitter:url" content="{{ route('index') }}">
-    <meta property="twitter:image" content="{{ route('index') }}/images/icon.png">
-    <meta property="twitter:image:width" content="800">
-    <meta property="twitter:image:height" content="450">
-    <meta property="twitter:image:alt" content="{{ $post->title }}">
-    <link rel="image_src" href="{{ route('index') }}/images/icon.png">
-    <meta itemprop="image" content="{{ route('index') }}/images/icon.png">
-    <meta name="msapplication-TileImage" content="{{ route('index') }}/images/icon.png">
-    <style>
-        html {
-            -webkit-scroll-behavior: smooth;
-            scroll-behavior: smooth
-        }
+@section('title')
+    <title>Bootstrap 4 Blog Template For Developers</title>
+@endsection
 
-        body {
-            font-family: 'Noto Sans JP';
-            font-size: 18px;
-            -webkit-scroll-behavior: smooth;
-            scroll-behavior: smooth
-        }
 
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Noto Sans JP'
-        }
+@section('content')
+    <div class="main-wrapper">
+        <figcaption class="mt-2 pl-3 image-caption" style="text-decoration: underline">Sponsored Ad...</figcaption>
+        @if ($advert != null)
+            <a href="{{ $advert->link }}" target="_blank">
+                <img src="{{ route('index') }}/storage/{{ $advert->picture }}" class="img-responsive"
+                    style="width: 100%; max-height:200px" alt="">
+            </a>
+        @else
+            <img src="{{ route('index') }}/images/ads.png" class="img-responsive" style="width: 100%; max-height:200px"
+                alt="">
+        @endif
+        <article class="blog-post px-3 py-5 p-md-5">
+            <div class="container">
+                <header class="blog-post-header">
+                    <h2 class="title mb-2">{{ $post->title }}</h2>
+                    <div class="meta mb-3"><span class="date">Published by
+                            {{ $post->user()->first()->name }}</span><span
+                            class="time">{{ App\Custom::date($post->created_at) }}</span></div>
+                </header>
 
-        footer {
-            width: 100%;
-            color: #a8a8a8;
-            background-color: #1e2d3a;
-            padding: 10px;
-            font-size: 15px;
-        }
+                <div class="blog-post-body">
+                    <figure class="blog-banner">
+                        <a href="https://made4dev.com"><img class="img-fluid"
+                                src="{{ route('index') }}/blog/images/blog/blog-post-banner.jpg" alt="image"></a>
+                        <figcaption class="mt-2 text-center image-caption">Image Credit: <a
+                                href="https://made4dev.com?ref=devblog" target="_blank">made4dev.com (Premium
+                                Programming T-shirts)</a></figcaption>
+                    </figure>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                        mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
+                        quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                        rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                        Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend
+                        tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
 
-    </style>
-</head>
+                    <h3 class="mt-5 mb-3">Code Block Example</h3>
+                    <p>You can get more info at <a href="https://highlightjs.org/"
+                            target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor sit amet, consectetuer
+                        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
+                        magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                        pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
+                        vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                        justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
+                        elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                        consequat vitae, eleifend ac, enim. </p>
+                    <pre>
+                                                                                                                                                                                         <code>
+                                                                                                                                                                                    function $initHighlight(block, cls) {
+                                                                                                                                                                                      try {
+                                                                                                                                                                                        if (cls.search(/\bno\-highlight\b/) != -1)
+                                                                                                                                                                                          return process(block, true, 0x0F) +
+                                                                                                                                                                                                 ` class="${cls}"`;
+                                                                                                                                                                                      } catch (e) {
+                                                                                                                                                                                        /* handle exception */
+                                                                                                                                                                                      }
+                                                                                                                                                                                      for (var i = 0 / 2; i < classes.length; i++) {
+                                                                                                                                                                                        if (checkCondition(classes[i]) === undefined)
+                                                                                                                                                                                          console.log('undefined');
+                                                                                                                                                                                      }
+                                                                                                                                                                                    }
 
-<body>
-
-    <nav class="navbar navbar-inverse" style="background-color: #1e2d3a; border-radius:0px;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" id="button" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"><img src="{{ route('index') }}/images/logo.png"
-                        class="img-responsive" alt="" style="width: 25px;"></a>
-            </div>
-            <div class="collapse navbar-collapse pull-right" id="myNavbar">
-                <ul class="nav navbar-nav">
-
-                    @guest()
-                        <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-                    @else
-                        <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                        <li><a href="/account/profile"><i class="fa fa-user"></i> Profile</a></li>
-                        <li><a href="/posts/new"><i class="fa fa-plus"></i> Create new post</a></li>
-                    @endguest
-                    <li><a href="/posts"><i class="fa fa-file-o"></i> Posts</a></li>
-                </ul>
-                @guest()`
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                                                                                                                                                                    export  $initHighlight;
+                                                                                                                                                                                         </code>
+                                                                                                                                                                                        </pre>
+                    <h3 class="mt-5 mb-3">Typography</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                        mus.</p>
+                    <h5 class="my-3">Bullet Points:</h5>
+                    <ul class="mb-5">
+                        <li class="mb-2">Lorem ipsum dolor sit amet consectetuer.</li>
+                        <li class="mb-2">Aenean commodo ligula eget dolor.</li>
+                        <li class="mb-2">Aenean massa cum sociis natoque penatibus.</li>
                     </ul>
-                @endguest
+                    <ol class="mb-5">
+                        <li class="mb-2">Lorem ipsum dolor sit amet consectetuer.</li>
+                        <li class="mb-2">Aenean commodo ligula eget dolor.</li>
+                        <li class="mb-2">Aenean massa cum sociis natoque penatibus.</li>
+                    </ol>
+                    <h5 class="my-3">Quote Example:</h5>
+                    <blockquote class="blockquote m-lg-5 py-3 pl-4 px-lg-5">
+                        <p class="mb-2">You might not think that programmers are artists, but programming is
+                            an extremely creative profession. It's logic-based creativity.</p>
+                        <footer class="blockquote-footer">John Romero</footer>
+                    </blockquote>
+
+                    <h5 class="my-3">Table Example:</h5>
+                    <table class="table table-striped my-5">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 class="mb-3">Embed A Tweet:</h5>
+
+                    <blockquote class="twitter-tweet" data-lang="en">
+                        <p lang="en" dir="ltr">1969:<br>-what&#39;re you doing with that 2KB of RAM?<br>-sending people
+                            to the moon<br><br>2017:<br>-what&#39;re you doing with that 1.5GB of RAM?<br>-running Slack
+                        </p>&mdash; I Am Devloper (@iamdevloper) <a
+                            href="https://twitter.com/iamdevloper/status/926458505355235328?ref_src=twsrc%5Etfw">November
+                            3, 2017</a>
+                    </blockquote>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+                    <h3 class="mt-5 mb-3">Video Example</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                        mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
+                        quis enim. </p>
+
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/hnCmSXCZEpU" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+
+                </div>
+
+                <nav class="blog-nav nav nav-justified my-5">
+                    <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i
+                            class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+                    <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i
+                            class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+                </nav>
+
+                <div class="blog-comments-section">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        /**
+                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT 
+                         *  THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR 
+                         *  PLATFORM OR CMS.
+                         *  
+                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: 
+                         *  https://disqus.com/admin/universalcode/#configuration-variables
+                         */
+                        /*
+                        var disqus_config = function () {
+                            // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.url = PAGE_URL;  
+                            
+                            // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                            this.page.identifier = PAGE_IDENTIFIER; 
+                        };
+                        */
+
+                        (function() { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+                            var d = document,
+                                s = d.createElement('script');
+
+                            // IMPORTANT: Replace 3wmthemes with your forum shortname!
+                            s.src = 'https://3wmthemes.disqus.com/embed.js';
+
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the
+                        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+                            comments powered by Disqus.
+                        </a>
+                    </noscript>
+                </div>
+                <!--//blog-comments-section-->
+
             </div>
-        </div>
-    </nav>
+            <!--//container-->
+        </article>
 
-    <div class="row" style="padding:15px;background-color:#e0e0e0">
-        <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-xs"><br></div>
-        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div
-                style="background-color:#f2fff5d3;padding:30px;border-radius:7px 7px 0px 0px; box-shadow: 0px 0px 1px 1px #c7c7c7;">
-                <center>
-                    <a href="http://bit.ly/3in1_training" target="_blank">
-                        <img class="img img-responsive img-thumbnail" style="height:200px;"
-                            src="https://i.ibb.co/LnBqbGF/IMG-20210817-WA0070.jpg">
-                    </a>
-                </center>
-                <hr>
-                <a href="#" style="text-decoration: none">
-                    <h3 style="color: #12b797">{{ $post->title }}</h3>
-                </a>
-                <span style="font-size:12px;">
-                    Post by {{ $post->user()->first()->name }} &bullet; {{ App\Custom::date($post->created_at) }}
-                </span>
-                <br><br>
-                <p class="text-center"><img class="img img-responsive img-thumbnail" style="width:80%"
-                        src="https://i.ibb.co/c1FRrW5/Add-Text-08-14-08-52-59.jpg"></p><br>
-
-                <p style="font-size: 15px;">{{ $post->body }}</p>
-
+        <section class="promo-section theme-bg-light py-5 text-center">
+            <div class="container">
+                <h2 class="title">Promo Section Heading</h2>
+                <p>You can use this section to promote your side projects etc. Lorem ipsum dolor sit amet, consectetuer
+                    adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+                <figure class="promo-figure">
+                    <a href="https://made4dev.com" target="_blank"><img class="img-fluid"
+                            src="{{ route('index') }}/blog/images/promo-banner.jpg" alt="image"></a>
+                </figure>
             </div>
-            <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-xs"><br></div>
-            <footer style="width: 100%; border-radius:0px 0px 7px 7px;">
-                <p>Powered by Adsnera</p>
-                <p><a href="mailto:support@adsnera.com">support@adsnera.com</a></p>
-            </footer>
+            <!--//container-->
+        </section>
+        <!--//promo-section-->
 
-            <script>
-                $('#button').click(function() {
-                    $('#myNavbar').removeClass('pull-right');
-                });
-            </script>
-</body>
 
-</html>
+
+    @endsection

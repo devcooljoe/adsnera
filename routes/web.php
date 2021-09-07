@@ -78,7 +78,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 Route::get('/posts', 'GuestController@index');
-Route::get('/posts/{post_id}/{promoter_id?}', "GuestController@viewpost");
+Route::get('/posts/{post_id}', "GuestController@viewpost");
 
 Route::get('/faker', function () {
     // factory(App\User::class, 10)->create();

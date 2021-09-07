@@ -4,7 +4,7 @@
     <title>Wallet - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -51,7 +51,8 @@
                     <thead>
                         <tr>
                             <p>Minimum Withdrawal is ₦1,000 </p>
-                            <form action="/promoter/wallet/withdraw">
+                            <form action="/promoter/wallet/withdraw" method="POST">
+                                @csrf
                                 <th>
                                     <div class="input-group">
                                         <div class="input-group-addon" style="font-size: 15px;">₦</div>

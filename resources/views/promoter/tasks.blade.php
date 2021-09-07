@@ -4,7 +4,7 @@
     <title>Tasks - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .text-area {
@@ -67,10 +67,10 @@
                                             <td>{{ $task->user()->first()->name }}</td>
                                             <td>
                                                 <div class="post">
-                                                    <textarea class="text-area" id="taskLink{{ $task->id }}" name=""
-                                                        id="" cols="30"
-                                                        rows="0">{{ $task->title }} {{ route('index') }}/posts/{{ $task->id }}/{{ $task->user()->first()->id }}
-                                                                                                                                                                                    </textarea>
+                                                    <input class="text-area form-control" id="taskLink{{ $task->id }}"
+                                                        name=""
+                                                        value="{{ $task->title }} {{ route('index') }}/posts/{{ $task->custom_id }}?id={{ $task->user()->first()->id }}">
+
                                                 </div>
                                             </td>
                                             <td>

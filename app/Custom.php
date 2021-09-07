@@ -132,6 +132,34 @@ class Custom extends Model
     }
 
 
+    public static function updatesitemap() 
+    {
+    	$posts = \App\Post::all();
+    	
+    	$xmlfile = '<urlset xmlns="http://www.google.com/schemas/sitemap/0.84" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'."\n";
+		$xmlfile .= '<url>'."\n";
+		$xmlfile .= '<loc>'.route('index').'</loc>'."\n";
+		$xmlfile .= '<changefreq>daily</changefreq>'."\n";
+		$xmlfile .= '<lastmod>'.date('Y-m-d\TH:i:sP').'</lastmod>'."\n";
+		$xmlfile .= '<priority>1.00</priority>'."\n";
+		$xmlfile .= '</url>'."\n";
+		
+		foreach($posts as $post) {
+			$xmlfile .= '<url>'."\n";
+			$xmlfile .= '<loc>'.route('index').'/posts/'.$post->custom_id.'</loc>'."\n";
+			$xmlfile .= '<changefreq>daily</changefreq>'."\n";
+			$xmlfile .= '<lastmod>'.date('Y-m-d\TH:i:sP').'</lastmod>'."\n";
+			$xmlfile .= '<priority>1.00</priority>'."\n";
+			$xmlfile .= '</url>'."\n";
+		}
+		
+		$xmlfile .= '</urlset>';
+		
+		$file = fopen('sitemap.xml', 'w');
+		fwrite($file, $xmlfile);
+		fclose($file);
+			
+    }
 
 
 
