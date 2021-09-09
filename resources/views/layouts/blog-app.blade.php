@@ -9,11 +9,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="robots" content="index">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#1e2d3a">
+    <link rel="apple-touch-icon" sizes="48x48" href="{{ route('index') }}/images/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ route('index') }}/images/logo.png">
+    <link rel="shortcut-icon" href="{{ route('index') }}/images/logo.png" type="image/png">
     <link href="{{ route('index') }}/css/fontawesome-all.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css" />
+    <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!-- FontAwesome JS-->
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
         integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous">
@@ -21,13 +26,25 @@
 
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ route('index') }}/blog/css/theme-1.css">
+    <style>
+        body,
+        p,
+        span,
+        a,
+        h1,
+        h2,
+        h3,
+        strong {
+            font-family: "Noto Sans JP";
+        }
+
+    </style>
 
 </head>
 
 <body>
-
     <header class="header text-center">
-        <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Adsnera Blog</a></h1>
+        <h1 class="blog-name pt-lg-4 mb-0"><a href="/posts">Adsnera Blog</a></h1>
 
         <nav class="navbar navbar-expand-lg navbar-dark">
 
@@ -45,9 +62,12 @@
                             href="{{ route('index') }}#about">Find out more about us</a></div>
                     <!--//bio-->
                     <ul class="social-list list-inline py-3 mx-auto">
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook fa-fw"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-fw"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a target="_blank" href="https://www.facebook.com/adsnera"><i
+                                    class="fab fa-facebook fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a target="_blank" href="https://www.instagram.com/adsnera"><i
+                                    class="fab fa-instagram fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a target="_blank" href="https://www.twitter.com/adsnera"><i
+                                    class="fab fa-twitter fa-fw"></i></a></li>
                     </ul>
                     <!--//social-list-->
                     <hr>
@@ -134,7 +154,8 @@
 
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="{{ route('index') }}/blog/js/demo/style-switcher.js"></script>
-
+    <script id="dsq-count-scr" src="//adsnera.disqus.com/count.js" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
 
 </body>
 

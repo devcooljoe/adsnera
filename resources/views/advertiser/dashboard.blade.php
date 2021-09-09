@@ -4,7 +4,7 @@
     <title>Dashboard - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -71,6 +71,21 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @if ($page_num >= 1)
+                                <ul class="pagination">
+                                    @if ($page - 1 >= 0)
+                                        <li><a href="/advertiser/dashboard?page={{ $page - 1 }}">&laquo Prev</a></li>
+                                    @endif
+                                    @for ($i = 0; $i <= $page_num; $i++)
+                                        <li><a href="/advertiser/dashboard?page={{ $i }}"
+                                                @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
+                                    @endfor
+                                    @if ($page + 1 <= $page_num)
+                                        <li><a href="/advertiser/dashboard?page={{ $page + 1 }}">Next &raquo</a></li>
+                                    @endif
+                                    </nav>
+                                </ul>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -102,6 +117,21 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @if ($page_num_l >= 1)
+                                <ul class="pagination">
+                                    @if ($page_l - 1 >= 0)
+                                        <li><a href="/advertiser/dashboard?page_l={{ $page_l - 1 }}">&laquo Prev</a></li>
+                                    @endif
+                                    @for ($i = 0; $i <= $page_num_l; $i++)
+                                        <li><a href="/advertiser/dashboard?page_l={{ $i }}"
+                                                @if ($i == $page_l) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
+                                    @endfor
+                                    @if ($page_l + 1 <= $page_num_l)
+                                        <li><a href="/advertiser/dashboard?page_l={{ $page_l + 1 }}">Next &raquo</a></li>
+                                    @endif
+                                    </nav>
+                                </ul>
+                            @endif
                         </div>
                     </div>
                 </div>

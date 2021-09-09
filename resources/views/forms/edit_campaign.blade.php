@@ -2,9 +2,36 @@
 
 @section('title')
     <title>Edit Campaigns - {{ auth()->user()->name }}</title>
-    <meta name="keywords"
-        content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- Meta tag Keywords -->
+    <meta name="keyword" content="social, marketing, platform, nigeria, worldwide, promote, advertise, campaign" />
+    <meta name="description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts.">
+    <meta property="og:locale" content="en_EN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Edit Campaigns - {{ auth()->user()->name }}" />
+    <meta property="og:description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
+    <meta property="og:url" content="{{ route('index') }}" />
+    <meta property="og:site_name" content="Adsnera" />
+    <meta property="og:image" content="{{ route('index') }}/images/icon.png" />
+    <meta property="og:image:secure_url" content="{{ route('index') }}/images/icon.png" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="450" />
+    <meta property="og:image:alt" content="Edit Campaigns - {{ auth()->user()->name }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Edit Campaigns - {{ auth()->user()->name }}" />
+    <meta property="twitter:description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
+    <meta property="twitter:url" content="{{ route('index') }}" />
+    <meta property="twitter:image" content="{{ route('index') }}/images/icon.png" />
+    <meta property="twitter:image:width" content="800" />
+    <meta property="twitter:image:height" content="450" />
+    <meta property="twitter:image:alt" content="Edit Campaigns - {{ auth()->user()->name }}" />
+    <link rel="image_src" href="{{ route('index') }}/images/icon.png" />
+    <meta itemprop="image" content="{{ route('index') }}/images/icon.png" />
+    <meta name="msapplication-TileImage" content="{{ route('index') }}/images/icon.png" />
+    <!-- //Meta tag Keywords --> Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson,
+    Motorola web design" />
 
     <style>
         .textarea {
@@ -38,8 +65,8 @@
                     <form method="post" autocomplete="off" action="/advertiser/campaigns/{{ $task->id }}/edit">
                         @csrf
                         <div class="form-group"> <label for="exampleInputEmail1">Campaign Name (Required)</label> <input
-                                type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="" required
-                                value="{{ old('name') ?? $task->name }}">@error('name')
+                                type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder=""
+                                required value="{{ old('name') ?? $task->name }}">@error('name')
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
                             @enderror
                         </div>

@@ -10,14 +10,24 @@ use App\Wallet;
 use App\View;
 use App\Lead;
 use App\Earning;
+use App\Subscriber;
+use App\Custom;
 use Illuminate\Support\Facades\Session;
 
 class GuestController extends Controller
 {
     public function index() 
     {
-        $posts = Post::orderBy('id', 'DESC')->where('status', 'approved')->get();
-        return view('guest.post', ['posts'=>$posts]);
+        $posts_all = Post::orderBy('id', 'DESC')->where('status', 'approved')->get();
+        $page_num = floor($posts_all->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $posts = Post::orderBy('id', 'DESC')->where('status', 'approved')->skip($page)->take(20)->get();
+        }else {
+            $posts = Post::orderBy('id', 'DESC')->where('status', 'approved')->paginate(20);
+        }
+
+        return view('guest.post', ['posts'=>$posts, 'page'=>request()->page ?? 0, 'page_num'=>$page_num]);
     }
 
     public function viewpost($custom_id) 
@@ -31,7 +41,7 @@ class GuestController extends Controller
         }
         $user_id_list = array_unique($user_id_list);
 
-        $valid_users = Wallet::whereIn('user_id', $user_id_list)->where('amount', '>=', 200)->get();
+        $valid_users = Wallet::whereIn('user_id', $user_id_list)->where('amount', '>=', 100)->get();
         $valid_user_id_list = [];
         foreach ($valid_users as $valid_user) {
             array_push($valid_user_id_list, $valid_user->user_id);
@@ -44,17 +54,16 @@ class GuestController extends Controller
         $rand_id = rand(0, count($ads_id_list)-1);
         $advert = Task::find($ads_id_list[$rand_id] ?? 0);
         if ($advert != null) {
-            $advertiser = User::find($advert->user_id);
-            $old_balance = $advertiser->wallet()->first()->amount;
-            $new_balance = $old_balance;
-            $advertiser->wallet()->first()->update(['amount'=>$new_balance]);
     
             $user_agent = $_SERVER['HTTP_USER_AGENT'];
             $task_id = $advert->id;
     
-            $check = View::where('task_id', $task_id)->where('user_agent', $user_agent)->get();
-
+            $check = View::where('task_id', $task_id)->where('user_agent', $user_agent)->first();
             if ($check == null) {
+                $advertiser = User::find($advert->user_id);
+                $old_balance = $advertiser->wallet()->first()->amount;
+                $new_balance = $old_balance - 2;
+                $advertiser->wallet()->first()->update(['amount'=>$new_balance]);
 
                 Lead::create([
                     'user_id' => $advert->user_id,
@@ -78,14 +87,25 @@ class GuestController extends Controller
                             'user_agent' => $user_agent,
                             'paid' => true,
                         ]);
+                        $old_balance = $user->wallet()->first()->amount;
+                        $new_balance = $old_balance + 2;
+                        $user->wallet()->first()->update(['amount'=>$new_balance]);
+
                     }
                 }
             }
         }
 
-
         return view('guest.viewpost', ['post'=> $post, 'advert'=>$advert]);
         
         
+    }
+
+    public function subscribe() {
+        $email = request()->email;
+        if (Subscriber::where('email', $email)->first() == null) {
+            Subscriber::create(['email'=>$email]);
+        }
+        return redirect()->back();
     }
 }

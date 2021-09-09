@@ -108,6 +108,21 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @if ($page_num >= 1)
+                                <ul class="pagination">
+                                    @if ($page - 1 >= 0)
+                                        <li><a href="/advertiser/wallet?page={{ $page - 1 }}">&laquo Prev</a></li>
+                                    @endif
+                                    @for ($i = 0; $i <= $page_num; $i++)
+                                        <li><a href="/advertiser/wallet?page={{ $i }}"
+                                                @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
+                                    @endfor
+                                    @if ($page + 1 <= $page_num)
+                                        <li><a href="/advertiser/wallet?page={{ $page + 1 }}">Next &raquo</a></li>
+                                    @endif
+                                    </nav>
+                                </ul>
+                            @endif
                     </div>
                 </div>
             </div>

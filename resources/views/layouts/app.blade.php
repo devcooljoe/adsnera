@@ -2,22 +2,14 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta http-quiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index">
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#1e2d3a">
-    <meta name="keywords" content="Flyer Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-    SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-    <script>
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
     <!-- Custom Theme files -->
     <link href="{{ route('index') }}/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
     <link href="{{ route('index') }}/css/style.css" type="text/css" rel="stylesheet" media="all">
@@ -182,23 +174,21 @@
                                 <div class="address-grid">
                                     <ul class="social-icons3">
                                         <li>
-                                            <a href="#" class="s-iconfacebook">
+                                            <a target="_blank" href="https://www.facebook.com/adsnera"
+                                                class="s-iconfacebook">
                                                 <span class="fab fa-facebook-f"></span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="s-icontwitter">
+                                            <a target="_blank" href="https://www.twitter.com/adsnera"
+                                                class="s-icontwitter">
                                                 <span class="fab fa-twitter"></span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="s-icondribbble">
+                                            <a target="_blank" href="https://www.instagram.com/adsnera"
+                                                class="s-icondribbble">
                                                 <span class="fab fa-instagram"></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="s-iconbehance">
-                                                <span class="fab fa-behance"></span>
                                             </a>
                                         </li>
                                     </ul>
@@ -208,8 +198,9 @@
                         <div class="col-lg-6 border-left footer-grid">
                             <div class="subscribe-grid">
                                 <h6 class="footer-wthree">Signup to our newsletter.</h6>
-                                <form action="#" method="post" class="form-inline">
-                                    <input type="email" placeholder="Your Email" name="Subscribe" required="">
+                                <form action="/subscribe" method="post" class="form-inline">
+                                    @csrf
+                                    <input type="email" placeholder="Your Email" name="email" required="">
                                     <button class="btn1">
                                         <i class="far fa-paper-plane"></i>
                                     </button>

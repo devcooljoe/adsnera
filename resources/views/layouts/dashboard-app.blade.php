@@ -88,6 +88,12 @@
                                     <a href="#"> <i class="fa fa-suitcase" aria-hidden="true"></i>More <i
                                             class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="gn-submenu">
+                                        @if (auth()->user()->admin())
+                                            <li class="mini_list_w3"><a href="/admin"> <i class="fa fa-caret-right"
+                                                        aria-hidden="true"></i>Admin
+                                                    Dashboard</a>
+                                            </li>
+                                        @endif
                                         <li class="mini_list_w3"><a href="/account/settings"> <i
                                                     class="fa fa-caret-right" aria-hidden="true"></i>Settings</a></li>
                                         <li class="mini_list_agile"><a href="/#faqs"> <i class="fa fa-caret-right"
@@ -111,8 +117,9 @@
                         <li class="dropdown profile_details_drop">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">
-                                    <span class="prfil-img"><img src="{{ route('index') }}/board/images/avatar.png"
-                                            alt="" class="img img-responsive" style="width: 50px;"> </span>
+                                    <span class="prfil-img"><img
+                                            src="{{ route('index') }}/board/images/avatar.png" alt=""
+                                            class="img img-responsive" style="width: 50px;"> </span>
                                 </div>
                             </a>
                             <ul class="dropdown-menu drp-mnu">
@@ -121,7 +128,8 @@
                                 <li> <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();  document.getElementById('logout-form').submit();"><i
                                             class="fa fa-sign-out"></i> Logout</a> </li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
                                     @csrf
                                 </form>
                             </ul>
@@ -369,6 +377,14 @@
                 $('#deposit-response').html('');
             }
         });
+    </script>
+    <script>
+        function delPost(id, title) {
+            var conf = confirm('Do you really want to delete this post "' + title + '"?');
+            if (conf == true) {
+                location.href = '/posts/' + id + '/delete';
+            }
+        }
     </script>
 </body>
 

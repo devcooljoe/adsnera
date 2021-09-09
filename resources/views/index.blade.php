@@ -3,6 +3,33 @@
 
 @section('title')
     <title>Adsnera - The Biggest and Legit Social Media Maketing Platform</title>
+    <meta name="keyword" content="social, marketing, platform, nigeria, worldwide, promote, advertise, campaign" />
+    <meta name="description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts.">
+    <meta property="og:locale" content="en_EN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adsnera - The Biggest and Legit Social Media Maketing Platform" />
+    <meta property="og:description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
+    <meta property="og:url" content="{{ route('index') }}" />
+    <meta property="og:site_name" content="Adsnera" />
+    <meta property="og:image" content="{{ route('index') }}/icon.png" />
+    <meta property="og:image:secure_url" content="{{ route('index') }}/icon.png" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="450" />
+    <meta property="og:image:alt" content="Adsnera - The Biggest and Legit Social Media Maketing Platform" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Adsnera - The Biggest and Legit Social Media Maketing Platform" />
+    <meta property="twitter:description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
+    <meta property="twitter:url" content="{{ route('index') }}" />
+    <meta property="twitter:image" content="{{ route('index') }}/icon.png" />
+    <meta property="twitter:image:width" content="800" />
+    <meta property="twitter:image:height" content="450" />
+    <meta property="twitter:image:alt" content="Adsnera - The Biggest and Legit Social Media Maketing Platform" />
+    <link rel="image_src" href="{{ route('index') }}/icon.png" />
+    <meta itemprop="image" content="{{ route('index') }}/icon.png" />
+    <meta name="msapplication-TileImage" content="{{ route('index') }}/icon.png" />
 @endsection
 
 
@@ -16,8 +43,11 @@
                 <div class="container py-lg-5" id="about">
                     <div class="text-center wthree-title pb-sm-5 pb-3">
                         <h4 class="w3l-sub">About Us</h4>
-                        <h5 class="sub-title py-3">The Biggest and Legit Social Media Maketing Platform</h5><span></span>
+                        <h5 class="sub-title py-3">The Biggest and Legit Social Media Maketing Platform</h5>
+                        <h5 class="sub-title py-3">With Automatic
+                            Payment and Withdrawal Services</h5><span></span>
                     </div>
+
                     <div class="agileits-wthree-about-row row py-lg-5  no-gutters">
                         <div class="col-lg-4">
                             <div class="agileits-wthree-about-grids">
@@ -31,11 +61,14 @@
                                     <div class="img-responsive">
                                         <div class="abt-block">
                                             <h3 style="color: white;font-weight:bolder;">Cost Effective</h3>
-                                            <p class="img-responsive">Starting from as little as ₦2 per Lead, we provide
+                                            <p class="img-responsive">Starting from as little as ₦1 per Lead, we provide
                                                 you
                                                 with a cost efficient way
-                                                of pushing your business and services to the eyes of willing customers.</p>
+                                                of pushing your business and services to the eyes of willing customers. With
+                                                ₦1,000, your advert/campaign will reach 1,000 - 3,000 people.</p>
                                             </p>
+                                            <p style="color: white;font-weight:bold;">Register as an "Advertiser" to get
+                                                started.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -49,10 +82,10 @@
                                 <span class="fas fa-money-bill-alt"></span>
                                 <h4 class="my-2">Earn With Us
                                 </h4>
-                                <p>Do you have 500+ active Instagram followers, 100+ views on your whatsapp status, Telegram
+                                <p>Do you have 500+ active Instagram followers, 50+ views on your whatsapp status, Telegram
                                     or any other
                                     social media audience? Become a marketer
-                                    and get paid for promoting businesses online.</p>
+                                    and get paid for sharing sponsored posts online.</p>
                                 <div class="row mt-lg-4 pt-md-4">
                                     <div class="img-responsive">
                                         <div class="abt-block">
@@ -61,11 +94,19 @@
                                                 promoting businesses online. Also earn ₦250 per referral i.e, for each
                                                 active user you bring to register on
                                                 Adsnera.</p>
+                                            <p style="color: white;font-weight:bold;">Register as a "Promoter" to get
+                                                started.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="container text-center" style="margin: 30px;">
+                        <button style="padding:20px;" type="button" class="btn w3ls-btn"
+                            onclick="document.getElementById('register-link').click()">
+                            <span style="padding: 30px; font-size:20px; font-weight:bold;">REGISTER NOW</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -88,7 +129,7 @@
                         <div class="progress">
                             <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:99%;">
                             </div>
-                            <div class="progress-value">99%</div>
+                            <div class="progress-value">100%</div>
                         </div>
                         <h6 class="text-right text-capitalize pt-3">Advertising</h6>
                     </div>
@@ -96,7 +137,7 @@
                         <div class="progress">
                             <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width:90%;">
                             </div>
-                            <div class="progress-value">98%</div>
+                            <div class="progress-value">100%</div>
                         </div>
                         <h6 class="text-right text-capitalize pt-3">Earning</h6>
                     </div>
@@ -104,7 +145,7 @@
                         <div class="progress">
                             <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:85%;">
                             </div>
-                            <div class="progress-value">95%</div>
+                            <div class="progress-value">100%</div>
                         </div>
                         <h6 class="text-right text-capitalize pt-3">Management</h6>
                     </div>
@@ -397,7 +438,7 @@
         <div class="container-fluid p-0">
             <div class="text-center wthree-title pb-sm-5 pb-3">
                 <h4 class="w3l-sub">testimonials</h4>
-                <h5 class="sub-title py-3">Donec consequat sapien ut leo cursus rhoncus.</h5>
+                <h5 class="sub-title py-3">See testimonies from our Advertisers and Promoterss.</h5>
                 <span></span>
             </div>
             <ul id="flexiselDemo1" class="pt-lg-0 pt-5">
@@ -406,38 +447,41 @@
                         <div class="row">
                             <div class="col-lg-6 wthree_testimonials_grid">
                                 <p>
-                                    Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa, eu aliquet massa.
-                                    Suspendisse lacinia rutrum tincidunt.
-                                    Integer id erat porta, convallis.
+                                    I am working with Adsnera. The platform is easy to use and optimize your
+                                    campaign and for me it's 100% best. I am happy to recommend
+                                    Adsnera as one of the few networks you don't want to miss if you are looking for
+                                    high quality audience and excellent customer support!
 
                                 </p>
                                 <div class="wthree_testimonials_grid_pos">
                                     <div class="row">
                                         <div class="col-3 grid-test-w3l">
-                                            <img src="images/c1.jpg" alt=" " class="img-fluid" />
+                                            <img src="/board/images/avatar.png" alt=" " class="img-fluid" />
                                         </div>
                                         <div class="col-9 wthree_testimonials_grid1">
-                                            <h5>johnson</h5>
-                                            <p>lacinia</p>
+                                            <h5>Victor</h5>
+                                            <p>Advertiser</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6  wthree_testimonials_grid mt-lg-0 mt-5">
                                 <p>
-                                    Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa, eu aliquet massa.
-                                    Suspendisse lacinia rutrum tincidunt.
-                                    Integer id erat porta, convallis.
+                                    I've have been working with Adsnera for some time now. I must say
+                                    Adsnera is definitely one of the top networks I have ever worked with. Their account
+                                    manager Samuel is always helpful, willing to try to scale the activities with new
+                                    offers. Payment and billing format is so perfect. I hope there will be many more
+                                    successful years to come.
 
                                 </p>
                                 <div class="wthree_testimonials_grid_pos">
                                     <div class="row">
                                         <div class="col-3 grid-test-w3l">
-                                            <img src="images/c2.jpg" alt=" " class="img-fluid" />
+                                            <img src="/board/images/avatar.png" alt=" " class="img-fluid" />
                                         </div>
                                         <div class="col-9 wthree_testimonials_grid1">
-                                            <h5>Michael Paul</h5>
-                                            <p>spendisset</p>
+                                            <h5>Glory</h5>
+                                            <p>Advertiser</p>
                                         </div>
                                     </div>
                                 </div>
@@ -450,78 +494,39 @@
                         <div class="row">
                             <div class="col-lg-6 wthree_testimonials_grid">
                                 <p>
-                                    Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa, eu aliquet massa.
-                                    Suspendisse lacinia rutrum tincidunt.
-                                    Integer id erat porta, convallis.
+                                    I've been working closely with Adsnera and I couldn't be happier with our
+                                    partnership, as the high amount of traffic at fair rates makes a good match with our
+                                    needs. Our account managers at Adsnera have always been professional, responsive and
+                                    attentive to our requests which makes for a great working relationship!
                                 </p>
                                 <div class="wthree_testimonials_grid_pos">
                                     <div class="row">
                                         <div class="col-3 grid-test-w3l">
-                                            <img src="images/c3.jpg" alt=" " class="img-fluid" />
+                                            <img src="/board/images/avatar.png" alt=" " class="img-fluid" />
                                         </div>
                                         <div class="col-9 wthree_testimonials_grid1">
-                                            <h5>stibulum</h5>
-                                            <p>aliquet</p>
+                                            <h5>John</h5>
+                                            <p>Promoter</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6  wthree_testimonials_grid mt-lg-0 mt-5">
                                 <p>
-                                    Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa, eu aliquet massa.
-                                    Suspendisse lacinia rutrum tincidunt.
-                                    Integer id erat porta, convallis.
+                                    I've have been working with Adsnera for some time now. I must say
+                                    Adsnera is definitely one of the top networks I have ever worked with. Their account
+                                    manager Samuel is always helpful, willing to try to scale the activities with new
+                                    offers. Payment and billing format is so perfect. I hope there will be many more
+                                    successful years to come.
                                 </p>
                                 <div class="wthree_testimonials_grid_pos">
                                     <div class="row">
                                         <div class="col-3 grid-test-w3l">
-                                            <img src="images/c1.jpg" alt=" " class="img-fluid" />
+                                            <img src="/board/images/avatar.png" alt=" " class="img-fluid" />
                                         </div>
                                         <div class="col-9 wthree_testimonials_grid1">
-                                            <h5>stibulum</h5>
-                                            <p>puruseu</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="wthree_testimonials_grid_main">
-                        <div class="row">
-                            <div class="col-lg-6 wthree_testimonials_grid">
-                                <p>
-                                    Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa, eu aliquet massa.
-                                    Suspendisse lacinia rutrum tincidunt.
-                                    Integer id erat porta, convallis.
-                                </p>
-                                <div class="wthree_testimonials_grid_pos">
-                                    <div class="row">
-                                        <div class="col-3 grid-test-w3l">
-                                            <img src="images/c2.jpg" alt=" " class="img-fluid" />
-                                        </div>
-                                        <div class="col-9 wthree_testimonials_grid1">
-                                            <h5>Michael Paul</h5>
-                                            <p>Client</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 wthree_testimonials_grid mt-lg-0 mt-5">
-                                <p>
-                                    Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa, eu aliquet massa.
-                                    Suspendisse lacinia rutrum tincidunt.
-                                    Integer id erat porta, convallis.
-                                </p>
-                                <div class="wthree_testimonials_grid_pos">
-                                    <div class="row">
-                                        <div class="col-3 grid-test-w3l">
-                                            <img src="images/c3.jpg" alt=" " class="img-fluid" />
-                                        </div>
-                                        <div class="col-9 wthree_testimonials_grid1">
-                                            <h5>Michael Paul</h5>
-                                            <p>Client</p>
+                                            <h5>Glory</h5>
+                                            <p>Advertiser</p>
                                         </div>
                                     </div>
                                 </div>
@@ -533,7 +538,7 @@
         </div>
     </div>
     <!-- //testimonials -->
-    <!-- FAQS -->
+    {{-- <!-- FAQS -->
     <div class="agileits-wthree-about py-md-5 py-4" id="wthree-about">
         <div class="container py-lg-5" id="faqs">
             <div class="text-center wthree-title pb-sm-5 pb-3">
@@ -631,7 +636,7 @@
             </div>
         </div>
     </div>
-    <!-- //FAQS -->
+    <!-- //FAQS --> --}}
 
 
 @endsection

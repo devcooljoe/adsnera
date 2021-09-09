@@ -2,9 +2,34 @@
 
 @section('title')
     <title>Edit Bank Details - {{ auth()->user()->name }}</title>
-    <meta name="keywords"
-        content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- Meta tag Keywords -->
+    <meta name="keyword" content="social, marketing, platform, nigeria, worldwide, promote, advertise, campaign" />
+    <meta name="description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts.">
+    <meta property="og:locale" content="en_EN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Edit Bank Details - {{ auth()->user()->name }}" />
+    <meta property="og:description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
+    <meta property="og:url" content="{{ route('index') }}" />
+    <meta property="og:site_name" content="Adsnera" />
+    <meta property="og:image" content="{{ route('index') }}/images/icon.png" />
+    <meta property="og:image:secure_url" content="{{ route('index') }}/images/icon.png" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="450" />
+    <meta property="og:image:alt" content="Edit Bank Details - {{ auth()->user()->name }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Edit Bank Details - {{ auth()->user()->name }}" />
+    <meta property="twitter:description"
+        content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
+    <meta property="twitter:url" content="{{ route('index') }}" />
+    <meta property="twitter:image" content="{{ route('index') }}/images/icon.png" />
+    <meta property="twitter:image:width" content="800" />
+    <meta property="twitter:image:height" content="450" />
+    <meta property="twitter:image:alt" content="Edit Bank Details - {{ auth()->user()->name }}" />
+    <link rel="image_src" href="{{ route('index') }}/images/icon.png" />
+    <meta itemprop="image" content="{{ route('index') }}/images/icon.png" />
+    <meta name="msapplication-TileImage" content="{{ route('index') }}/images/icon.png" />
 
     <style>
         .textarea {
@@ -43,8 +68,8 @@
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group"> <label for="exampleInputPassword1">Account Number (Required)</label> <input
-                                type="text" name="account_number" class="form-control" id="exampleInputPassword1"
+                        <div class="form-group"> <label for="exampleInputPassword1">Account Number (Required)</label>
+                            <input type="text" name="account_number" class="form-control" id="exampleInputPassword1"
                                 placeholder="" required value="{{ old('account_number') ?? $bank->account_number }}">
                             @error('account_number')
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
@@ -54,56 +79,30 @@
                                 (Required)</label>
                             <select type="text" style="padding: 0px;" name="bank_name" required class="form-control"
                                 id="bankname">
-                                <option>Choose Your Bank
+                                <option value="">Choose Your Bank</option>
+                                <option value="Access Bank - 044">Access Bank</option>
+                                <option value="Citibank - 023">Citibank</option>
+                                <option value="Diamond Bank - 063">Diamond Bank</option>
+                                <option value="Ecobank - 050">Ecobank</option>
+                                <option value="Fidelity Bank - 070">Fidelity Bank</option>
+                                <option value="First City Monument Bank (FCMB) - 214">First City Monument Bank (FCMB)
                                 </option>
-                                <option value="Access Bank" {{ $bank->bank_name == 'Access Bank' ? 'selected' : '' }}>
-                                    Access Bank</option>
-                                <option value="Citibank" {{ $bank->bank_name == 'Citibank' ? 'selected' : '' }}>Citibank
-                                </option>
-                                <option value="Diamond Bank" {{ $bank->bank_name == 'Diamond Bank' ? 'selected' : '' }}>
-                                    Diamond Bank</option>
-                                <option value="Ecobank" {{ $bank->bank_name == 'Ecobank' ? 'selected' : '' }}>Ecobank
-                                </option>
-                                <option value="Fidelity Bank" {{ $bank->bank_name == 'Fidelity Bank' ? 'selected' : '' }}>
-                                    Fidelity Bank</option>
-                                <option value="First City Monument Bank (FCMB)"
-                                    {{ $bank->bank_name == 'First City Monument Bank (FCMB)' ? 'selected' : '' }}>First
-                                    City Monument Bank (FCMB)</option>
-                                <option value="FSDH Merchant Bank"
-                                    {{ $bank->bank_name == 'FSDH Merchant Bank' ? 'selected' : '' }}>FSDH Merchant Bank
-                                </option>
-                                <option value="Guarantee Trust Bank (GTB)"
-                                    {{ $bank->bank_name == 'Guarantee Trust Bank (GTB)' ? 'selected' : '' }}>Guarantee
-                                    Trust Bank (GTB)</option>
-                                <option value="Heritage Bank"
-                                    {{ $bank->bank_name == 'Heritage Bank' ? 'selected' : '' }}>Heritage Bank</option>
-                                <option value="Keystone Bank"
-                                    {{ $bank->bank_name == 'Keystone Bank' ? 'selected' : '' }}>Keystone Bank</option>
-                                <option value="Rand Merchant Bank"
-                                    {{ $bank->bank_name == 'Rand Merchant Bank' ? 'selected' : '' }}>Rand Merchant Bank
-                                </option>
-                                <option value="Skye Bank" {{ $bank->bank_name == 'Skye Bank' ? 'selected' : '' }}>Skye
-                                    Bank</option>
-                                <option value="Stanbic IBTC Bank"
-                                    {{ $bank->bank_name == 'Stanbic IBTC Bank' ? 'selected' : '' }}>Stanbic IBTC Bank
-                                </option>
-                                <option value="Standard Chartered Bank"
-                                    {{ $bank->bank_name == 'Standard Chartered Bank' ? 'selected' : '' }}>Standard
-                                    Chartered Bank</option>
-                                <option value="Sterling Bank"
-                                    {{ $bank->bank_name == 'Sterling Bank' ? 'selected' : '' }}>Sterling Bank</option>
-                                <option value="Suntrust Bank"
-                                    {{ $bank->bank_name == 'Suntrust Bank' ? 'selected' : '' }}>Suntrust Bank</option>
-                                <option value="Union Bank" {{ $bank->bank_name == 'Union Bank' ? 'selected' : '' }}>Union
-                                    Bank</option>
-                                <option value="United Bank for Africa (UBA)"
-                                    {{ $bank->bank_name == '' ? 'selected' : '' }}>United Bank for Africa (UBA)</option>
-                                <option value="Unity Bank" {{ $bank->bank_name == 'Unity Bank' ? 'selected' : '' }}>Unity
-                                    Bank</option>
-                                <option value="Wema Bank" {{ $bank->bank_name == 'Wema Bank' ? 'selected' : '' }}>Wema
-                                    Bank</option>
-                                <option value="Zenith Bank" {{ $bank->bank_name == 'Zenith Bank' ? 'selected' : '' }}>
-                                    Zenith Bank</option>
+                                <option value="FSDH Merchant Bank - 601">FSDH Merchant Bank</option>
+                                <option value="Guarantee Trust Bank (GTB) - 058">Guarantee Trust Bank (GTB)</option>
+                                <option value="Heritage Bank - 030">Heritage Bank</option>
+                                <option value="Keystone Bank - 082">Keystone Bank</option>
+                                <option value="Kuda - 090267">Kuda</option>
+                                <option value="Rand Merchant Bank - 502">Rand Merchant Bank</option>
+                                <option value="Skye Bank - 076">Skye Bank</option>
+                                <option value="Stanbic IBTC Bank - 221">Stanbic IBTC Bank</option>
+                                <option value="Standard Chartered Bank - 063">Standard Chartered Bank</option>
+                                <option value="Sterling Bank - 232">Sterling Bank</option>
+                                <option value="Suntrust Bank - 100">Suntrust Bank</option>
+                                <option value="Union Bank - 032">Union Bank</option>
+                                <option value="United Bank for Africa (UBA) - 033">United Bank for Africa (UBA)</option>
+                                <option value="Unity Bank - 215">Unity Bank</option>
+                                <option value="Wema Bank - 035">Wema Bank</option>
+                                <option value="Zenith Bank - 057">Zenith Bank</option>
                             </select>
                             @error('bank_name')
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>

@@ -6,10 +6,8 @@ use App\Task;
 use Faker\Generator as Faker;
 
 $factory->define(Task::class, function (Faker $faker) {
-    $list = [1, 6, 7, 9, 10];
-    $rnd = rand(0, 4);
     return [
-        'user_id' => $list[$rnd],
+        'user_id' => 2,
         'name' => $faker->sentence(3),
         'picture' => null,
         'link' => $faker->url,

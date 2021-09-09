@@ -15,18 +15,38 @@ class PromoterDashboardController extends Controller
 
     public function view_dashboard() 
     {
-        $earnings = auth()->user()->earning()->get();
+        $earnings = auth()->user()->earning()->orderBy('id', 'DESC')->get();
+        $page_num = floor($earnings->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $earnings_part = auth()->user()->earning()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
+        }else {
+            $earnings_part = auth()->user()->earning()->orderBy('id', 'DESC')->paginate(20);
+        }
+
         $task_ids = [];
         foreach ($earnings as $earning) {
             array_push($task_ids, $earning->task_id);
         }
         $task_ids = array_unique($task_ids);
         $tasks = Task::whereIn('id', $task_ids)->get();
+        $page_num_l = floor($tasks->count() / 20);
+        if (request()->page_l) {
+            $page_l = request()->page_l * 20;
+            $tasks = Task::orderBy('id', 'DESC')->whereIn('id', $task_ids)->skip($page_l)->take(20)->get();
+        }else {
+            $tasks = Task::orderBy('id', 'DESC')->whereIn('id', $task_ids)->paginate(20);
+        }
+
 
 
         return view('promoter.dashboard', [
+            'earnings'=>$earnings_part,
+            'page_num' => $page_num,
+            'page' => request()->page ?? 0,
             'tasks'=>$tasks,
-            'earnings'=>$earnings,
+            'page_num_l' => $page_num_l,
+            'page_l' => request()->page_l ?? 0,
         ]);
     }
 
@@ -36,7 +56,7 @@ class PromoterDashboardController extends Controller
         $tasks = Task::orderBy('id', 'DESC')->where('status', 'active')->get();
         $count = 0;
         foreach ($tasks as $task) {
-            if ($task->user()->first()->wallet()->first()->amount > 200) {
+            if ($task->user()->first()->wallet()->first()->amount > 100) {
                 $count++;
             }
         }
@@ -47,12 +67,35 @@ class PromoterDashboardController extends Controller
     public function view_wallet() 
     {
         $withdrawals = auth()->user()->withdrawal()->orderBy('id', 'DESC')->get();
-        return view('promoter.wallet', ['withdrawals'=>$withdrawals]);
+        $page_num = floor($withdrawals->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $withdrawals = auth()->user()->withdrawal()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
+        }else {
+            $withdrawals = auth()->user()->withdrawal()->orderBy('id', 'DESC')->paginate(20);
+        }
+        return view('promoter.wallet', [
+            'withdrawals'=>$withdrawals,
+            'page_num' => $page_num,
+            'page' => request()->page ?? 0,
+        ]); 
     }
+    
     public function view_referrals() 
     {
         $refs = auth()->user()->referral()->get();
-        return view('promoter.referrals', ['refs'=>$refs]);
+        $page_num = floor($refs->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $refs = auth()->user()->referral()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
+        }else {
+            $refs = auth()->user()->referral()->orderBy('id', 'DESC')->paginate(20);
+        }
+        return view('promoter.referrals', [
+            'refs'=>$refs,
+            'page' => request()->page ?? 0,
+            'page_num' => $page_num,
+        ]);
     }
 
     public function view_activate() 
@@ -89,7 +132,7 @@ class PromoterDashboardController extends Controller
                 if ($ref != null) {
                     $user = User::find($ref->user_id);
                     $old_amount = $user->wallet()->first()->amount;
-                    $new_amount = $old_amount+500;
+                    $new_amount = $old_amount+250;
                     $user->wallet()->update(['amount'=>$new_amount]);
                     $ref->update(['paid'=> true]);
                     $ref->update(['account_status'=> 'active']);
@@ -103,6 +146,59 @@ class PromoterDashboardController extends Controller
             }
 
         }
+    }
+
+
+    public function withdraw() 
+    {
+        $amount = preg_replace('/[^0-9]/', '', request()->amount);
+        $account_name = auth()->user()->bank()->first()->account_name;
+        $account_number = auth()->user()->bank()->first()->account_number;
+        $bank_name = auth()->user()->bank()->first()->bank_name;
+        $bank_code = preg_replace('/[^0-9]/', '', $bank_name);
+        $account_type = auth()->user()->bank()->first()->account_type;
+        if ($account_number != null && $bank_name != null) {
+            $amount = preg_replace('/[^0-9]/', '', request()->amount);
+            if ($amount >= 3000) {
+                if ($amount <= auth()->user()->wallet()->first()->amount) {
+                    $amount_to_receive = $amount - ((7.5/100) * $amount);
+
+                    $status = Custom::make_transfer($bank_code, $account_number, $amount_to_receive, route('index').'/');
+                    if (strtolower($status) != 'failed') {
+                        auth()->user()->withdrawal()->create([
+                            'amount' => $amount_to_receive,
+                            'status' => 'successful',
+                        ]);
+                        $old_amount = auth()->user()->wallet()->first()->amount;
+                        $new_amount = $old_amount-$amount;
+                        auth()->user()->wallet()->update(['amount'=>$new_amount]);
+                        Custom::clear_alert_session();
+                        $msg = "Your withdrawal request has been sent succesfully! Your account will be credited within the next few minutes.";
+                        Session::put('alert-msg', $msg);
+                        return redirect('/promoter/wallet?alert='.uniqid());
+                    }else {
+                        Custom::clear_alert_session();
+                        $msg = "Your withdrawal request was not successful. You may check your bank details carefully then try again!";
+                        Session::put('alert-msg', $msg);
+                        return redirect('/promoter/wallet?alert='.uniqid());
+                    }
+
+                }else {
+                    return redirect('/promoter/wallet#withdraw')->with('response-error', "Your balance is not up to ₦".number_format($amount, 2));
+                }
+                
+            }else {
+                return redirect('/promoter/wallet#withdraw')->with('response-error', 'You can only withdraw a minimum of ₦3,000.');
+            }
+        }else {
+            Custom::clear_alert_session();
+            $msg = "Sorry, you have not submitted your bank account details, go to your profile and submit your bank account details.";
+            $link = "/account/profile/new_bank";
+            Session::put('alert-msg', $msg);
+            Session::put('alert-link', $link);
+            return redirect('/promoter/wallet?alert='.uniqid());
+        }
+        
     }
 
 }

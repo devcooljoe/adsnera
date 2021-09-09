@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Custom;
+use App\Post;
 
 class DashboardController extends Controller
 {
@@ -117,28 +118,102 @@ class DashboardController extends Controller
         return view('forms.new_post');
     }
 
-    public function add_new_post(Request $request) 
+    public function add_new_post() 
     {
-        $data = $request->validate([
-            'title' => ['required', 'string', 'max:500'],
-            'body' => ['required', 'string', 'max:10000'],
+        $data = request()->validate([
+            'title' => ['required', 'max:1000'],
+            'body' => ['required', 'max:10000'],
             'file' => ['required', 'image', 'max:5000'],
             'category' => ['required'],
         ]);
         
         $picture_path = request()->file('file')->store('pictures', 'public');
-        auth()->user()->task()->create([
-            'title' => $data['name'],
+
+        $title = $data['title'];
+        $id = preg_replace('/ /', '-', substr(strtolower($title), 0, 50));
+        $id = preg_replace('/[^A-Za-z0-9]|\-/', '-', $id);
+
+        auth()->user()->post()->create([
+            'custom_id' => $id.'-'.uniqid(),
+            'title' => $data['title'],
             'picture' => $picture_path,
-            'body' => $link,
+            'body' => $data['body'],
             'category' => $data['category'],
-            'status' => 'pending',
-        ]);
+            'status' => 'approved',
+        ]); 
+        $last_post = Post::orderBy('id', 'DESC')->first();
+        $last_post->update(['custom_id'=>$id.'-'.$last_post->id]);
+
 
         Custom::clear_alert_session();
-        $msg = "Campaign <b>'".$data['name']."'</b> has been created successfully!";
+        $msg = "Post <b>'".$data['title']."'</b> has been created successfully!";
         Session::put('alert-msg', $msg);
-        return redirect('/advertiser/campaigns?alert='.uniqid());
+        return redirect('/admin?alert='.uniqid());
 
+    }
+
+    public function edit_post($id) 
+    {
+        $post = Post::findOrFail($id);
+        $this->authorize('update', $post);
+        return view('forms.edit_post', ['post'=>$post]);
+
+    }
+
+    public function add_edit_post($id) 
+    {
+        $post = Post::findOrFail($id);
+        $this->authorize('update', $post);
+        $data = request()->validate([
+            'title' => ['required', 'max:1000'],
+            'body' => ['required', 'max:10000'],
+            'category' => ['required'],
+        ]);
+
+        $post->update([
+            'title' => $data['title'],
+            'body' => $data['body'],
+            'category' => $data['category'],
+            'status' => 'approved',
+        ]);
+        $id = preg_replace('/ /', '-', substr(strtolower($data['title']), 0, 50));
+        $id = preg_replace('/[^A-Za-z0-9]|\-/', '-', $id);
+
+        $post->update(['custom_id'=>$id.'-'.$post->id]);
+        
+        Custom::clear_alert_session();
+        $msg = "Post <b>'".$data['title']."'</b> has been edited successfully!";
+        Session::put('alert-msg', $msg);
+        return redirect('/admin?alert='.uniqid());
+
+    }
+
+    public function delete_post($id) 
+    {
+        $post = Post::findOrFail($id);
+        $this->authorize('update', $post);
+        $post->delete();
+        Custom::clear_alert_session();
+        $msg = "Post <b>'".$post->title."'</b> has been deleted successfully!";
+        Session::put('alert-msg', $msg);
+        return redirect('/admin?alert='.uniqid());
+    }
+
+
+    public function view_admin() {
+
+        $posts = auth()->user()->post()->get();
+        $page_num = floor($posts->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $posts = auth()->user()->post()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
+        }else {
+            $posts = auth()->user()->post()->orderBy('id', 'DESC')->paginate(20);
+        }
+        return view('general.admin', [
+            'posts' => $posts,
+            'page' => request()->page ?? 0,
+            'page_num' => $page_num,
+        ]);
     }
 }

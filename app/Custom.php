@@ -83,7 +83,7 @@ class Custom extends Model
         CURLOPT_POSTFIELDS => json_encode($data),
         CURLOPT_HTTPHEADER => array(
             "Content-Type: application/json",
-            "Authorization: Bearer FLWSECK_TEST-c172ba19babeca1f6de9dfae4cac1e13-X"
+            "Authorization: Bearer FLWSECK-ea4221c8dd359be3ca409a39121f5ea2-X"
         ),
         ));
 
@@ -114,7 +114,7 @@ class Custom extends Model
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
             "Content-Type: application/json",
-            "Authorization: Bearer FLWSECK_TEST-c172ba19babeca1f6de9dfae4cac1e13-X"
+            "Authorization: Bearer FLWSECK-ea4221c8dd359be3ca409a39121f5ea2-X"
         ),
         ));
 
@@ -160,6 +160,107 @@ class Custom extends Model
 		fclose($file);
 			
     }
+
+
+    public static function make_transfer($bank_code, $account_number, $amount, $redirect)
+    {
+        $data = [
+            "account_bank"=> $bank_code,
+            "account_number"=> $account_number,
+            "amount"=> $amount,
+            "narration"=> "Adsnera funds withdrawal",
+            "currency"=> "NGN",
+            "reference"=> 'transfer-'.uniqid(true).uniqid(),
+            "callback_url"=> $redirect,
+            "debit_currency"=> "NGN",
+        ];
+
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.flutterwave.com/v3/transfers",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => json_encode($data),
+        CURLOPT_HTTPHEADER => array(
+            "Content-Type: application/json",
+            "Authorization: Bearer FLWSECK-ea4221c8dd359be3ca409a39121f5ea2-X"
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        $res = json_decode($response);
+        return $res->data->status;
+
+
+    }
+
+
+    public static function filterPost($arg) {
+		$body = preg_replace("/##web|##b|##h|##u|##ch|##cc|##cj|##a|##img|##cen|##i|##c/", "", $arg);
+		$body = preg_replace("/#web|#b|#h|#i|#u|#l|#c|#ch|#cc|#cj|#a|a#|#img|img#|#cen|#i|#c/", "", $body);
+
+		return $body;
+	}
+	
+	
+	
+	public static function customizePost($arg) {
+	    $main = htmlspecialchars($arg);
+	    
+	    $main=str_replace("##web", '" style="width:100%;height:100%;position:fixed;top:0px;left:0px;z-index:99;"></iframe>', $main);
+	    $main=str_replace("#web", '<iframe src="', $main);
+	    
+	    $main=str_replace("##img", '" /></center>', $main);
+	    $main=str_replace("img#", '" src="', $main);
+	    $main=str_replace("#img", '<center><img style="width:70%" class="img-responsive" alt="', $main);
+	    
+	    $main= str_replace("##aud", '"></audio>', $main);
+	    $main=str_replace("#aud",'<audio controls><source src="', $main);
+	    
+	    
+	    // $main = preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="'.route('url').'?link='.'$1" title="" target="_blank" >$1</a>', $main);
+	    
+	    $main=str_replace("##cen", "</center>", $main);
+	    $main=str_replace("#cen", "<center>", $main);
+	    $main=str_replace("##b", "</strong>", $main);
+	    $main=str_replace("#b", "<strong>", $main);
+	    $main=str_replace("##h", "</h3>", $main);
+	    $main=str_replace("#h", "<h3>", $main);
+	    $main=str_replace("##i", "</em>", $main);
+	    $main=str_replace("#i", "<em>", $main);
+	    $main=str_replace("##u", "</u>", $main);
+	    $main=str_replace("#u", "<u>", $main);
+	    $main=str_replace("#l", "<hr/>", $main); 
+	    
+	    $main=str_replace("##ch", '</code></pre>', $main);
+	    $main=str_replace("#ch", '<pre><code class="language-html">', $main);
+	    
+	    $main=str_replace("##cc", '</code></pre>', $main);
+	    $main=str_replace("#cc", '<pre><code class="language-css">', $main);
+	    
+	    $main=str_replace("##cj", '</code></pre>', $main);
+	    $main=str_replace("#cj", '<pre><code class="language-js">', $main);
+	    
+	    $main=str_replace("##c", "</code>", $main);
+	    $main=str_replace("#c", "<code style='color:black;background-color:white;'>", $main);
+	    
+	    $main=str_replace("##a", "</a>", $main);
+	    $main=str_replace("a#", '">', $main);
+	    $main=str_replace("#a", '<a target="_blank" href="'.route("index").'?link=', $main);
+	 
+	    return $main;
+	}
 
 
 

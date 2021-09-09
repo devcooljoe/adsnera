@@ -27,6 +27,11 @@ Route::middleware(['auth', 'verified'])->get('/account/banned', function () {
 });
 
 Route::get('/', function () {
+    if (request()->link) {
+        $link = request()->link;
+        return redirect($link);
+    }
+
     return view('index');
 })->name('index');
 
@@ -46,9 +51,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/account/settings', 'DashboardController@view_settings');
     Route::post('/account/payment', 'DashboardController@make_payment');  
-    Route::middleware('admin')->get('/posts/new', 'DashboardController@new_post');  
-    Route::middleware('admin')->post('/posts/new', 'DashboardController@add_new_post');  
+      
 
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/admin', 'DashboardController@view_admin');
+        Route::get('/posts/new', 'DashboardController@new_post');
+        Route::post('/posts/new', 'DashboardController@add_new_post');
+        Route::get('/posts/{id}/edit', 'DashboardController@edit_post');
+        Route::post('/posts/{id}/edit', 'DashboardController@add_edit_post');
+        Route::get('/posts/{id}/delete', 'DashboardController@delete_post');
+    });
 
     Route::middleware(['promoter'])->group(function () {
         Route::get('/promoter/dashboard', 'PromoterDashboardController@view_dashboard');
@@ -58,11 +70,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::middleware('userchecked')->post('/promoter/wallet/withdraw', 'PromoterDashboardController@withdraw');
         Route::get('/account/activate', 'PromoterDashboardController@view_activate');
         Route::get('/promoter/activate/verify', 'PromoterDashboardController@verify_activation');
+        Route::post('/promoter/wallet/withdraw', 'PromoterDashboardController@withdraw');
     });
 
     Route::middleware(['advertiser'])->group(function () {
         Route::get('/advertiser/dashboard', 'AdvertiserDashboardController@view_dashboard');
-        Route::get('/advertiser/campaigns', 'AdvertiserDashboardController@view_campaigns');
+        Route::middleware('userchecked')->get('/advertiser/campaigns', 'AdvertiserDashboardController@view_campaigns');
         Route::get('/advertiser/wallet', 'AdvertiserDashboardController@view_wallet');
         Route::get('/advertiser/campaigns/new', 'AdvertiserDashboardController@view_new_campaign');
         Route::middleware('userchecked')->post('/advertiser/campaigns/new', 'AdvertiserDashboardController@add_new_campaign');
@@ -76,19 +89,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
+Route::post('/subscribe', 'GuestController@subscribe');
 
 Route::get('/posts', 'GuestController@index');
 Route::get('/posts/{post_id}', "GuestController@viewpost");
 
 Route::get('/faker', function () {
     // factory(App\User::class, 10)->create();
-    // factory(App\Task::class, 50)->create();
+    // factory(App\Task::class, 100)->create();
     // factory(App\View::class, 100)->create();
-    // factory(App\Earning::class, 100)->create();
+    // factory(App\Earning::class, 300)->create();
     // factory(App\Lead::class, 100)->create();
     // factory(App\Deposit::class, 100)->create();
-    // factory(App\Referral::class, 1)->create();
-    // factory(App\Post::class, 20)->create();
+    // factory(App\Referral::class, 50)->create();
+    // factory(App\Post::class, 50)->create();
     
 });
 

@@ -14,21 +14,64 @@ class AdvertiserDashboardController extends Controller
     public function view_dashboard() 
     {
         $tasks = auth()->user()->task()->orderBy('id', 'DESC')->get();
+        $page_num = floor($tasks->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $tasks = auth()->user()->task()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
+        }else {
+            $tasks = auth()->user()->task()->orderBy('id', 'DESC')->paginate(20);
+        }
+
         $leads = auth()->user()->lead()->orderBy('id', 'DESC')->get();
+        $page_num_l = floor($leads->count() / 20);
+        if (request()->page_l) {
+            $page_l = request()->page_l * 20;
+            $leads = auth()->user()->lead()->orderBy('id', 'DESC')->skip($page_l)->take(20)->get();
+        }else {
+            $leads = auth()->user()->lead()->orderBy('id', 'DESC')->paginate(20);
+        }
+
         return view('advertiser.dashboard', [
             'tasks' => $tasks,
+            'page'=>request()->page ?? 0, 
+            'page_num'=>$page_num,
             'leads' => $leads,
+            'page_l'=>request()->page_l ?? 0, 
+            'page_num_l'=>$page_num_l,
         ]);
     }
     public function view_campaigns()
     {
         $tasks = auth()->user()->task()->orderBy('id', 'DESC')->get();
-        return view('advertiser.campaigns', ['tasks' => $tasks]);
+        $page_num = floor($tasks->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $tasks = auth()->user()->task()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
+        }else {
+            $tasks = auth()->user()->task()->orderBy('id', 'DESC')->paginate(20);
+        }
+
+        return view('advertiser.campaigns', [
+            'tasks' => $tasks, 
+            'page'=>request()->page ?? 0, 
+            'page_num' => $page_num,
+        ]);
     }
     public function view_wallet()
     {
         $deposits = auth()->user()->deposit()->orderBy('id', 'DESC')->get();
-        return view('advertiser.wallet', ['deposits'=>$deposits]);
+        $page_num = floor($deposits->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $deposits = auth()->user()->deposit()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
+        }else {
+            $deposits = auth()->user()->deposit()->orderBy('id', 'DESC')->paginate(20);
+        }
+        return view('advertiser.wallet', [
+            'deposits'=>$deposits,
+            'page'=>request()->page ?? 0, 
+            'page_num' => $page_num,
+        ]);
     }
     public function view_new_campaign() 
     {
@@ -65,7 +108,7 @@ class AdvertiserDashboardController extends Controller
         ]);
 
         Custom::clear_alert_session();
-        $msg = "Campaign <b>'".$data['name']."'</b> has been created successfully!";
+        $msg = "Campaign <b>'".$data['name']."'</b> has been created successfully! Please be patient, we are reviewing your campaign. This might take about 6 hours.";
         Session::put('alert-msg', $msg);
         return redirect('/advertiser/campaigns?alert='.uniqid());
 
@@ -122,12 +165,20 @@ class AdvertiserDashboardController extends Controller
         return redirect('/advertiser/campaigns');
     }
     public function enable_campaign($task_id) {
-        $task = Task::findOrFail($task_id);
-        $this->authorize('update', $task);
-        if ($task->status == 'disabled') {
-            $task->update(['status' => 'active']);
+        $amount = auth()->user()->wallet()->first()->amount;
+        if ($amount > 50) {
+            $task = Task::findOrFail($task_id);
+            $this->authorize('update', $task);
+            if ($task->status == 'disabled') {
+                $task->update(['status' => 'active']);
+            }
+            return redirect('/advertiser/campaigns');
+        }else {
+            Custom::clear_alert_session();
+            $msg = "Your balance is too low! Please fund your wallet to continue.";
+            Session::put('alert-msg', $msg);
+            return redirect('/advertiser/wallet?alert='.uniqid());
         }
-        return redirect('/advertiser/campaigns');
     }
 
     public function fund() 

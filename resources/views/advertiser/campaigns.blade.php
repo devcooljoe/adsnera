@@ -4,7 +4,7 @@
     <title>Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -68,7 +68,7 @@
                                         <td>
                                             @if ($task->status == 'active')
                                                 <span class="label label-success">{{ ucwords($task->status) }}</span>
-                                            @elseif($task->status == 'disabled')
+                                            @elseif($task->status == 'disabled' || $task->status == 'declined')
                                                 <span class="label label-danger">{{ ucwords($task->status) }}</span>
                                             @else
                                                 <span class="label label-warning">{{ ucwords($task->status) }}</span>
@@ -98,6 +98,21 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @if ($page_num >= 1)
+                                <ul class="pagination">
+                                    @if ($page - 1 >= 0)
+                                        <li><a href="/advertiser/campaigns?page={{ $page - 1 }}">&laquo Prev</a></li>
+                                    @endif
+                                    @for ($i = 0; $i <= $page_num; $i++)
+                                        <li><a href="/advertiser/campaigns?page={{ $i }}"
+                                                @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
+                                    @endfor
+                                    @if ($page + 1 <= $page_num)
+                                        <li><a href="/advertiser/campaigns?page={{ $page + 1 }}">Next &raquo</a></li>
+                                    @endif
+                                    </nav>
+                                </ul>
+                        @endif
                     </div>
                 </div>
             </div>

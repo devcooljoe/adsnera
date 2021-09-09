@@ -4,7 +4,7 @@
     <title>Tasks - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .text-area {
@@ -40,8 +40,13 @@
         <!-- /inner_content_w3_agile_info-->
         <div class="inner_content_w3_agile_info">
             <h2 class="w3_inner_tittle two">Promoter Dashboard</h2>
-            <h4>Note: You must share only {{ $count }} post{{ $count > 1 ? 's' : '' }}. Share the one your audience
-                is mostly interested in.</h4>
+            @if ($count > 0)
+                <h4>Note: You must share only {{ $count }} post{{ $count > 1 ? 's' : '' }}. Share the one your
+                    audience
+                    is mostly interested in.</h4>
+            @else
+                <h4>You have no task at the moment.</h4>
+            @endif
             <br>
             <!-- //agile_top_w3_post_sections-->
             <!-- /w3ls_agile_circle_progress-->
