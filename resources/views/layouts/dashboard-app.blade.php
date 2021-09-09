@@ -8,15 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#1e2d3a">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="application/x-javascript">
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
     <!-- //custom-theme -->
     <link rel="stylesheet" href="{{ route('index') }}/css/alert.css">
     <link href="{{ route('index') }}/board/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -383,6 +374,22 @@
             var conf = confirm('Do you really want to delete this post "' + title + '"?');
             if (conf == true) {
                 location.href = '/posts/' + id + '/delete';
+            }
+        }
+    </script>
+    <script>
+        function delCampaign(id, title) {
+            var conf = confirm('Do you really want to delete this campaign "' + title + '"?');
+            if (conf == true) {
+                location.href = '/campaign/' + id + '/delete';
+            }
+        }
+    </script>
+    <script>
+        function approveCampaign(id, title) {
+            var conf = confirm('Do you really want to approve this campaign "' + title + '"?');
+            if (conf == true) {
+                location.href = '/campaign/' + id + '/approve';
             }
         }
     </script>

@@ -30,8 +30,6 @@
     <link rel="image_src" href="{{ route('index') }}/images/icon.png" />
     <meta itemprop="image" content="{{ route('index') }}/images/icon.png" />
     <meta name="msapplication-TileImage" content="{{ route('index') }}/images/icon.png" />
-    <!-- //Meta tag Keywords --> Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson,
-    Motorola web design" />
 
     <style>
         .textarea {
@@ -78,7 +76,9 @@
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
                             @enderror
                         </div>
-                        View Picture Here.
+                        <br>
+                        <a href="{{ route('index') }}/storage/{{ $task->picture }}">View Picture Here</a>
+                        <br>
                         <br>
                         <button type="submit" class="btn btn-default">Save Changes</button>
                     </form>

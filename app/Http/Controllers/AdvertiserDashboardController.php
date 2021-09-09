@@ -140,18 +140,13 @@ class AdvertiserDashboardController extends Controller
         $task->update([
             'name' => $data['name'],
             'link' => $link,
+            'status'=> 'pending',
         ]);
 
         Custom::clear_alert_session();
-        if ($task->name == $data['name'] && $task->caption == $data['caption'] && $task->link == $link) {
-            $msg = "You have made no change!";
-            Session::put('alert-msg', $msg);
-            return redirect('/advertiser/campaigns/'.$task->id.'/edit?alert='.uniqid());
-        }else {
-            $msg = "Campaign <b>'".$data['name']."'</b> has been Updated successfully!";
-            Session::put('alert-msg', $msg);
-            return redirect('/advertiser/campaigns?alert='.uniqid());
-        }
+        $msg = "Campaign <b>'".$data['name']."'</b> has been Updated successfully!";
+        Session::put('alert-msg', $msg);
+        return redirect('/advertiser/campaigns?alert='.uniqid());
     }
 
 

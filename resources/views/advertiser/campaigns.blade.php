@@ -4,7 +4,7 @@
     <title>Campaigns - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .textarea {
@@ -87,6 +87,8 @@
                                                 @if ($task->status == 'active')
                                                     <a href="/advertiser/campaigns/{{ $task->id }}/disable"
                                                         class="label label-danger" style="margin:5px;">Disable</a>
+                                                    <a href="/advertiser/campaigns/{{ $task->id }}/delete"
+                                                        class="label label-danger" style="margin:5px;">Delete</a>
                                                 @elseif($task->status == 'disabled')
                                                     <a href="/advertiser/campaigns/{{ $task->id }}/enable"
                                                         class="label label-primary" style="margin:5px;">Enable</a>
@@ -99,19 +101,19 @@
                             </tbody>
                         </table>
                         @if ($page_num >= 1)
-                                <ul class="pagination">
-                                    @if ($page - 1 >= 0)
-                                        <li><a href="/advertiser/campaigns?page={{ $page - 1 }}">&laquo Prev</a></li>
-                                    @endif
-                                    @for ($i = 0; $i <= $page_num; $i++)
-                                        <li><a href="/advertiser/campaigns?page={{ $i }}"
-                                                @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                    @endfor
-                                    @if ($page + 1 <= $page_num)
-                                        <li><a href="/advertiser/campaigns?page={{ $page + 1 }}">Next &raquo</a></li>
-                                    @endif
-                                    </nav>
-                                </ul>
+                            <ul class="pagination">
+                                @if ($page - 1 >= 0)
+                                    <li><a href="/advertiser/campaigns?page={{ $page - 1 }}">&laquo Prev</a></li>
+                                @endif
+                                @for ($i = 0; $i <= $page_num; $i++)
+                                    <li><a href="/advertiser/campaigns?page={{ $i }}"
+                                            @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
+                                @endfor
+                                @if ($page + 1 <= $page_num)
+                                    <li><a href="/advertiser/campaigns?page={{ $page + 1 }}">Next &raquo</a></li>
+                                @endif
+                                </nav>
+                            </ul>
                         @endif
                     </div>
                 </div>

@@ -4,7 +4,7 @@
     <title>Tasks - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
     <style>
         .text-area {
@@ -79,9 +79,11 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="#" class="label label-success"><i class="fa fa-whatsapp"></i>
+                                                <a href="whatsapp://send?text={{ $task->title }} {{ route('index') }}/posts/{{ $task->custom_id }}?id={{ $task->user()->first()->id }}"
+                                                    class="label label-success"><i class="fa fa-whatsapp"></i>
                                                     WhatsApp</a>
-                                                <a href="#" class="label label-primary"><i class="fa fa-facebook"></i>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('index') }}/posts/{{ $task->custom_id }}?id={{ $task->user()->first()->id }}"
+                                                    class="label label-primary"><i class="fa fa-facebook"></i>
                                                     Facebook</a>
                                                 <span id="btnTaskLink{{ $task->id }}"
                                                     onclick="copyLink({{ $task->id }})" class="label label-default"
@@ -95,6 +97,21 @@
                                 @endif
                             </tbody>
                         </table>
+                        @if ($page_num >= 1)
+                            <ul class="pagination">
+                                @if ($page - 1 >= 0)
+                                    <li><a href="/promoter/tasks?page={{ $page - 1 }}">&laquo Prev</a></li>
+                                @endif
+                                @for ($i = 0; $i <= $page_num; $i++)
+                                    <li><a href="/promoter/tasks?page={{ $i }}"
+                                            @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
+                                @endfor
+                                @if ($page + 1 <= $page_num)
+                                    <li><a href="/promoter/tasks?page={{ $page + 1 }}">Next &raquo</a></li>
+                                @endif
+                                </nav>
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>

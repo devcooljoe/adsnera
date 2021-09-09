@@ -60,9 +60,22 @@ class PromoterDashboardController extends Controller
                 $count++;
             }
         }
-        $posts = Post::orderBy('id', 'DESC')->paginate(20);
+        $posts = Post::orderBy('id', 'DESC')->get();
+
+        $page_num = floor($posts->count() / 20);
+        if (request()->page) {
+            $page = request()->page * 20;
+            $posts = Post::orderBy('id', 'DESC')->skip($page)->take(20)->get();
+        }else {
+            $posts = Post::orderBy('id', 'DESC')->paginate(20);
+        }
         
-        return view('promoter.tasks', ['tasks'=>$posts, 'count'=>$count]);
+        return view('promoter.tasks', [
+            'tasks'=>$posts, 
+            'count'=>$count,
+            'page' => request()->page ?? 0,
+            'page_num' => $page_num,
+        ]);
     }
     public function view_wallet() 
     {
@@ -78,7 +91,7 @@ class PromoterDashboardController extends Controller
             'withdrawals'=>$withdrawals,
             'page_num' => $page_num,
             'page' => request()->page ?? 0,
-        ]); 
+        ]);
     }
     
     public function view_referrals() 

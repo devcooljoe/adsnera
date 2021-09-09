@@ -60,6 +60,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/posts/{id}/edit', 'DashboardController@edit_post');
         Route::post('/posts/{id}/edit', 'DashboardController@add_edit_post');
         Route::get('/posts/{id}/delete', 'DashboardController@delete_post');
+        Route::get('/campaign/{id}', 'DashboardController@view_campaign');
+        Route::get('/campaign/{id}/approve', 'DashboardController@approve_campaign');
+        Route::get('/campaign/{id}/delete', 'DashboardController@delete_campaign');
     });
 
     Route::middleware(['promoter'])->group(function () {

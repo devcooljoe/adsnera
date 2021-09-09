@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Custom;
 use App\Post;
+use App\Task;
 
 class DashboardController extends Controller
 {
@@ -216,10 +217,40 @@ class DashboardController extends Controller
         }else {
             $posts = auth()->user()->post()->orderBy('id', 'DESC')->paginate(20);
         }
+
+        $campaigns = Task::where('status', 'pending')->get();
+        $page_num_l = floor($campaigns->count() / 20);
+        if (request()->page_l) {
+            $page_l = request()->page_l * 20;
+            $campaigns = Task::orderBy('id', 'DESC')->where('status', 'pending')->skip($page_l)->take(20)->get();
+        }else {
+            $campaigns = Task::orderBy('id', 'DESC')->where('status', 'pending')->paginate(20);
+        }
+
         return view('general.admin', [
             'posts' => $posts,
             'page' => request()->page ?? 0,
             'page_num' => $page_num,
+            'campaigns' => $campaigns,
+            'page_l'=> request()->page_l ?? 0,
+            'page_num_l' => $page_num_l,
         ]);
+    }
+
+    public function view_campaign($id) {
+        $task = Task::findOrFail($id);
+        return view('general.view_campaign', ['task'=>$task]);
+    }
+
+    public function approve_campaign($id) {
+        $task = Task::findOrFail($id);
+        $task->update(['status'=>'active']);
+        return redirect('/admin');
+    }
+
+    public function delete_campaign($id) {
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect('/admin');
     }
 }
