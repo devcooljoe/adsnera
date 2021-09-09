@@ -145,6 +145,8 @@ class DashboardController extends Controller
         $last_post->update(['custom_id'=>$id.'-'.$last_post->id]);
 
 
+        Custom::updatesitemap();
+        Custom::pingsitemap();
         Custom::clear_alert_session();
         $msg = "Post <b>'".$data['title']."'</b> has been created successfully!";
         Session::put('alert-msg', $msg);
@@ -181,6 +183,8 @@ class DashboardController extends Controller
 
         $post->update(['custom_id'=>$id.'-'.$post->id]);
         
+        Custom::updatesitemap();
+        Custom::pingsitemap();
         Custom::clear_alert_session();
         $msg = "Post <b>'".$data['title']."'</b> has been edited successfully!";
         Session::put('alert-msg', $msg);
@@ -193,6 +197,8 @@ class DashboardController extends Controller
         $post = Post::findOrFail($id);
         $this->authorize('update', $post);
         $post->delete();
+        Custom::updatesitemap();
+        Custom::pingsitemap();
         Custom::clear_alert_session();
         $msg = "Post <b>'".$post->title."'</b> has been deleted successfully!";
         Session::put('alert-msg', $msg);
