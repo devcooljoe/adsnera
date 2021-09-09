@@ -30,8 +30,6 @@
     <link rel="image_src" href="{{ route('index') }}/images/icon.png" />
     <meta itemprop="image" content="{{ route('index') }}/images/icon.png" />
     <meta name="msapplication-TileImage" content="{{ route('index') }}/images/icon.png" />
-    <!-- //Meta tag Keywords --> Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson,
-    Motorola web design" />
 
     <style>
         .textarea {

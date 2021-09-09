@@ -4,7 +4,7 @@
     <title>Referrals - {{ auth()->user()->name }}</title>
     <meta name="keywords"
         content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 @endsection
 
 @section('content')
@@ -46,14 +46,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $id = 1; ?>
                                 @foreach ($refs as $ref)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $id }}</td>
                                         <td>{{ $ref->name }}</td>
                                         <td>{{ ucwords($ref->account_type) }}</td>
                                         <td>
                                             @if ($ref->account_status == 'active')
-                                                <span class="label label-success">Active <i class="fa fa-check"></i></span>
+                                                <span class="label label-success">Active <i
+                                                        class="fa fa-check"></i></span>
                                             @else
                                                 <span class="label label-danger">Not Active <i
                                                         class="fa fa-times"></i></span>
@@ -63,29 +65,31 @@
                                             @if ($ref->paid == true)
                                                 <span class="label label-success">Paid <i class="fa fa-check"></i></span>
                                             @else
-                                                <span class="label label-danger">Not Paid <i class="fa fa-times"></i></span>
+                                                <span class="label label-danger">Not Paid <i
+                                                        class="fa fa-times"></i></span>
                                             @endif
                                         </td>
                                         <td>{{ App\Custom::date($ref->created_at) }}</td>
                                     </tr>
+                                    <?php $id++; ?>
                                 @endforeach
                             </tbody>
                         </table>
                         @if ($page_num >= 1)
-                                <ul class="pagination">
-                                    @if ($page - 1 >= 0)
-                                        <li><a href="/promoter/dashboard?page={{ $page - 1 }}">&laquo Prev</a></li>
-                                    @endif
-                                    @for ($i = 0; $i <= $page_num; $i++)
-                                        <li><a href="/promoter/dashboard?page={{ $i }}"
-                                                @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                    @endfor
-                                    @if ($page + 1 <= $page_num)
-                                        <li><a href="/promoter/dashboard?page={{ $page + 1 }}">Next &raquo</a></li>
-                                    @endif
-                                    </nav>
-                                </ul>
-                            @endif
+                            <ul class="pagination">
+                                @if ($page - 1 >= 0)
+                                    <li><a href="/promoter/referrals?page={{ $page - 1 }}">&laquo Prev</a></li>
+                                @endif
+                                @for ($i = 0; $i <= $page_num; $i++)
+                                    <li><a href="/promoter/referrals?page={{ $i }}"
+                                            @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
+                                @endfor
+                                @if ($page + 1 <= $page_num)
+                                    <li><a href="/promoter/referrals?page={{ $page + 1 }}">Next &raquo</a></li>
+                                @endif
+                                </nav>
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>
