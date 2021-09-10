@@ -76,12 +76,12 @@
                             <input class="form-check-input" type="radio" name="account_type" value="promoter" id="radio1"
                                 required>
                             <label style="color:grey; cursor:pointer" class="form-check-label" for="radio1">
-                                {{ __('Promoter') }}
-                            </label>
+                                {{ __('I Want to Earn (Promoter)') }}
+                            </label><br><br>
                             <input class="form-check-input" type="radio" name="account_type" value="advertiser" id="radio2"
                                 required>
                             <label style="color:grey; cursor:pointer" class="form-check-label" for="radio2">
-                                {{ __('Advertiser') }}
+                                {{ __('I want to Advertise my Goods/Services (Advertiser)') }}
                             </label>
                             <br>
                             <br>

