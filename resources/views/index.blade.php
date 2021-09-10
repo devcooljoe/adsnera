@@ -13,8 +13,8 @@
         content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
     <meta property="og:url" content="{{ route('index') }}" />
     <meta property="og:site_name" content="Adsnera" />
-    <meta property="og:image" content="{{ route('index') }}/icon.png" />
-    <meta property="og:image:secure_url" content="{{ route('index') }}/icon.png" />
+    <meta property="og:image" content="{{ route('index') }}/images/logo.png" />
+    <meta property="og:image:secure_url" content="{{ route('index') }}/images/logo.png" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="450" />
     <meta property="og:image:alt" content="Adsnera - The Biggest and Legit Social Media Maketing Platform" />
@@ -23,13 +23,13 @@
     <meta property="twitter:description"
         content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
     <meta property="twitter:url" content="{{ route('index') }}" />
-    <meta property="twitter:image" content="{{ route('index') }}/icon.png" />
+    <meta property="twitter:image" content="{{ route('index') }}/images/logo.png" />
     <meta property="twitter:image:width" content="800" />
     <meta property="twitter:image:height" content="450" />
     <meta property="twitter:image:alt" content="Adsnera - The Biggest and Legit Social Media Maketing Platform" />
-    <link rel="image_src" href="{{ route('index') }}/icon.png" />
-    <meta itemprop="image" content="{{ route('index') }}/icon.png" />
-    <meta name="msapplication-TileImage" content="{{ route('index') }}/icon.png" />
+    <link rel="image_src" href="{{ route('index') }}/images/logo.png" />
+    <meta itemprop="image" content="{{ route('index') }}/images/logo.png" />
+    <meta name="msapplication-TileImage" content="{{ route('index') }}/images/logo.png" />
 @endsection
 
 

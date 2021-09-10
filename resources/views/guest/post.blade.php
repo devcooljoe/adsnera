@@ -12,8 +12,8 @@
         content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
     <meta property="og:url" content="{{ route('index') }}" />
     <meta property="og:site_name" content="Adsnera" />
-    <meta property="og:image" content="{{ route('index') }}/images/icon.png" />
-    <meta property="og:image:secure_url" content="{{ route('index') }}/images/icon.png" />
+    <meta property="og:image" content="{{ route('index') }}/images/logo.png" />
+    <meta property="og:image:secure_url" content="{{ route('index') }}/images/logo.png" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="450" />
     <meta property="og:image:alt" content="Adsnera Blog" />
@@ -22,13 +22,13 @@
     <meta property="twitter:description"
         content="Advertise, Right Audience Reach the right audience with our targeting tools. Promote, We Pay You, Earn up to ₦500 - ₦5,000 daily by sharing adverts." />
     <meta property="twitter:url" content="{{ route('index') }}" />
-    <meta property="twitter:image" content="{{ route('index') }}/images/icon.png" />
+    <meta property="twitter:image" content="{{ route('index') }}/images/logo.png" />
     <meta property="twitter:image:width" content="800" />
     <meta property="twitter:image:height" content="450" />
     <meta property="twitter:image:alt" content="Adsnera Blog" />
-    <link rel="image_src" href="{{ route('index') }}/images/icon.png" />
-    <meta itemprop="image" content="{{ route('index') }}/images/icon.png" />
-    <meta name="msapplication-TileImage" content="{{ route('index') }}/images/icon.png" />
+    <link rel="image_src" href="{{ route('index') }}/images/logo.png" />
+    <meta itemprop="image" content="{{ route('index') }}/images/logo.png" />
+    <meta name="msapplication-TileImage" content="{{ route('index') }}/images/logo.png" />
 @endsection
 
 @section('content')
@@ -36,7 +36,10 @@
         <section class="cta-section theme-bg-light py-5">
             <div class="container text-center">
                 <h2 class="heading">Adsnera - Global Breaking news updates, Latest news headlines</h2>
-                <div class="intro">Welcome to our blog. Subscribe and get our latest news/blog post in your inbox.
+                <div class="intro">Welcome to our blog. <br> Like this content? Get them right in your inbox! We
+                    assure
+                    you that there will be no spams. You will receive a mail only when there's an important update.
+                    Subscribe now & never miss an offer again.
                 </div>
                 <form class="signup-form form-inline justify-content-center pt-3" action="/subscribe" method="post">
                     @csrf

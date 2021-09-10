@@ -10,8 +10,8 @@
     <meta property="og:description" content="{{ substr($post->body, 0, 400) }}" />
     <meta property="og:url" content="{{ route('index') }}/posts/{{ $post->custom_id }}" />
     <meta property="og:site_name" content="Adsnera" />
-    <meta property="og:image" content="{{ route('index') }}/storage/pictures/{{ $post->picture }}" />
-    <meta property="og:image:secure_url" content="{{ route('index') }}/storage/pictures/{{ $post->picture }}" />
+    <meta property="og:image" content="{{ route('index') }}/storage/{{ $post->picture }}" />
+    <meta property="og:image:secure_url" content="{{ route('index') }}/storage/{{ $post->picture }}" />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="450" />
     <meta property="og:image:alt" content="{{ $post->title }}" />
@@ -24,13 +24,13 @@
     <meta property="twitter:title" content="{{ $post->title }}" />
     <meta property="twitter:description" content="{{ substr($post->body, 0, 400) }}" />
     <meta property="twitter:url" content="{{ route('index') }}/posts/{{ $post->custom_id }}" />
-    <meta property="twitter:image" content="{{ route('index') }}/storage/pictures/{{ $post->picture }}" />
+    <meta property="twitter:image" content="{{ route('index') }}/storage/{{ $post->picture }}" />
     <meta property="twitter:image:width" content="800" />
     <meta property="twitter:image:height" content="450" />
     <meta property="twitter:image:alt" content="{{ $post->title }}" />
-    <link rel="image_src" href="{{ route('index') }}/storage/pictures/{{ $post->picture }}" />
-    <meta itemprop="image" content="{{ route('index') }}/storage/pictures/{{ $post->picture }}" />
-    <meta name="msapplication-TileImage" content="{{ route('index') }}/storage/pictures/{{ $post->picture }}" />
+    <link rel="image_src" href="{{ route('index') }}/storage/{{ $post->picture }}" />
+    <meta itemprop="image" content="{{ route('index') }}/storage/{{ $post->picture }}" />
+    <meta name="msapplication-TileImage" content="{{ route('index') }}/storage/{{ $post->picture }}" />
 @endsection
 
 
