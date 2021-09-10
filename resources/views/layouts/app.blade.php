@@ -384,6 +384,7 @@
     <script src="{{ route('index') }}/js/bootstrap.js">
     </script>
     <script src="{{ route('index') }}/js/custom.js"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-613b3784a71dbdd8"></script>
     <!-- //Bootstrap Core JavaScript -->
 </body>
 

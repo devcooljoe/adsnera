@@ -156,7 +156,7 @@
     <script src="{{ route('index') }}/blog/js/demo/style-switcher.js"></script>
     <script id="dsq-count-scr" src="//adsnera.disqus.com/count.js" async></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
-
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-613b3784a71dbdd8"></script>
 </body>
 
 </html>

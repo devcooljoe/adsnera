@@ -64,10 +64,31 @@
                                 src="{{ route('index') }}/storage/{{ $post->picture }}" alt="image"></a>
                         <figcaption class="mt-2 text-center image-caption"></figcaption>
                     </figure>
+                    <br>
+                    <div class="addthis_inline_share_toolbox"></div>
+                    <br>
                     <p style="white-space: pre-line;"><?php echo App\Custom::customizePost($post->body); ?></p>
                 </div>
                 <br>
-
+                <section class="cta-section theme-bg-light py-5">
+                    <div class="container text-center">
+                        <div class="intro">Like this content? Get them right in your inbox! We
+                            assure
+                            you that there will be no spams. You will receive a mail only when there's an important update.
+                            Subscribe now & never miss an offer again.
+                        </div>
+                        <form class="signup-form form-inline justify-content-center pt-3" action="/subscribe" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label class="sr-only" for="semail">Your email</label>
+                                <input type="email" id="semail" name="email" class="form-control mr-md-1 semail"
+                                    placeholder="Enter email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </form>
+                    </div>
+                    <!--//container-->
+                </section>
                 <div class="blog-comments-section">
                     <div id="disqus_thread"></div>
                     <script>

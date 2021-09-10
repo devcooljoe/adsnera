@@ -134,11 +134,13 @@ class PromoterDashboardController extends Controller
             $verified_amount = Custom::verify_payment($transaction_id);
             if ($verified_amount != false) {
                 auth()->user()->account()->update(['status'=>'active']);
+                auth()->user()->wallet()->update(['amount'=>150]);
                 auth()->user()->deposit()->create([
                     'amount' => $verified_amount,
                     'status' => 'successful',
                 ]);
-                $msg = 'Transaction succesful! you have successfully activated your account.';
+
+                $msg = 'Transaction succesful! you have successfully activated your account. You\'ve just earned ₦150 as a signup bonus.';
                 Custom::clear_alert_session();
                 Session::put('alert-msg', $msg);
                 $ref = Referral::where('account_id', auth()->user()->id)->first();

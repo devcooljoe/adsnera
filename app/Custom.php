@@ -63,7 +63,7 @@ class Custom extends Model
             "customizations"=>[
                "title"=>$title,
                "description"=>"",
-               "logo"=>"https://assets.piedpiper.com/logo.png"
+               "logo"=>"https://adsnera.com/images/logo.png"
             ]
         ];
 
