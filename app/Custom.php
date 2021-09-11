@@ -276,7 +276,7 @@ class Custom extends Model
 	    
 	    $main=str_replace("##a", "</a>", $main);
 	    $main=str_replace("a#", '">', $main);
-	    $main=str_replace("#a", '<a target="_blank" href="'.route("index").'?link=', $main);
+	    $main=str_replace("#a", '<a target="_blank" href="'.route("index").'/url?link=', $main);
 	 
 	    return $main;
 	}

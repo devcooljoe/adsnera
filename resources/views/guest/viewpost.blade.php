@@ -67,7 +67,7 @@
                     <br>
                     <div class="addthis_inline_share_toolbox"></div>
                     <br>
-                    <p style="white-space: pre-line;"><?php echo App\Custom::customizePost($post->body); ?></p>
+                    <span style="white-space: pre-wrap;"><?php echo App\Custom::customizePost($post->body); ?></span>
                 </div>
                 <br>
                 <section class="cta-section theme-bg-light py-5">

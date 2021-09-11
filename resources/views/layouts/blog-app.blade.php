@@ -18,7 +18,7 @@
     <link rel="shortcut-icon" href="{{ route('index') }}/images/logo.png" type="image/png">
     <link href="{{ route('index') }}/css/fontawesome-all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css" />
-    <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
     <!-- FontAwesome JS-->
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
         integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous">
@@ -35,7 +35,7 @@
         h2,
         h3,
         strong {
-            font-family: "Noto Sans JP";
+            font-family: Raleway;
         }
 
     </style>
@@ -75,7 +75,7 @@
                 <!--//profile-section-->
 
                 <ul class="navbar-nav flex-column text-left">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/posts"><i class="fas fa-file fa-fw mr-2"></i> Posts
                             <span class="sr-only">(current)</span></a>
                     </li>
@@ -85,6 +85,14 @@
                     @guest()
                         <li class="nav-item">
                             <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt fa-fw mr-2"></i> Login</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ auth()->user()->advertiser()
+    ? '/advertiser/dashboard'
+    : '/promoter/dashboard' }}"><i
+                                    class="fas fa-sign-in-alt fa-fw mr-2"></i> Dashboard</a>
                         </li>
                     @endguest
                 </ul>

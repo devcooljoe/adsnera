@@ -27,10 +27,6 @@ Route::middleware(['auth', 'verified'])->get('/account/banned', function () {
 });
 
 Route::get('/', function () {
-    if (request()->link) {
-        $link = request()->link;
-        return redirect($link);
-    }
 
     return view('index');
 })->name('index');
@@ -39,6 +35,12 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/url', function(){
+    if (request()->link) {
+        $link = request()->link;
+        return redirect($link);
+    }
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
