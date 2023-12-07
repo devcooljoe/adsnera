@@ -46,7 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $id = 1; ?>
+                                @php $id = 1; @endphp
                                 @foreach ($refs as $ref)
                                     <tr>
                                         <td>{{ $id }}</td>
@@ -54,8 +54,7 @@
                                         <td>{{ ucwords($ref->account_type) }}</td>
                                         <td>
                                             @if ($ref->account_status == 'active')
-                                                <span class="label label-success">Active <i
-                                                        class="fa fa-check"></i></span>
+                                                <span class="label label-success">Active <i class="fa fa-check"></i></span>
                                             @else
                                                 <span class="label label-danger">Not Active <i
                                                         class="fa fa-times"></i></span>
@@ -65,31 +64,16 @@
                                             @if ($ref->paid == true)
                                                 <span class="label label-success">Paid <i class="fa fa-check"></i></span>
                                             @else
-                                                <span class="label label-danger">Not Paid <i
-                                                        class="fa fa-times"></i></span>
+                                                <span class="label label-danger">Not Paid <i class="fa fa-times"></i></span>
                                             @endif
                                         </td>
                                         <td>{{ App\Custom::date($ref->created_at) }}</td>
                                     </tr>
-                                    <?php $id++; ?>
+                                    @php $id++; @endphp
                                 @endforeach
                             </tbody>
                         </table>
-                        @if ($page_num >= 1)
-                            <ul class="pagination">
-                                @if ($page - 1 >= 0)
-                                    <li><a href="/promoter/referrals?page={{ $page - 1 }}">&laquo Prev</a></li>
-                                @endif
-                                @for ($i = 0; $i <= $page_num; $i++)
-                                    <li><a href="/promoter/referrals?page={{ $i }}"
-                                            @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                @endfor
-                                @if ($page + 1 <= $page_num)
-                                    <li><a href="/promoter/referrals?page={{ $page + 1 }}">Next &raquo</a></li>
-                                @endif
-                                </nav>
-                            </ul>
-                        @endif
+                        {{ $refs->onEachSide(4)->links() }}
                     </div>
                 </div>
             </div>

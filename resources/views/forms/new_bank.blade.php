@@ -49,7 +49,6 @@
         .but {
             border-radius: 0px !important;
         }
-
     </style>
 @endsection
 
@@ -65,8 +64,9 @@
                     <form method="post" autocomplete="off" action="/account/profile/new_bank">
                         @csrf
                         <div class="form-group"> <label for="exampleInputEmail1">Account Name (Required)</label> <input
-                                type="text" name="account_name" class="form-control" id="exampleInputEmail1" placeholder=""
-                                required value="{{ old('account_name') ?? '' }}">@error('account_name')
+                                type="text" name="account_name" class="form-control" id="exampleInputEmail1"
+                                placeholder="" required value="{{ old('account_name') ?? '' }}">
+                            @error('account_name')
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>
                             @enderror
                         </div>
@@ -82,29 +82,10 @@
                             <select style="padding: 0px;" type="text" name="bank_name" required class="form-control"
                                 id="bankname">
                                 <option selected>Choose Your Bank</option>
-                                <option value="Access Bank - 044">Access Bank</option>
-                                <option value="Citibank - 023">Citibank</option>
-                                <option value="Diamond Bank - 063">Diamond Bank</option>
-                                <option value="Ecobank - 050">Ecobank</option>
-                                <option value="Fidelity Bank - 070">Fidelity Bank</option>
-                                <option value="First City Monument Bank (FCMB) - 214">First City Monument Bank (FCMB)
-                                </option>
-                                <option value="FSDH Merchant Bank - 601">FSDH Merchant Bank</option>
-                                <option value="Guarantee Trust Bank (GTB) - 058">Guarantee Trust Bank (GTB)</option>
-                                <option value="Heritage Bank - 030">Heritage Bank</option>
-                                <option value="Keystone Bank - 082">Keystone Bank</option>
-                                <option value="Kuda - 090267">Kuda</option>
-                                <option value="Rand Merchant Bank - 502">Rand Merchant Bank</option>
-                                <option value="Skye Bank - 076">Skye Bank</option>
-                                <option value="Stanbic IBTC Bank - 221">Stanbic IBTC Bank</option>
-                                <option value="Standard Chartered Bank - 063">Standard Chartered Bank</option>
-                                <option value="Sterling Bank - 232">Sterling Bank</option>
-                                <option value="Suntrust Bank - 100">Suntrust Bank</option>
-                                <option value="Union Bank - 032">Union Bank</option>
-                                <option value="United Bank for Africa (UBA) - 033">United Bank for Africa (UBA)</option>
-                                <option value="Unity Bank - 215">Unity Bank</option>
-                                <option value="Wema Bank - 035">Wema Bank</option>
-                                <option value="Zenith Bank - 057">Zenith Bank</option>
+                                @foreach ($banks as $bank)
+                                    <option value="{{ $bank->name }} - {{ $bank->code }}">{{ $bank->name }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('bank_name')
                                 <span style="font-size: 15px; color:darkred;">{{ $message }}</span>

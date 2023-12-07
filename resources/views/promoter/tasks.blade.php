@@ -30,7 +30,6 @@
         .text-area::-webkit-scrollbar-track {
             width: 0px;
         }
-
     </style>
 @endsection
 
@@ -65,7 +64,7 @@
                             </thead>
                             <tbody>
                                 @if ($count > 0)
-                                    <?php $i = 1; ?>
+                                    @php $i = 1; @endphp
                                     @foreach ($tasks as $task)
                                         <tr>
                                             <td>{{ $i }}</td>
@@ -92,26 +91,12 @@
 
                                             </td>
                                         </tr>
-                                        <?php $i++; ?>
+                                        @php $i++; @endphp
                                     @endforeach
                                 @endif
                             </tbody>
                         </table>
-                        @if ($page_num >= 1)
-                            <ul class="pagination">
-                                @if ($page - 1 >= 0)
-                                    <li><a href="/promoter/tasks?page={{ $page - 1 }}">&laquo Prev</a></li>
-                                @endif
-                                @for ($i = 0; $i <= $page_num; $i++)
-                                    <li><a href="/promoter/tasks?page={{ $i }}"
-                                            @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                @endfor
-                                @if ($page + 1 <= $page_num)
-                                    <li><a href="/promoter/tasks?page={{ $page + 1 }}">Next &raquo</a></li>
-                                @endif
-                                </nav>
-                            </ul>
-                        @endif
+                        {{ $tasks->onEachSide(4)->links() }}
                     </div>
                 </div>
             </div>

@@ -48,7 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware('userchecked')->post('/account/profile/new_bank', 'DashboardController@add_new_bank');
     Route::get('/account/profile/edit_bank', 'DashboardController@view_edit_bank');
     Route::middleware('userchecked')->post('/account/profile/edit_bank', 'DashboardController@add_edit_bank');
-    // Route::get('/account/profile/switch', 'DashboardController@switch');
+    Route::get('/account/profile/switch', 'DashboardController@switch');
 
     Route::get('/account/settings', 'DashboardController@view_settings');
     Route::post('/account/payment', 'DashboardController@make_payment');
@@ -113,17 +113,6 @@ Route::post('/subscribe', 'GuestController@subscribe');
 Route::get('/posts', 'GuestController@index');
 Route::get('/posts/{post_id}', "GuestController@viewpost");
 
-Route::get('/faker', function () {
-    // factory(App\User::class, 10)->create();
-    // factory(App\Task::class, 100)->create();
-    // factory(App\View::class, 100)->create();
-    // factory(App\Earning::class, 300)->create();
-    // factory(App\Lead::class, 100)->create();
-    // factory(App\Deposit::class, 100)->create();
-    // factory(App\Referral::class, 50)->create();
-    // factory(App\Post::class, 50)->create();
-
-});
 
 // Referral Route
 Route::get('/register/{id}', function ($user_id) {

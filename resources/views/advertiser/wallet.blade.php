@@ -8,7 +8,6 @@
 @endsection
 
 @section('content')
-
     <!-- /inner_content-->
     <div class="inner_content">
         <!-- /inner_content_w3_agile_info-->
@@ -25,9 +24,9 @@
                         <tr>
                             <th>Account Balance:
                                 ₦{{ number_format(
-    auth()->user()->wallet()->first()->amount,
-    2,
-) }}
+                                    auth()->user()->wallet()->first()->amount,
+                                    2,
+                                ) }}
                             </th>
                         </tr>
                     </thead>
@@ -88,7 +87,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $num = 1; ?>
+                                @php $num = 1; @endphp
                                 @foreach ($deposits as $deposit)
                                     <tr>
                                         <td>{{ $num }}</td>
@@ -104,25 +103,11 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    <?php $num++; ?>
+                                    @php $num++; @endphp
                                 @endforeach
                             </tbody>
                         </table>
-                        @if ($page_num >= 1)
-                                <ul class="pagination">
-                                    @if ($page - 1 >= 0)
-                                        <li><a href="/advertiser/wallet?page={{ $page - 1 }}">&laquo Prev</a></li>
-                                    @endif
-                                    @for ($i = 0; $i <= $page_num; $i++)
-                                        <li><a href="/advertiser/wallet?page={{ $i }}"
-                                                @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                    @endfor
-                                    @if ($page + 1 <= $page_num)
-                                        <li><a href="/advertiser/wallet?page={{ $page + 1 }}">Next &raquo</a></li>
-                                    @endif
-                                    </nav>
-                                </ul>
-                            @endif
+                        {{ $deposits->onEachSide(4)->links() }}
                     </div>
                 </div>
             </div>

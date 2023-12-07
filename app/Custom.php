@@ -86,7 +86,7 @@ class Custom extends Model
             CURLOPT_POSTFIELDS => json_encode($data),
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
-                "Authorization: Bearer FLWSECK-ea4221c8dd359be3ca409a39121f5ea2-X"
+                "Authorization: Bearer FLWSECK-6663e775219a604d1273dcd255c6663c-18c422ef6f2vt-X"
             ),
         ));
 
@@ -115,7 +115,7 @@ class Custom extends Model
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
-                "Authorization: Bearer FLWSECK-ea4221c8dd359be3ca409a39121f5ea2-X"
+                "Authorization: Bearer FLWSECK-6663e775219a604d1273dcd255c6663c-18c422ef6f2vt-X"
             ),
         ));
 
@@ -126,6 +126,37 @@ class Custom extends Model
         $res = json_decode($response);
         if ($res->status == 'success' && $res->data->charged_amount >= $res->data->amount) {
             return $res->data->amount;
+        } else {
+            return false;
+        }
+    }
+
+    public static function get_banks()
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.flutterwave.com/v3/banks/NG",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "Authorization: Bearer FLWSECK-6663e775219a604d1273dcd255c6663c-18c422ef6f2vt-X"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        $res = json_decode($response);
+        if ($res->status == 'success') {
+            return $res->data;
         } else {
             return false;
         }
@@ -210,7 +241,7 @@ class Custom extends Model
             CURLOPT_POSTFIELDS => json_encode($data),
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
-                "Authorization: Bearer FLWSECK-ea4221c8dd359be3ca409a39121f5ea2-X"
+                "Authorization: Bearer FLWSECK-6663e775219a604d1273dcd255c6663c-18c422ef6f2vt-X"
             ),
         ));
 

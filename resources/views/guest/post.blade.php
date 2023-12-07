@@ -70,8 +70,7 @@
                                         class="time">{{ App\Custom::date($post->created_at) }}</span></div>
                                 <div class="intro">{{ App\Custom::filterPost(substr($post->body, 0, 400)) }}...
                                 </div>
-                                <a class="more-link"
-                                    href="{{ route('index') }}/posts/{{ $post->custom_id }}">Read
+                                <a class="more-link" href="{{ route('index') }}/posts/{{ $post->custom_id }}">Read
                                     more
                                     &rarr;</a>
                             </div>
@@ -82,20 +81,7 @@
                     <!--//item-->
                 @endforeach
 
-                @if ($page_num >= 1)
-                    <nav class="blog-nav nav nav-justified my-5">
-                        @if ($page - 1 >= 0)
-                            <a class="nav-link-prev nav-item nav-link rounded-left"
-                                href="/posts?page={{ $page - 1 }}">Previous<i
-                                    class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-                        @endif
-                        @if ($page + 1 <= $page_num)
-                            <a class="nav-link-next nav-item nav-link rounded"
-                                href="/posts?page={{ $page + 1 }}">Next<i
-                                    class="arrow-next fas fa-long-arrow-alt-right"></i></a>
-                        @endif
-                    </nav>
-                @endif
+                {{ $posts->onEachSide(4)->links() }}
 
             </div>
         </section>

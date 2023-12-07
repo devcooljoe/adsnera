@@ -16,38 +16,22 @@ class PromoterDashboardController extends Controller
 
     public function view_dashboard()
     {
-        $earnings = auth()->user()->earning()->orderBy('id', 'DESC')->get();
-        $page_num = floor($earnings->count() / 20);
-        if (request()->page) {
-            $page = request()->page * 20;
-            $earnings_part = auth()->user()->earning()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
-        } else {
-            $earnings_part = auth()->user()->earning()->orderBy('id', 'DESC')->paginate(20);
-        }
+        $earnings = auth()->user()->earning()->orderBy('id', 'DESC')->paginate(20)->fragment('earnings');
+
 
         $task_ids = [];
         foreach ($earnings as $earning) {
             array_push($task_ids, $earning->task_id);
         }
         $task_ids = array_unique($task_ids);
-        $tasks = Task::whereIn('id', $task_ids)->get();
-        $page_num_l = floor($tasks->count() / 20);
-        if (request()->page_l) {
-            $page_l = request()->page_l * 20;
-            $tasks = Task::orderBy('id', 'DESC')->whereIn('id', $task_ids)->skip($page_l)->take(20)->get();
-        } else {
-            $tasks = Task::orderBy('id', 'DESC')->whereIn('id', $task_ids)->paginate(20);
-        }
+        $tasks = Task::whereIn('id', $task_ids)->paginate(20)->fragment('tasks');
+
 
 
 
         return view('promoter.dashboard', [
-            'earnings' => $earnings_part,
-            'page_num' => $page_num,
-            'page' => request()->page ?? 0,
+            'earnings' => $earnings,
             'tasks' => $tasks,
-            'page_num_l' => $page_num_l,
-            'page_l' => request()->page_l ?? 0,
         ]);
     }
 
@@ -61,54 +45,29 @@ class PromoterDashboardController extends Controller
                 $count++;
             }
         }
-        $posts = Post::orderBy('id', 'DESC')->get();
+        $posts = Post::orderBy('id', 'DESC')->paginate(20);
 
-        $page_num = floor($posts->count() / 20);
-        if (request()->page) {
-            $page = request()->page * 20;
-            $posts = Post::orderBy('id', 'DESC')->skip($page)->take(20)->get();
-        } else {
-            $posts = Post::orderBy('id', 'DESC')->paginate(20);
-        }
 
         return view('promoter.tasks', [
             'tasks' => $posts,
             'count' => $count,
-            'page' => request()->page ?? 0,
-            'page_num' => $page_num,
         ]);
     }
     public function view_wallet()
     {
-        $withdrawals = auth()->user()->withdrawal()->orderBy('id', 'DESC')->get();
-        $page_num = floor($withdrawals->count() / 20);
-        if (request()->page) {
-            $page = request()->page * 20;
-            $withdrawals = auth()->user()->withdrawal()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
-        } else {
-            $withdrawals = auth()->user()->withdrawal()->orderBy('id', 'DESC')->paginate(20);
-        }
+        $withdrawals = auth()->user()->withdrawal()->orderBy('id', 'DESC')->paginate(20);
+
         return view('promoter.wallet', [
             'withdrawals' => $withdrawals,
-            'page_num' => $page_num,
-            'page' => request()->page ?? 0,
         ]);
     }
 
     public function view_referrals()
     {
-        $refs = auth()->user()->referral()->get();
-        $page_num = floor($refs->count() / 20);
-        if (request()->page) {
-            $page = request()->page * 20;
-            $refs = auth()->user()->referral()->orderBy('id', 'DESC')->skip($page)->take(20)->get();
-        } else {
-            $refs = auth()->user()->referral()->orderBy('id', 'DESC')->paginate(20);
-        }
+        $refs = auth()->user()->referral()->orderBy('id', 'DESC')->paginate(20);
+
         return view('promoter.referrals', [
             'refs' => $refs,
-            'page' => request()->page ?? 0,
-            'page_num' => $page_num,
         ]);
     }
 

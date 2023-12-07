@@ -41,10 +41,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $num = 1; ?>
+                                @php $num = 1; @endphp
                                 @foreach ($posts as $post)
                                     <tr>
-                                        <td>{{ $num }}</td>
+                                        <td>{{ $num + $page * 20 }}</td>
                                         <td>{{ $post->id }}</td>
                                         <td>{{ $post->title }}</td>
                                         <td>
@@ -66,7 +66,7 @@
                                                 class="label label-danger" style="margin:5px;cursor: pointer;">Delete</span>
                                         </td>
                                     </tr>
-                                    <?php $num++; ?>
+                                    @php $num++; @endphp
                                 @endforeach
                             </tbody>
                         </table>
@@ -77,7 +77,8 @@
                                 @endif
                                 @for ($i = 0; $i <= $page_num; $i++)
                                     <li><a href="/admin?page={{ $i }}"
-                                            @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
+                                            @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a>
+                                    </li>
                                 @endfor
                                 @if ($page + 1 <= $page_num)
                                     <li><a href="/admin?page={{ $page + 1 }}">Next &raquo</a></li>
@@ -107,7 +108,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $num = 1; ?>
+                                @php $num = 1; @endphp
                                 @foreach ($campaigns as $post)
                                     <tr>
                                         <td>{{ $num }}</td>
@@ -134,25 +135,11 @@
                                                 class="label label-danger" style="margin:5px;cursor: pointer;">Delete</span>
                                         </td>
                                     </tr>
-                                    <?php $num++; ?>
+                                    @php $num++; @endphp
                                 @endforeach
                             </tbody>
                         </table>
-                        @if ($page_num_l >= 1)
-                            <ul class="pagination">
-                                @if ($page_l - 1 >= 0)
-                                    <li><a href="/admin?page_l={{ $page_l - 1 }}">&laquo Prev</a></li>
-                                @endif
-                                @for ($i = 0; $i <= $page_num_l; $i++)
-                                    <li><a href="/admin?page_l={{ $i }}"
-                                            @if ($i == $page_l) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                @endfor
-                                @if ($page_l + 1 <= $page_num_l)
-                                    <li><a href="/admin?page_l={{ $page_l + 1 }}">Next &raquo</a></li>
-                                @endif
-                                </nav>
-                            </ul>
-                        @endif
+                        {{ $campaigns->onEachSide(4)->links() }}
                     </div>
                 </div>
             </div>

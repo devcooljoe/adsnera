@@ -39,12 +39,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    
-    protected static function boot() {
+
+    protected static function boot()
+    {
         parent::boot();
-        static::created(function($user){
+        static::created(function ($user) {
             $user->account()->create([
-                'type' => Session::get('account_type'),
+                'type' => Session::get('account_type') ?? 'promoter',
                 'status' => 'not active',
                 'category' => 'user',
             ]);
@@ -55,70 +56,82 @@ class User extends Authenticatable implements MustVerifyEmail
             if (Session::has('referral_id')) {
                 if (User::find(Session::get('referral_id')) != null) {
                     Referral::create([
-                    'user_id' => Session::get('referral_id'),
-                    'account_id' => $user->id,
-                    'name' => $user->name,
-                    'account_type' => Session::get('account_type'),
-                    'account_status' => 'not active',
-                    'paid' => false,
+                        'user_id' => Session::get('referral_id'),
+                        'account_id' => $user->id,
+                        'name' => $user->name,
+                        'account_type' => Session::get('account_type'),
+                        'account_status' => 'not active',
+                        'paid' => false,
                     ]);
                     Session::forget('referral_id');
                 }
-                
             }
             Session::forget('account_type');
-            
-            
         });
     }
-    public function advertiser() {
+    public function advertiser()
+    {
         return $this->account()->first()->type == 'advertiser';
     }
-    public function promoter() {
+    public function promoter()
+    {
         return $this->account()->first()->type == 'promoter';
     }
-    public function admin() {
+    public function admin()
+    {
         return $this->account()->first()->category == 'admin';
     }
-    public function active() {
+    public function active()
+    {
         return $this->account()->first()->status == 'active';
     }
-    public function banned() {
+    public function banned()
+    {
         return $this->account()->first()->status == 'banned';
     }
 
-    public function account() {
+    public function account()
+    {
         return $this->hasOne(Account::class);
     }
-    public function profile() {
+    public function profile()
+    {
         return $this->hasOne(Profile::class);
     }
-    public function task() {
+    public function task()
+    {
         return $this->hasMany(Task::class);
     }
-    public function post() {
+    public function post()
+    {
         return $this->hasMany(Post::class);
     }
-    public function earning() {
+    public function earning()
+    {
         return $this->hasMany(Earning::class);
     }
-    public function lead() {
+    public function lead()
+    {
         return $this->hasMany(Lead::class);
     }
-    public function withdrawal() {
+    public function withdrawal()
+    {
         return $this->hasMany(Withdrawal::class);
     }
-    public function deposit() {
+    public function deposit()
+    {
         return $this->hasMany(Deposit::class);
     }
-    public function wallet() {
+    public function wallet()
+    {
         return $this->hasOne(Wallet::class);
     }
-    public function bank() {
+    public function bank()
+    {
         return $this->hasOne(Bank::class);
     }
-    public function referral() {
+    public function referral()
+    {
         return $this->hasMany(Referral::class)->orderBy('id', 'DESC');
     }
-
 }

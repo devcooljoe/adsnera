@@ -50,7 +50,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $num = 1; ?>
+                                    @php $num = 1; @endphp
                                     @foreach ($tasks as $task)
                                         <tr>
                                             <td>{{ $num }}</td>
@@ -67,25 +67,11 @@
                                                 @endif
                                             </td>
                                         </tr>
-                                        <?php $num++; ?>
+                                        @php $num++; @endphp
                                     @endforeach
                                 </tbody>
                             </table>
-                            @if ($page_num >= 1)
-                                <ul class="pagination">
-                                    @if ($page - 1 >= 0)
-                                        <li><a href="/advertiser/dashboard?page={{ $page - 1 }}">&laquo Prev</a></li>
-                                    @endif
-                                    @for ($i = 0; $i <= $page_num; $i++)
-                                        <li><a href="/advertiser/dashboard?page={{ $i }}"
-                                                @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                    @endfor
-                                    @if ($page + 1 <= $page_num)
-                                        <li><a href="/advertiser/dashboard?page={{ $page + 1 }}">Next &raquo</a></li>
-                                    @endif
-                                    </nav>
-                                </ul>
-                            @endif
+                            {{ $tasks->onEachSide(4)->links() }}
                         </div>
                     </div>
                 </div>
@@ -103,7 +89,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $n = 1; ?>
+                                    @php $n = 1; @endphp
                                     @foreach ($leads as $lead)
                                         <tr>
                                             <td>{{ $n }}</td>
@@ -113,25 +99,11 @@
                                             <td><span class="label label-info">Billed <i class="fa fa-check"></i></span>
                                             </td>
                                         </tr>
-                                        <?php $n++; ?>
+                                        @php $n++; @endphp
                                     @endforeach
                                 </tbody>
                             </table>
-                            @if ($page_num_l >= 1)
-                                <ul class="pagination">
-                                    @if ($page_l - 1 >= 0)
-                                        <li><a href="/advertiser/dashboard?page_l={{ $page_l - 1 }}">&laquo Prev</a></li>
-                                    @endif
-                                    @for ($i = 0; $i <= $page_num_l; $i++)
-                                        <li><a href="/advertiser/dashboard?page_l={{ $i }}"
-                                                @if ($i == $page_l) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                    @endfor
-                                    @if ($page_l + 1 <= $page_num_l)
-                                        <li><a href="/advertiser/dashboard?page_l={{ $page_l + 1 }}">Next &raquo</a></li>
-                                    @endif
-                                    </nav>
-                                </ul>
-                            @endif
+                            {{ $leads->onEachSide(4)->links() }}
                         </div>
                     </div>
                 </div>
@@ -160,8 +132,6 @@
         <!-- //inner_content_w3_agile_info-->
     </div>
     <!-- //inner_content-->
-
-
 @endsection
 
 @section('chart-js')

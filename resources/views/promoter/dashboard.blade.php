@@ -47,7 +47,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1; ?>
+                                    @php $i = 1; @endphp
                                     @foreach ($tasks as $task)
                                         <tr>
                                             <td>{{ $i }}</td>
@@ -57,26 +57,11 @@
                                             <td><span class="badge badge-info">{{ $task->earning()->count() }}</span></td>
                                             <td><span class="label label-success">Paid</span></td>
                                         </tr>
-                                        <?php $i++; ?>
+                                        @php $i++; @endphp
                                     @endforeach
-
                                 </tbody>
                             </table>
-                            @if ($page_num_l >= 1)
-                                <ul class="pagination">
-                                    @if ($page_l - 1 >= 0)
-                                        <li><a href="/promoter/dashboard?page_l={{ $page_l - 1 }}">&laquo Prev</a></li>
-                                    @endif
-                                    @for ($i = 0; $i <= $page_num_l; $i++)
-                                        <li><a href="/promoter/dashboard?page_l={{ $i }}"
-                                                @if ($i == $page_l) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                    @endfor
-                                    @if ($page_l + 1 <= $page_num_l)
-                                        <li><a href="/promoter/dashboard?page_l={{ $page_l + 1 }}">Next &raquo</a></li>
-                                    @endif
-                                    </nav>
-                                </ul>
-                            @endif
+                            {{ $tasks->onEachSide(4)->links() }}
                         </div>
                     </div>
                 </div>
@@ -95,7 +80,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1; ?>
+                                    @php $i = 1; @endphp
                                     @foreach ($earnings as $earning)
                                         <tr>
                                             <td>{{ $i }}</td>
@@ -104,25 +89,11 @@
 
                                             <td><span class="label label-success">Successful</span></td>
                                         </tr>
-                                        <?php $i++; ?>
+                                        @php $i++; @endphp
                                     @endforeach
                                 </tbody>
                             </table>
-                            @if ($page_num >= 1)
-                                <ul class="pagination">
-                                    @if ($page - 1 >= 0)
-                                        <li><a href="/promoter/dashboard?page={{ $page - 1 }}">&laquo Prev</a></li>
-                                    @endif
-                                    @for ($i = 0; $i <= $page_num; $i++)
-                                        <li><a href="/promoter/dashboard?page={{ $i }}"
-                                                @if ($i == $page) style="background-color:black;color:white;" @endif>{{ $i + 1 }}</a></li>
-                                    @endfor
-                                    @if ($page + 1 <= $page_num)
-                                        <li><a href="/promoter/dashboard?page={{ $page + 1 }}">Next &raquo</a></li>
-                                    @endif
-                                    </nav>
-                                </ul>
-                            @endif
+                            {{ $earnings->onEachSide(4)->links() }}
                         </div>
                     </div>
                 </div>

@@ -17,16 +17,10 @@ class GuestController extends Controller
 {
     public function index()
     {
-        $posts_all = Post::orderBy('id', 'DESC')->where('status', 'approved')->get();
-        $page_num = floor($posts_all->count() / 20);
-        if (request()->page) {
-            $page = request()->page * 20;
-            $posts = Post::orderBy('id', 'DESC')->where('status', 'approved')->skip($page)->take(20)->get();
-        } else {
-            $posts = Post::orderBy('id', 'DESC')->where('status', 'approved')->paginate(20);
-        }
+        $posts = Post::orderBy('id', 'DESC')->where('status', 'approved')->paginate(20);
 
-        return view('guest.post', ['posts' => $posts, 'page' => request()->page ?? 0, 'page_num' => $page_num]);
+
+        return view('guest.post', ['posts' => $posts]);
     }
 
     public function viewpost($custom_id)

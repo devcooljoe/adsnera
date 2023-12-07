@@ -44,8 +44,8 @@
             </a>
         @else
             <a href="{{ route('index') }}" target="_blank">
-                <img src="{{ route('index') }}/images/ads.png" class="img-responsive"
-                    style="width: 100%; max-height:450px" alt="">
+                <img src="{{ route('index') }}/images/ads.png" class="img-responsive" style="width: 100%; max-height:450px"
+                    alt="">
             </a>
         @endif
         <article class="blog-post px-3 py-5 p-md-5">
@@ -67,7 +67,7 @@
                     <br>
                     <div class="addthis_inline_share_toolbox"></div>
                     <br>
-                    <span style="white-space: pre-wrap;"><?php echo App\Custom::customizePost($post->body); ?></span>
+                    <span style="white-space: pre-wrap;">{!! App\Custom::customizePost($post->body) !!} </span>
                 </div>
                 <br>
                 <section class="cta-section theme-bg-light py-5">
@@ -77,7 +77,8 @@
                             you that there will be no spams. You will receive a mail only when there's an important update.
                             Subscribe now & never miss an offer again.
                         </div>
-                        <form class="signup-form form-inline justify-content-center pt-3" action="/subscribe" method="post">
+                        <form class="signup-form form-inline justify-content-center pt-3" action="/subscribe"
+                            method="post">
                             @csrf
                             <div class="form-group">
                                 <label class="sr-only" for="semail">Your email</label>
@@ -130,7 +131,4 @@
             <!--//container-->
         </section>
         <!--//promo-section-->
-
-
-
     @endsection
