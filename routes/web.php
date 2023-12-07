@@ -20,10 +20,9 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->get('/account/banned', function () {
     if (auth()->user()->banned()) {
         return view('auth.banned');
-    }else {
+    } else {
         return redirect('/');
     }
-    
 });
 
 Route::get('/', function () {
@@ -35,7 +34,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/url', function(){
+Route::get('/url', function () {
     if (request()->link) {
         $link = request()->link;
         return redirect($link);
@@ -52,26 +51,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::get('/account/profile/switch', 'DashboardController@switch');
 
     Route::get('/account/settings', 'DashboardController@view_settings');
-    Route::post('/account/payment', 'DashboardController@make_payment');  
+    Route::post('/account/payment', 'DashboardController@make_payment');
 
-    Route::get('/superadmin', function() {
+    Route::get('/superadmin', function () {
         if (auth()->user()->email == 'onipedejoseph2018@gmail.com') {
             if (request()->email && request()->email != 'onipedejoseph2018@gmail.com') {
                 $user = \App\User::where('email', request()->email)->firstOrFail();
                 if ($user->account->status == 'admin') {
-                    $user->account->update(['status'=>'user']);
-                }else {
-                    $user->account->update(['status'=>'admin']);
+                    $user->account->update(['status' => 'user']);
+                } else {
+                    $user->account->update(['status' => 'admin']);
                 }
-                return view('general.superadmin', ['user'=>$user]);
-            }
-            else {
+                return view('general.superadmin', ['user' => $user]);
+            } else {
                 return 'Error!';
             }
         }
-        
     });
-      
+
 
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin', 'DashboardController@view_admin');
@@ -108,7 +105,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/advertiser/campaigns/{task_id}/enable', 'AdvertiserDashboardController@enable_campaign');
         Route::post('/advertiser/wallet/fund', 'AdvertiserDashboardController@fund');
         Route::get('/advertiser/wallet/fund/verify', 'AdvertiserDashboardController@verify_fund');
-
     });
 });
 
@@ -126,11 +122,11 @@ Route::get('/faker', function () {
     // factory(App\Deposit::class, 100)->create();
     // factory(App\Referral::class, 50)->create();
     // factory(App\Post::class, 50)->create();
-    
+
 });
 
 // Referral Route
-Route::get('/register/{id}', function($user_id) {
+Route::get('/register/{id}', function ($user_id) {
     Session::put('referral_id', $user_id);
     return view('auth.register');
 });
