@@ -17,7 +17,7 @@ class CreateAccountsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('type');
-            $table->string('status')->nullable();
+            $table->enum('status', ['active', 'not active', 'banned'])->default('not active');
             $table->string('category')->nullabe();
             $table->timestamps();
         });

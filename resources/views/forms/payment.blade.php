@@ -46,20 +46,23 @@
                         <form action="/account/payment" method="post">
                             @csrf
 
-                            <input type="text" @error('email') style="border-color: darkred; background-color: #fff2f2;"
-                                @enderror class="input text @error('email') is-invalid invalid-entry @enderror"
-                                placeholder="" name="email" id="recipient-name" required=""
-                                value="{{ auth()->user()->email }}" readonly>
+                            <input type="text"
+                                @error('email') style="border-color: darkred; background-color: #fff2f2;"
+                                @enderror
+                                class="input text @error('email') is-invalid invalid-entry @enderror" placeholder=""
+                                name="email" id="recipient-name" required="" value="{{ auth()->user()->email }}"
+                                readonly>
 
-                            <input type="text" @error('amount') style="border-color: darkred; background-color: #fff2f2;"
-                                @enderror class="input password @error('amount') is-invalid invalid-entry @enderror"
-                                placeholder="" name="amount" id="password" required="" readonly
+                            <input type="text"
+                                @error('amount') style="border-color: darkred; background-color: #fff2f2;"
+                                @enderror
+                                class="input password @error('amount') is-invalid invalid-entry @enderror" placeholder=""
+                                name="amount" id="password" required="" readonly
                                 value="₦{{ Session::get('payment-price') }}">
 
                             <br>
                             <br>
                             <button class="btn" type="submit"><i class="fas fa-money"></i> Make Payment</button>
-
                         </form>
                     </div>
                     <div class="w3l_form align-self">
@@ -71,6 +74,4 @@
             </div>
             <!-- //form -->
         </div>
-
-
     @endsection

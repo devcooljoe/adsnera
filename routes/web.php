@@ -86,7 +86,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/promoter/dashboard', 'PromoterDashboardController@view_dashboard');
         Route::middleware('userchecked')->get('/promoter/tasks', 'PromoterDashboardController@view_tasks');
         Route::get('/promoter/wallet', 'PromoterDashboardController@view_wallet');
-        Route::middleware('userchecked')->get('/promoter/referrals', 'PromoterDashboardController@view_referrals');
+        Route::get('/promoter/referrals', 'PromoterDashboardController@view_referrals');
         Route::middleware('userchecked')->post('/promoter/wallet/withdraw', 'PromoterDashboardController@withdraw');
         Route::get('/account/activate', 'PromoterDashboardController@view_activate');
         Route::get('/promoter/activate/verify', 'PromoterDashboardController@verify_activation');

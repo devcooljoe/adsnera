@@ -145,11 +145,11 @@ class AdvertiserDashboardController extends Controller
     public function fund()
     {
         $amount = preg_replace('/[^0-9]/', '', request()->amount);
-        if ($amount >= 1000) {
+        if ($amount >= 500) {
             $payment_link = Custom::make_payment('Funding your Adsnera wallet', $amount, route('index') . '/advertiser/wallet/fund/verify');
             return redirect($payment_link);
         } else {
-            return redirect('/advertiser/wallet#fund-wallet')->with('response-error', 'You need to fund your wallet with a minimum of ₦1,000.');
+            return redirect('/advertiser/wallet#fund-wallet')->with('response-error', 'You need to fund your wallet with a minimum of ₦500.');
         }
     }
 

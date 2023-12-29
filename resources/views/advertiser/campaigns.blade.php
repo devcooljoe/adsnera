@@ -62,7 +62,7 @@
                                 @php $count = 1; @endphp
                                 @foreach ($tasks as $task)
                                     <tr>
-                                        <td>{{ $count + $page * 20 }}</td>
+                                        <td>{{ $count }}</td>
                                         <td>{{ $task->name }}</td>
                                         <td>
                                             @if ($task->status == 'active')

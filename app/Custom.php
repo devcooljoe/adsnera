@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Session;
 
 class Custom extends Model
 {
-
-
-
-
     public static function alert()
     {
         $message = Session::get('alert-msg');
@@ -86,7 +82,7 @@ class Custom extends Model
             CURLOPT_POSTFIELDS => json_encode($data),
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
-                "Authorization: Bearer FLWSECK-6663e775219a604d1273dcd255c6663c-18c422ef6f2vt-X"
+                "Authorization: Bearer FLWPUBK-c14f79114d431f61fdc5266d53e31d2e-X"
             ),
         ));
 
@@ -115,7 +111,7 @@ class Custom extends Model
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
-                "Authorization: Bearer FLWSECK-6663e775219a604d1273dcd255c6663c-18c422ef6f2vt-X"
+                "Authorization: Bearer FLWPUBK-c14f79114d431f61fdc5266d53e31d2e-X"
             ),
         ));
 
@@ -130,6 +126,7 @@ class Custom extends Model
             return false;
         }
     }
+
 
     public static function get_banks()
     {
@@ -146,7 +143,7 @@ class Custom extends Model
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
-                "Authorization: Bearer FLWSECK-6663e775219a604d1273dcd255c6663c-18c422ef6f2vt-X"
+                "Authorization: Bearer FLWPUBK-c14f79114d431f61fdc5266d53e31d2e-X"
             ),
         ));
 
@@ -241,7 +238,7 @@ class Custom extends Model
             CURLOPT_POSTFIELDS => json_encode($data),
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
-                "Authorization: Bearer FLWSECK-6663e775219a604d1273dcd255c6663c-18c422ef6f2vt-X"
+                "Authorization: Bearer FLWPUBK-c14f79114d431f61fdc5266d53e31d2e-X"
             ),
         ));
 
@@ -304,6 +301,13 @@ class Custom extends Model
 
         $main = str_replace("##c", "</code>", $main);
         $main = str_replace("#c", "<code style='color:black;background-color:white;'>", $main);
+
+        $main = str_replace(" ##embed", "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>", $main);
+        $main = str_replace("#embed ", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/", $main);
+
+        $main = str_replace("##embed", "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>", $main);
+        $main = str_replace("#embed", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/", $main);
+
 
         $main = str_replace("##a", "</a>", $main);
         $main = str_replace("a#", '">', $main);
